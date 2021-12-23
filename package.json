@@ -4,16 +4,21 @@
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "main": "src/index.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "npm run test",
+    "start": "parcel"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/artembert/middle.messenger.praktikum.yandex.git"
   },
+  "source": "static/index.html",
   "author": "Artem Beresnev <artembert@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/artembert/middle.messenger.praktikum.yandex/issues"
   },
-  "homepage": "https://github.com/artembert/middle.messenger.praktikum.yandex#readme"
+  "homepage": "https://github.com/artembert/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "parcel": "^2.0.1"
+  }
 }
