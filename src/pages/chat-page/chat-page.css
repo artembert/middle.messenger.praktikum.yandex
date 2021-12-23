@@ -1,0 +1,13 @@
+.chat-page {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 300px 1fr;
+}
+
+.chat-page__roster {
+  background-color: aliceblue;
+  border-right: 1px solid steelblue;
+}
+
+.chat-page__main {
+}
