@@ -2,10 +2,10 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
-  "main": "src/index.js",
   "scripts": {
     "test": "npm run test",
-    "start": "parcel"
+    "start": "parcel",
+    "build": "parcel build"
   },
   "repository": {
     "type": "git",

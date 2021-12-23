@@ -4,6 +4,9 @@ dist
 # Dependency directories
 node_modules/
 
+# Parcel cache
+.parcel-cache/
+
 # VisualStudioCode
 .vscode/*
 !.vscode/settings.json
