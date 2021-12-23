@@ -1,0 +1,19 @@
+:root {
+  --gray-1: #f5f5f5;
+  --gray-2: #d3d3d3;
+  --gray-3: #c4c4c4;
+  --gray-4: #999999;
+  --gray-5: #242424;
+
+  --blue-3: #3369f3;
+
+  --red-3: #c4314b;
+
+  --color-text-base: var(--gray-5);
+  --color-text-placeholder: var(--gray-4);
+  --color-error: var(--red-3);
+  --input-fill: (--gray-1);
+  --color-text-base: #ffffff;
+
+  --color-accent: var(--blue-3);
+}

@@ -1,13 +1,17 @@
 .chat-page {
+  height: 100vh;
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 310px 1fr;
 }
 
 .chat-page__roster {
-  background-color: aliceblue;
-  border-right: 1px solid steelblue;
+  border-right: 1px solid var(--gray-2);
 }
 
 .chat-page__main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-4);
 }
