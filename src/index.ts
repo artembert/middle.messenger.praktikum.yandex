@@ -1,4 +1,17 @@
-import "./pages/chat-page/chat-page.css";
-import "./common-styles/index"
+import "./common-styles/index";
 
-console.log('script');
+import { resolvePageByRoute } from "./router";
+
+const rootElement = document.getElementById("root");
+
+window.addEventListener("hashchange", () => handleNavigation());
+
+(async () => {
+  await handleNavigation();
+})();
+
+async function handleNavigation(): Promise<void> {
+  const url = document.location.hash;
+  const pageContent = await resolvePageByRoute(url);
+  rootElement.innerHTML = pageContent;
+}
