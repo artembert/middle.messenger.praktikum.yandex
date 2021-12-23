@@ -12,6 +12,13 @@
     "url": "git+https://github.com/artembert/middle.messenger.praktikum.yandex.git"
   },
   "source": "static/index.html",
+  "browserslist": [
+    "last 2 edge major version",
+    "last 2 firefox major version",
+    "last 2 chrome major version",
+    "last 2 safari major version",
+    "last 2 opera major version"
+  ],
   "author": "Artem Beresnev <artembert@gmail.com>",
   "license": "ISC",
   "bugs": {
