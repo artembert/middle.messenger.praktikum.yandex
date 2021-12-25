@@ -6,7 +6,7 @@ export const signInPageTemplate = `
     </div>
     <div class="window__content">
       {{#each fields}}
-        {{> input name=name label=label error=error }}
+        {{> app-input name=name label=label error=error }}
       {{/each}}
     </div>
     <div class="window__footer form-action-buttons">

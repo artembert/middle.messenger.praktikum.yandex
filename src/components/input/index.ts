@@ -9,5 +9,5 @@ export interface InputProps {
 }
 
 export function registerInputComponent() {
-  Handlebars.registerPartial("input", inputTemplate);
+  Handlebars.registerPartial("app-input", inputTemplate);
 }
