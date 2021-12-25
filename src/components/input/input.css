@@ -1,0 +1,29 @@
+.input__label {
+  display: block;
+  min-height: 24px;
+  padding: 4px 0;
+}
+
+.input__field {
+  display: block;
+  height: 32px;
+  background-color: var(--gray-1);
+  border: 2px solid var(--gray-1);
+  border-radius: 3px;
+  width: 100%;
+  padding: 4px 5px;
+}
+
+.input_error .input__field {
+  border: 2px solid var(--color-error);
+}
+
+.input__field:focus {
+  border: 2px solid var(--color-accent);
+}
+
+.input__validation-message {
+  display: block;
+  min-height: 24px;
+  padding: 2px 0 8px;
+}

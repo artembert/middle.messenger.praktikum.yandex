@@ -1,6 +1,8 @@
 import "./common-styles/index";
-
+import { refisterComponents } from "./components";
 import { resolvePageByRoute } from "./router";
+
+refisterComponents();
 
 const rootElement = document.getElementById("root");
 
