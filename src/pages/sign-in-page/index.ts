@@ -1,6 +1,7 @@
 import Handlebars from "handlebars";
 import { signInPageTemplate } from "./sign-in-page.tmpl";
 import { InputProps } from "../../components/input";
+import { Routes } from "../../constants/routes";
 
 const fields: InputProps[] = [
   {
@@ -14,12 +15,14 @@ const fields: InputProps[] = [
     error: "Неправильный пароль",
   },
 ];
+const registerLink = `/${Routes.REGISTER}`;
 
 export function signInPage() {
   const template = Handlebars.compile(signInPageTemplate);
   return Promise.resolve(
     template({
       fields,
+      registerLink,
     })
   );
 }

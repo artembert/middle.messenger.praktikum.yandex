@@ -10,7 +10,7 @@ export const signInPageTemplate = `
       {{/each}}
     </form>
     <div class="window__footer form-action-buttons">
-      {{> app-button text="Зарегистрироваться" mode="secondary" }}
+      {{> app-link href=registerLink text="Зарегистрироваться" mode="secondary" }}
       {{> app-button submit=true text="Войти" mode="primary" }}
     </div>
   </div>

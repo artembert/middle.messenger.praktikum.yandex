@@ -5,6 +5,9 @@
   padding: 4px 12px;
   min-width: 72px;
   border-radius: 4px;
+  text-decoration: none;
+  cursor: default;
+  text-align: center;
 }
 
 .button_mode_primary {
@@ -38,4 +41,12 @@
 
 .button_mode_dangerous {
   font-weight: var(--font-weight-regular);
+}
+
+.button_mode_link {
+  font-weight: var(--font-weight-regular);
+  background-color: transparent;
+  color: var(--color-accent);
+  text-decoration: underline;
+  border: none;
 }
