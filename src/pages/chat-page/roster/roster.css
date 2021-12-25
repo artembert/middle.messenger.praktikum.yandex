@@ -1,0 +1,7 @@
+.roster {
+  overflow-y: scroll;
+}
+
+.roster__header {
+  padding: 32px 12px 12px;
+}

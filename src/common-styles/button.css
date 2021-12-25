@@ -8,6 +8,7 @@
   text-decoration: none;
   cursor: default;
   text-align: center;
+  display: inline-block;
 }
 
 .button_mode_primary {

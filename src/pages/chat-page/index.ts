@@ -1,3 +1,12 @@
 import "./chat-page.css";
+import Handlebars from "handlebars";
+import { chatPageTemplate } from "./chat-page.tmpl";
+import { registerRosterComponent } from "./roster";
 
-export { chatPage } from "./chat-page";
+const chats: undefined[] = new Array(20).fill(undefined);
+
+export function chatPage() {
+  registerRosterComponent();
+  const template = Handlebars.compile(chatPageTemplate);
+  return Promise.resolve(template({ chats }));
+}
