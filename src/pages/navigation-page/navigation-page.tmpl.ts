@@ -1,5 +1,9 @@
 export const navigationPageTemplate = `
 <div class="navigation-page">
-  <a href="#chats">Chats</a>
+  {{#each routes}}
+    <a href="{{this}}">
+      {{this}}
+    </a>
+  {{/each}}
 </div>
 `;
