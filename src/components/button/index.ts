@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";
 import { buttonTemplate } from "./button.tmpl";
 
-type ButtonMode = "primary" | "secondary" | "dangerous" | "link";
+type ButtonMode = "primary" | "secondary" | "dangerous" | "link" | "icon";
 
 export interface ButtonProps {
   text: string;

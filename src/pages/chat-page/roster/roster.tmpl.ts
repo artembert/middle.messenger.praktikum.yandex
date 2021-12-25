@@ -1,7 +1,10 @@
 export const rosterTemplate = `
 <div class="roster">
   <div class="roster__header">
-    {{> app-link text="⚙️ Настройки" mode="secondary" }}
+    {{> app-link text="⚙️" mode="icon" }}
+    <div class="roster__search">
+    {{> app-search-bar name="roster-search" placeholder="Поиск" }}
+    </div>
   </div>
   <div class="roster__items-list">
     {{#each chats}}

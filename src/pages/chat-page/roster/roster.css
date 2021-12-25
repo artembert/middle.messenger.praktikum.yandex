@@ -3,5 +3,11 @@
 }
 
 .roster__header {
-  padding: 32px 12px 12px;
+  padding: 24px 12px 12px;
+  display: flex;
+}
+
+.roster__search {
+  margin-left: 12px;
+  width: 100%;
 }
