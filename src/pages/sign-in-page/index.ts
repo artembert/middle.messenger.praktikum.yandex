@@ -5,11 +5,12 @@ import { InputProps } from "../../components/input";
 const fields: InputProps[] = [
   {
     name: "login",
-    label: "Имя",
+    label: "Логин",
   },
   {
     name: "password",
     label: "Пароль",
+    isPassword: true,
     error: "Неправильный пароль",
   },
 ];

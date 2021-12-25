@@ -5,7 +5,11 @@ export const inputTemplate = `
   </label>
   <input
     class="input__field input-field"
+    {{#if isPassword}}
+    type="password"
+    {{else}}
     type="text"
+    {{/if}}
     name="{{name}}"
     id="{{name}}"
   />
