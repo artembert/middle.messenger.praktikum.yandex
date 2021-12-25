@@ -4,18 +4,14 @@ export const signInPageTemplate = `
     <div class="window__title title">
       Вход
     </div>
-    <div class="window__content">
+    <form action="" method="post" class="window__content">
       {{#each fields}}
         {{> app-input name=name label=label error=error }}
       {{/each}}
-    </div>
+    </form>
     <div class="window__footer form-action-buttons">
-      <button type="button">
-        Нет аккаунта
-      </button>
-      <button type="button">
-        Войти
-      </button>
+      {{> app-button text="Зарегистрироваться" mode="secondary" }}
+      {{> app-button submit=true text="Войти" mode="primary" }}
     </div>
   </div>
 </main>
