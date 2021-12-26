@@ -1,11 +1,11 @@
 import Handlebars from "handlebars";
-import { notFoundPageTemplate } from "./404-page.tmpl";
+import { internalErrorPageTemplate } from "./500-page.tmpl";
 import { Routes } from "../../constants/routes";
 
 const chatsPageLink = `/${Routes.CHATS}`;
 
-export function notFoundPage() {
-  const template = Handlebars.compile(notFoundPageTemplate);
+export function internalErrorPage() {
+  const template = Handlebars.compile(internalErrorPageTemplate);
   return Promise.resolve(
     template({
       chatsPageLink,
