@@ -42,6 +42,15 @@
 
 .button_mode_dangerous {
   font-weight: var(--font-weight-regular);
+  background-color: #ffffff;
+  color: var(--red-3);
+  border: 1px solid var(--red-3);
+}
+
+.button_mode_dangerous:hover {
+  font-weight: var(--font-weight-regular);
+  background-color: var(--red-3);
+  color: #ffffff;
 }
 
 .button_mode_link {

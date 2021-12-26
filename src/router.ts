@@ -1,4 +1,5 @@
 import { Routes } from "./constants/routes";
+import { acoountPage } from "./pages/account-page";
 import { chatPage } from "./pages/chat-page";
 import { navigationPage } from "./pages/navigation-page";
 import { registerPage } from "./pages/register-page";
@@ -12,6 +13,8 @@ export function resolvePageByRoute(url?: string): Promise<string> {
       return signInPage();
     case Routes.REGISTER:
       return registerPage();
+    case Routes.ACCOUNT:
+      return acoountPage();
     default:
       return navigationPage();
   }

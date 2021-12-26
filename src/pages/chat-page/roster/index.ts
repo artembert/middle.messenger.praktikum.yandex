@@ -5,6 +5,7 @@ import { registerRosterItemComponent } from "./roster-item";
 
 export interface RosterProps {
   chats: undefined[];
+  accountPageLink: string;
 }
 
 export function registerRosterComponent() {
