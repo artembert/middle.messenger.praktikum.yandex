@@ -1,0 +1,14 @@
+.account-header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 24px;
+}
+
+.account-header__title {
+  flex-grow: 1;
+}
+
+.account-header__avatar {
+  margin-left: 16px;
+  flex-grow: 0;
+}
