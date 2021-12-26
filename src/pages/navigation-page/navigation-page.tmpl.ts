@@ -3,10 +3,14 @@ export const navigationPageTemplate = `
   <h1 class="navigation-page__title title">
     Страницы
   </h1>
-  <div class="navigation-page__links">
+  <nav>
+  <ul class="navigation-page__links">
     {{#each routes}}
-      {{> app-link href=this mode="link" text=this }}
+      <li>
+        {{> app-link href=this mode="link" text=this }}
+      </li>
     {{/each}}
   </div>
+  </nav>
 </div>
 `;
