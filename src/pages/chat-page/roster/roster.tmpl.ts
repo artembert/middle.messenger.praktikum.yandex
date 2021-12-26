@@ -6,10 +6,10 @@ export const rosterTemplate = `
     {{> app-search-bar name="roster-search" placeholder="Поиск" }}
     </div>
   </div>
-  <div class="roster__items-list">
+  <ul class="roster__items-list">
     {{#each chats}}
       {{> app-roster-item }}
     {{/each}}
-  </div>
+  </ul>
 </div>
 `;
