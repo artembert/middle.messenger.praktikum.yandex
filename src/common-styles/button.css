@@ -3,7 +3,6 @@
   font-size: 14px;
   line-height: 16px;
   padding: 4px 12px;
-  min-width: 72px;
   border-radius: 4px;
   text-decoration: none;
   cursor: default;
@@ -12,6 +11,7 @@
 }
 
 .button_mode_primary {
+  min-width: 72px;
   font-weight: var(--font-weight-medium);
   background-color: var(--color-accent);
   border: 1px solid var(--color-accent);
@@ -30,6 +30,7 @@
 }
 
 .button_mode_secondary {
+  min-width: 72px;
   font-weight: var(--font-weight-regular);
   background-color: #ffffff;
   color: var(--gray-5);
@@ -41,6 +42,7 @@
 }
 
 .button_mode_dangerous {
+  min-width: 72px;
   font-weight: var(--font-weight-regular);
   background-color: #ffffff;
   color: var(--red-3);
