@@ -4,7 +4,8 @@
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "scripts": {
     "test": "npm run test",
-    "start": "parcel",
+    "start": "npm run build && node server.js",
+    "dev": "parcel",
     "build": "parcel build"
   },
   "repository": {
@@ -37,6 +38,7 @@
     "prettier": "2.5.1"
   },
   "dependencies": {
+    "express": "^4.17.2",
     "handlebars": "^4.7.7"
   }
 }
