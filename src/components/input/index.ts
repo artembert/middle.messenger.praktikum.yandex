@@ -7,6 +7,8 @@ export interface InputProps {
   label: string;
   error?: string;
   isPassword?: boolean;
+  mode?: "default" | "readonly";
+  value?: string;
 }
 
 export function registerInputComponent() {

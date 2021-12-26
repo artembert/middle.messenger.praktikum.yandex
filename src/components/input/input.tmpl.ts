@@ -1,5 +1,19 @@
 export const inputTemplate = `
-<div class="input {{#if error}} input_error {{/if}}">
+<div class="
+  input
+  {{#if error}} input_error {{/if}}
+  {{#switch mode}}
+    {{#case "readonly"}}
+      input_mode_readonly
+    {{/case}}
+    {{#case "default"}}
+      input_mode_default
+    {{/case}}
+    {{#default "input_mode_default"}}
+      input_mode_default
+    {{/default}}
+  {{/switch}}
+  ">
   <label class="input__label input-label" for="{{name}}">
     {{label}}
   </label>
@@ -12,6 +26,12 @@ export const inputTemplate = `
     {{/if}}
     name="{{name}}"
     id="{{name}}"
+    value="{{value}}"
+    {{#switch mode}}
+      {{#case "readonly"}}
+        disabled
+      {{/case}}
+    {{/switch}}
   />
   <span class="input__validation-message error-message">
     {{error}}
