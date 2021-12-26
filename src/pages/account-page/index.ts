@@ -1,9 +1,7 @@
 import "./account-page.css";
-
 import Handlebars from "handlebars";
 import { accountPageTemplate } from "./account-page.tmpl";
 import { InputProps } from "../../components/input";
-import { registerAccountHeaderComponent } from "./account-header";
 import { Routes } from "../../constants/routes";
 
 const fields: InputProps[] = [
@@ -42,7 +40,6 @@ const fields: InputProps[] = [
 const chatPageLink = `/${Routes.CHATS}`;
 
 export function acoountPage() {
-  registerAccountHeaderComponent();
   const template = Handlebars.compile(accountPageTemplate);
   return Promise.resolve(
     template({

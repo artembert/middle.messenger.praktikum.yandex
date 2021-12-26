@@ -1,3 +1,4 @@
+import { registerAccountHeaderComponent } from "./account-header";
 import { registerAvatarComponent } from "./avatar";
 import { registerButtonComponent } from "./button";
 import { registerInputComponent } from "./input";
@@ -10,4 +11,5 @@ export function registerComponents(): void {
   registerLinkComponent();
   registerSearchBarComponent();
   registerAvatarComponent();
+  registerAccountHeaderComponent();
 }
