@@ -7,3 +7,7 @@ body {
   font-family: var(--font-family);
   font-weight: var(--font-weight-regular);
 }
+
+:root {
+  --page-indents: 24px 0 36px;
+}
