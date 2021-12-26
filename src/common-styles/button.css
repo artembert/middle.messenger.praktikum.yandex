@@ -59,6 +59,11 @@
   color: var(--color-accent);
   text-decoration: underline;
   border: none;
+  cursor: pointer;
+}
+
+.button_mode_link:hover {
+  color: var(--blue-4);
 }
 
 .button_mode_icon {
