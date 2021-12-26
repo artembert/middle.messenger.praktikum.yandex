@@ -45,6 +45,7 @@ const fields: InputProps[] = [
 
 const chatPageLink = `/${Routes.CHATS}`;
 const editAccountPageLink = `/${Routes.EDIT_ACCOUNT}`;
+const indexPageLink = "/";
 
 export function acoountPage() {
   const template = Handlebars.compile(accountPageTemplate);
@@ -53,6 +54,7 @@ export function acoountPage() {
       fields,
       chatPageLink,
       editAccountPageLink,
+      indexPageLink,
     })
   );
 }
