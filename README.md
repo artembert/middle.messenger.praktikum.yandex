@@ -11,6 +11,6 @@ Educational personal project for the course "Middle frontend developer" from Yan
 ## Scripts
 
 - `npm inatall` - Install dependencies from npm
-- `npm run start` - Bild static and run server on port `3000`
+- `npm run start` - Build static and run server on port `3000`
 - `npm run build` - Build artifacts to folder `/dist`
 - `npm run dev` - Run dev-server on port `1234`
