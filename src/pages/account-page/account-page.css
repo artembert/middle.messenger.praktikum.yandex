@@ -13,10 +13,6 @@
   align-items: flex-end;
 }
 
-.account-page__main {
-  /* width: 316px; */
-}
-
 .account-page__actions {
   padding-top: 24px;
   display: flex;
