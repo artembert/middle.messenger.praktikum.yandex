@@ -30,6 +30,12 @@ const fields: InputProps[] = [
     value: "Федоров",
   },
   {
+    name: "display_name",
+    label: "Имя в чате",
+    mode: "readonly",
+    value: "Дмитрий Ф.",
+  },
+  {
     name: "phone",
     label: "Телефон",
     mode: "readonly",
@@ -38,6 +44,7 @@ const fields: InputProps[] = [
 ];
 
 const chatPageLink = `/${Routes.CHATS}`;
+const editAccountPageLink = `/${Routes.EDIT_ACCOUNT}`;
 
 export function acoountPage() {
   const template = Handlebars.compile(accountPageTemplate);
@@ -45,6 +52,7 @@ export function acoountPage() {
     template({
       fields,
       chatPageLink,
+      editAccountPageLink,
     })
   );
 }

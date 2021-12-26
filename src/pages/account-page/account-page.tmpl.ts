@@ -11,7 +11,7 @@ export const accountPageTemplate = `
       {{/each}}
     </form>
     <div class="account-page__actions">
-      {{> app-link href="" text="Изменить информацию" mode="secondary" }}
+      {{> app-link href=editAccountPageLink text="Редактировать аккаунт" mode="secondary" }}
       {{> app-link href="" text="Изменить пароль" mode="secondary" }}
       {{> app-button text="Выйти" mode="dangerous" }}
     </div>
