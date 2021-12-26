@@ -34,6 +34,7 @@ const fields: InputProps[] = [
     label: "Повтор пароля",
     isPassword: true,
     error: "Пароли должны совпадать",
+    mode: "error",
   },
 ];
 const signInLink = `/${Routes.SIGN_IN}`;

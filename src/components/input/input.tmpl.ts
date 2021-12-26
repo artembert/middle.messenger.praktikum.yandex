@@ -1,10 +1,12 @@
 export const inputTemplate = `
 <div class="
   input
-  {{#if error}} input_error {{/if}}
   {{#switch mode}}
     {{#case "readonly"}}
       input_mode_readonly
+    {{/case}}
+    {{#case "error"}}
+      input_mode_error
     {{/case}}
     {{#case "default"}}
       input_mode_default

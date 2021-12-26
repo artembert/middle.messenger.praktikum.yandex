@@ -13,6 +13,7 @@ const fields: InputProps[] = [
     label: "Пароль",
     isPassword: true,
     error: "Неправильный пароль",
+    mode: "error",
   },
 ];
 const registerLink = `/${Routes.REGISTER}`;

@@ -12,10 +12,6 @@
   padding: 4px 5px;
 }
 
-.input_error .input__field {
-  border: 2px solid var(--color-error);
-}
-
 .input__field:focus {
   border: 2px solid var(--color-accent);
 }
@@ -35,4 +31,9 @@
   background-color: #ffffff;
   border: 2px solid var(--gray-1);
   cursor: default;
+}
+
+.input_mode_error .input__field {
+  background-color: var(--gray-1);
+  border: 2px solid var(--color-error);
 }

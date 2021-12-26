@@ -7,7 +7,7 @@ export interface InputProps {
   label: string;
   error?: string;
   isPassword?: boolean;
-  mode?: "default" | "readonly";
+  mode?: "default" | "readonly" | "error";
   value?: string;
 }
 

@@ -7,7 +7,7 @@ export const accountPageTemplate = `
     {{> app-account-header title="Аккаунт"}}
     <form action="" method="post" class="account-page__fields">
       {{#each fields}}
-        {{> app-input name=name label=label error=error mode=mode }}
+        {{> app-input name=name label=label mode=mode error=error mode=mode }}
       {{/each}}
     </form>
     <div class="account-page__actions">
