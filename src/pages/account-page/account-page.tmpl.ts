@@ -12,7 +12,7 @@ export const accountPageTemplate = `
     </form>
     <div class="account-page__actions">
       {{> app-link href=editAccountPageLink text="Редактировать аккаунт" mode="secondary" }}
-      {{> app-link href="" text="Изменить пароль" mode="secondary" }}
+      {{> app-link href=changePasswordPageLink text="Изменить пароль" mode="secondary" }}
       {{> app-link href=indexPageLink text="Выйти" mode="dangerous" }}
     </div>
   </div>

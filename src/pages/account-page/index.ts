@@ -45,6 +45,7 @@ const fields: InputProps[] = [
 
 const chatPageLink = `/${Routes.CHATS}`;
 const editAccountPageLink = `/${Routes.EDIT_ACCOUNT}`;
+const changePasswordPageLink = `/${Routes.CHANGE_PASSWORD}`;
 const indexPageLink = "/";
 
 export function acoountPage() {
@@ -55,6 +56,7 @@ export function acoountPage() {
       chatPageLink,
       editAccountPageLink,
       indexPageLink,
+      changePasswordPageLink,
     })
   );
 }

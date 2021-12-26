@@ -4,4 +4,5 @@ export const Routes = {
   REGISTER: "#regiter",
   ACCOUNT: "#account",
   EDIT_ACCOUNT: "#edit-account",
+  CHANGE_PASSWORD: "#change-password",
 };
