@@ -12,17 +12,26 @@
   line-height: 24px;
 }
 
+.base-text {
+  color: var(--gray-5);
+  font-weight: var(--font-weight-regular);
+  font-size: 14px;
+  line-height: 18px;
+}
+
 .input-label {
   color: var(--gray-5);
   font-size: 12px;
   line-height: 16px;
 }
+
 .input-field {
   font-family: var(--font-family);
   color: var(--gray-5);
   font-size: 12px;
   line-height: 16px;
 }
+
 .error-message {
   font-family: var(--font-family);
   color: var(--color-error);

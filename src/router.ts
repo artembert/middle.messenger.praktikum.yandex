@@ -6,6 +6,7 @@ import { editAcoountPage } from "./pages/edit-account-page";
 import { navigationPage } from "./pages/navigation-page";
 import { registerPage } from "./pages/register-page";
 import { signInPage } from "./pages/sign-in-page";
+import { notFoundPage } from "./pages/404-page";
 
 export function resolvePageByRoute(url?: string): Promise<string> {
   switch (url) {
@@ -21,6 +22,8 @@ export function resolvePageByRoute(url?: string): Promise<string> {
       return editAcoountPage();
     case Routes.CHANGE_PASSWORD:
       return changePasswordPage();
+    case Routes.NOT_FOUND:
+      return notFoundPage();
     default:
       return navigationPage();
   }
