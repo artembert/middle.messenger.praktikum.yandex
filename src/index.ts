@@ -1,8 +1,10 @@
 import "./common-styles/index";
-import { refisterComponents } from "./components";
+import { registerComponents } from "./components";
+import { registerHelpers } from "./lib";
 import { resolvePageByRoute } from "./router";
 
-refisterComponents();
+registerComponents();
+registerHelpers();
 
 const rootElement = document.getElementById("root");
 
