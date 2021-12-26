@@ -1,5 +1,5 @@
 export const navigationPageTemplate = `
-<div class="navigation-page">
+<main class="navigation-page">
   <div class="navigation-page__title title">
     Страницы
   </div>

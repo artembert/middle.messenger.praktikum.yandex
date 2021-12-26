@@ -1,5 +1,5 @@
 export const editAccountPageTemplate = `
-<div class="edit-account-page">
+<main class="edit-account-page">
   <div class="edit-account-page__main">
     {{> app-account-header title="Редактировать аккаунт"}}
     <form action="" method="post" class="edit-account-page__fields">

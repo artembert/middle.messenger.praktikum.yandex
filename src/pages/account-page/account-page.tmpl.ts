@@ -1,5 +1,5 @@
 export const accountPageTemplate = `
-<div class="account-page">
+<main class="account-page">
   <div class="account-page__navigation">
     {{> app-link href=chatPageLink text="Вернуться к чатам" mode="secondary" }}
   </div>

@@ -1,5 +1,5 @@
 export const changePasswordPageTemplate = `
-<div class="change-password-page">
+<main class="change-password-page">
   <div class="change-password-page__main">
     <div class="change-password-page__title title">
       Изменить пароль

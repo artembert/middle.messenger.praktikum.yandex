@@ -1,5 +1,5 @@
 export const chatPageTemplate = `
-<div class="chat-page">
+<main class="chat-page">
   <aside class="chat-page__roster">
     {{> app-roster chats=chats accountPageLink=accountPageLink }}
   </aside>
