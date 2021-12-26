@@ -1,9 +1,9 @@
 export const changePasswordPageTemplate = `
 <main class="change-password-page">
   <div class="change-password-page__main">
-    <div class="change-password-page__title title">
+    <h1 class="change-password-page__title title">
       Изменить пароль
-    </div>
+    </h1>
     <form action="" method="post" class="change-password-page__fields">
       {{#each fields}}
         {{> app-input name=name label=label mode=mode error=error mode=mode }}

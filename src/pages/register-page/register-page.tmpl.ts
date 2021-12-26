@@ -1,9 +1,9 @@
 export const registerPageTemplate = `
 <main class="window">
   <div class="window__wrapper">
-    <div class="window__title title">
+    <h1 class="window__title title">
       Регистрация
-    </div>
+    </h1>
     <form action="" method="post" class="window__content">
       {{#each fields}}
         {{> app-input name=name label=label mode=mode error=error }}

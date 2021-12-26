@@ -1,8 +1,8 @@
 export const navigationPageTemplate = `
 <main class="navigation-page">
-  <div class="navigation-page__title title">
+  <h1 class="navigation-page__title title">
     Страницы
-  </div>
+  </h1>
   <div class="navigation-page__links">
     {{#each routes}}
       {{> app-link href=this mode="link" text=this }}
