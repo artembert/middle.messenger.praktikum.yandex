@@ -1,11 +1,13 @@
+import { registerAvatarComponent } from "./avatar";
 import { registerButtonComponent } from "./button";
 import { registerInputComponent } from "./input";
 import { registerLinkComponent } from "./link";
 import { registerSearchBarComponent } from "./search-bar";
 
-export function refisterComponents(): void {
+export function registerComponents(): void {
   registerInputComponent();
   registerButtonComponent();
   registerLinkComponent();
   registerSearchBarComponent();
+  registerAvatarComponent();
 }
