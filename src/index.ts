@@ -18,4 +18,5 @@ async function handleNavigation(): Promise<void> {
   const url = document.location.hash;
   const pageContent = await resolvePageByRoute(url);
   rootElement.innerHTML = pageContent;
+  window.scrollTo(0, 0);
 }
