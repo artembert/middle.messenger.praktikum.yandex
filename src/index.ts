@@ -3,16 +3,17 @@ import { registerComponents } from "./components";
 import { registerHelpers } from "./lib";
 import { resolvePageByRoute } from "./router";
 
-registerComponents();
-registerHelpers();
-
 const rootElement = document.getElementById("root");
+
+if (!rootElement) {
+  throw new Error(`Root element #${rootElement} is not found`);
+}
 
 window.addEventListener("hashchange", () => handleNavigation());
 
-(async () => {
-  await handleNavigation();
-})();
+registerComponents();
+registerHelpers();
+handleNavigation();
 
 async function handleNavigation(): Promise<void> {
   const url = document.location.hash;
