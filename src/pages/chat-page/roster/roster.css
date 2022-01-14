@@ -1,0 +1,25 @@
+.roster {
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.roster__header {
+  padding: 24px 12px 12px;
+  display: flex;
+  border-bottom: 1px solid var(--gray-1);
+}
+
+.roster__search {
+  margin-left: 12px;
+  width: 100%;
+}
+
+.roster__items-list {
+  overflow: scroll;
+  scroll-snap-type: y mandatory;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}

@@ -1,0 +1,13 @@
+.roster-item {
+  padding: 4px;
+  scroll-snap-align: start;
+}
+.roster-item:not(:last-child) {
+  border-bottom: 1px solid var(--gray-1);
+}
+
+.roster-item__container {
+  height: 48px;
+  border-radius: 4px;
+  background-color: var(--blue-2);
+}

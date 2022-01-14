@@ -1,0 +1,44 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
+  "scripts": {
+    "test": "npm run test",
+    "start": "npm run build && node server.js",
+    "dev": "parcel",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artembert/middle.messenger.praktikum.yandex.git"
+  },
+  "engines": {
+    "node": "^12 || ^14 || ^16"
+  },
+  "source": "static/index.html",
+  "browserslist": [
+    "last 2 edge major version",
+    "last 2 firefox major version",
+    "last 2 chrome major version",
+    "last 2 safari major version",
+    "last 2 opera major version"
+  ],
+  "author": "Artem Beresnev <artembert@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artembert/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/artembert/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@csstools/normalize.css": "12.0.0",
+    "parcel": "^2.0.1",
+    "postcss": "8.4.5",
+    "postcss-import": "14.0.2",
+    "postcss-url": "10.1.3",
+    "prettier": "2.5.1"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "handlebars": "^4.7.7"
+  }
+}

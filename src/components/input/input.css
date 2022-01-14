@@ -1,0 +1,39 @@
+.input__label {
+  display: block;
+  min-height: 24px;
+  padding: 4px 0;
+}
+
+.input__field {
+  display: block;
+  height: 32px;
+  border-radius: 3px;
+  width: 100%;
+  padding: 4px 5px;
+}
+
+.input__field:focus {
+  border: 2px solid var(--color-accent);
+}
+
+.input__validation-message {
+  display: block;
+  min-height: 24px;
+  padding: 2px 0 8px;
+}
+
+.input_mode_default .input__field {
+  background-color: var(--gray-1);
+  border: 2px solid var(--gray-1);
+}
+
+.input_mode_readonly .input__field {
+  background-color: #ffffff;
+  border: 2px solid var(--gray-1);
+  cursor: default;
+}
+
+.input_mode_error .input__field {
+  background-color: var(--gray-1);
+  border: 2px solid var(--color-error);
+}
