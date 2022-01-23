@@ -13,7 +13,7 @@
   justify-content: center;
   min-width: 380px;
   box-shadow: var(--window-shadow);
-  border-radius: var(--widnow-border-darius);
+  border-radius: var(--window-border-radius);
   padding: 24px 32px 32px;
   min-height: 385px;
 }
