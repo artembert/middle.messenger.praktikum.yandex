@@ -1,26 +1,26 @@
-import "./change-password-page.css";
-import Handlebars from "handlebars";
-import { changePasswordPageTemplate } from "./change-password-page.tmpl";
-import { InputProps } from "../../components/input";
-import { Routes } from "../../constants/routes";
+import './change-password-page.css';
+import Handlebars from 'handlebars';
+import { changePasswordPageTemplate } from './change-password-page.tmpl';
+import { InputProps } from '../../components/input';
+import { Routes } from '../../constants/routes';
 
 const fields: InputProps[] = [
   {
-    name: "oldPassword",
-    label: "Старый пароль",
+    name: 'oldPassword',
+    label: 'Старый пароль',
     isPassword: true,
   },
   {
-    name: "newPassword",
-    label: "Новый пароль",
+    name: 'newPassword',
+    label: 'Новый пароль',
     isPassword: true,
   },
   {
-    name: "password-repeat",
-    label: "Повтор пароля",
+    name: 'password-repeat',
+    label: 'Повтор пароля',
     isPassword: true,
-    error: "Пароли должны совпадать",
-    mode: "error",
+    error: 'Пароли должны совпадать',
+    mode: 'error',
   },
 ];
 
@@ -32,6 +32,6 @@ export function changePasswordPage() {
     template({
       fields,
       accountPageLink,
-    })
+    }),
   );
 }

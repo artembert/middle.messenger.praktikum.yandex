@@ -1,7 +1,7 @@
-import "./roster.css";
-import Handlebars from "handlebars";
-import { rosterTemplate } from "./roster.tmpl";
-import { registerRosterItemComponent } from "./roster-item";
+import './roster.css';
+import Handlebars from 'handlebars';
+import { rosterTemplate } from './roster.tmpl';
+import { registerRosterItemComponent } from './roster-item';
 
 export interface RosterProps {
   chats: undefined[];
@@ -10,5 +10,5 @@ export interface RosterProps {
 
 export function registerRosterComponent() {
   registerRosterItemComponent();
-  Handlebars.registerPartial("app-roster", rosterTemplate);
+  Handlebars.registerPartial('app-roster', rosterTemplate);
 }

@@ -1,6 +1,6 @@
-import "./account-header.css";
-import Handlebars from "handlebars";
-import { accountHeaderTemplate } from "./account-header.tmpl";
+import './account-header.css';
+import Handlebars from 'handlebars';
+import { accountHeaderTemplate } from './account-header.tmpl';
 
 export interface RosterProps {
   title: string;
@@ -8,5 +8,5 @@ export interface RosterProps {
 }
 
 export function registerAccountHeaderComponent() {
-  Handlebars.registerPartial("app-account-header", accountHeaderTemplate);
+  Handlebars.registerPartial('app-account-header', accountHeaderTemplate);
 }

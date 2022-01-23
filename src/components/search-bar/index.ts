@@ -1,6 +1,6 @@
-import "./search-bar.css";
-import Handlebars from "handlebars";
-import { searchBarTemplate } from "./search-bar.tmpl";
+import './search-bar.css';
+import Handlebars from 'handlebars';
+import { searchBarTemplate } from './search-bar.tmpl';
 
 export interface SearchBarProps {
   name: string;
@@ -8,5 +8,5 @@ export interface SearchBarProps {
 }
 
 export function registerSearchBarComponent() {
-  Handlebars.registerPartial("app-search-bar", searchBarTemplate);
+  Handlebars.registerPartial('app-search-bar', searchBarTemplate);
 }

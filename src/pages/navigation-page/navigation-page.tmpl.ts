@@ -10,7 +10,7 @@ export const navigationPageTemplate = `
         {{> app-link href=this mode="link" text=this }}
       </li>
     {{/each}}
-  </div>
+  </ul>
   </nav>
-</div>
+</main>
 `;

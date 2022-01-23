@@ -1,18 +1,18 @@
-import "./common-styles/index";
-import { registerComponents } from "./components";
-import { registerHelpers } from "./lib";
-import { resolvePageByRoute } from "./router";
+import './common-styles/index';
+import { registerComponents } from './components';
+import { registerHelpers } from './lib';
+import { resolvePageByRoute } from './router';
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 if (!rootElement) {
   throw new Error(`Root element #${rootElement} is not found`);
 }
 
-window.addEventListener("hashchange", () => handleNavigation());
+window.addEventListener('hashchange', () => handleNavigation());
 
 registerComponents();
 registerHelpers();
-void handleNavigation();
+handleNavigation();
 
 async function handleNavigation(): Promise<void> {
   if (!rootElement) {

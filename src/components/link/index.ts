@@ -1,14 +1,14 @@
-import Handlebars from "handlebars";
-import { linkTemplate } from "./link.tmpl";
+import Handlebars from 'handlebars';
+import { linkTemplate } from './link.tmpl';
 
-type mode = "primary" | "secondary" | "dangerous" | "link" | "icon";
+type Mode = 'primary' | 'secondary' | 'dangerous' | 'link' | 'icon';
 
 export interface ButtonProps {
-  mode: mode;
+  mode: Mode;
   text: string;
   href: string;
 }
 
 export function registerLinkComponent() {
-  Handlebars.registerPartial("app-link", linkTemplate);
+  Handlebars.registerPartial('app-link', linkTemplate);
 }

@@ -1,17 +1,17 @@
 export const avatarTemplate = `
-<div class="avatar
+<div 
   {{#switch size}}
     {{#case "L"}}
-      avatar_size_l
+      class='avatar avatar_size_l'
     {{/case}}
     {{#case "M"}}
-      avatar_size_m
+      class='avatar avatar_size_m'
     {{/case}}
     {{#case "S"}}
-      avatar_size_s
+      class='avatar avatar_size_s'
     {{/case}}
   {{/switch}}
-    ">
+  >
   <button type="button"
     class="avatar__button"
     >

@@ -1,4 +1,4 @@
-import Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 
 interface LocalThis {
   switch_value: string | number;
@@ -6,24 +6,24 @@ interface LocalThis {
 }
 
 export function registerSwitchCaseHelper(): void {
-  Handlebars.registerHelper("switch",  function (this: LocalThis, value: string | number, options: Handlebars.HelperOptions)  {
+  Handlebars.registerHelper('switch', function cb(this: LocalThis, value: string | number, options: Handlebars.HelperOptions) {
     this.switch_value = value;
     this.switch_break = false;
     return options.fn(this);
   });
 
-  Handlebars.registerHelper("case", function(this: LocalThis, value: string | number, options: Handlebars.HelperOptions)  {
-    if (value == this.switch_value) {
+  Handlebars.registerHelper('case', function cb(this: LocalThis, value: string | number, options: Handlebars.HelperOptions) {
+    if (value === this.switch_value) {
       this.switch_break = true;
       return options.fn(this);
-    } 
-    return ''
+    }
+    return '';
   });
 
-  Handlebars.registerHelper("default", function (this: LocalThis, value: string | number) {
+  Handlebars.registerHelper('default', function cb(this: LocalThis, value: string | number) {
     if (!this.switch_break) {
       return value;
     }
-    return ''
+    return '';
   });
 }

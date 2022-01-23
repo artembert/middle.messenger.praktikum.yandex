@@ -1,19 +1,19 @@
-import Handlebars from "handlebars";
-import { signInPageTemplate } from "./sign-in-page.tmpl";
-import { InputProps } from "../../components/input";
-import { Routes } from "../../constants/routes";
+import Handlebars from 'handlebars';
+import { signInPageTemplate } from './sign-in-page.tmpl';
+import { InputProps } from '../../components/input';
+import { Routes } from '../../constants/routes';
 
 const fields: InputProps[] = [
   {
-    name: "login",
-    label: "Логин",
+    name: 'login',
+    label: 'Логин',
   },
   {
-    name: "password",
-    label: "Пароль",
+    name: 'password',
+    label: 'Пароль',
     isPassword: true,
-    error: "Неправильный пароль",
-    mode: "error",
+    error: 'Неправильный пароль',
+    mode: 'error',
   },
 ];
 const registerLink = `/${Routes.REGISTER}`;
@@ -24,6 +24,6 @@ export function signInPage() {
     template({
       fields,
       registerLink,
-    })
+    }),
   );
 }
