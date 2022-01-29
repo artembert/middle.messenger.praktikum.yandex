@@ -1,5 +1,5 @@
 export const registerPageTemplate = `
-<main class="window">
+<main class="window window_modal">
   <div class="window__wrapper">
     <h1 class="window__title title">
       Регистрация

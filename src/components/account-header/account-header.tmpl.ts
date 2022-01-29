@@ -1,5 +1,5 @@
 export const accountHeaderTemplate = `
-<div class="account-header">
+<div class="account-header window__title">
   <h1 class="account-header__title title">
     {{title}}
   </h1>
