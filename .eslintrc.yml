@@ -18,5 +18,4 @@ rules:
     - error
     - functions: false
   no-underscore-dangle: off
-     
-
+  class-methods-use-this: [ error, { exceptMethods: [ 'render' ] } ]
