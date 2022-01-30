@@ -1,4 +1,4 @@
-export const notFoundPageTemplate = `
+export const notFoundErrorPageTemplate = `
 <main class="error-page">
   <div class="error-page__content">
     <h1 class="error-page__title title">
@@ -8,7 +8,7 @@ export const notFoundPageTemplate = `
       Страница не найдена
     </div>
     <div class="error-page__action">
-      {{> app-link href=chatsPageLink text="Вернуться к чатам" mode="link"}}
+      {{{appLinkToChats}}}
     </div>
   </div>
 </main>
