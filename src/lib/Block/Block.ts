@@ -4,8 +4,6 @@ import { EventBus } from '../EventBus/EventBus';
 import { EventDispatcher } from '../EventDispatcher/EventDispatcher';
 
 export abstract class Block {
-  private _id = v4();
-
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -20,22 +18,31 @@ export abstract class Block {
 
   protected node?: HTMLElement;
 
-  private readonly _meta: { tagName: string; props: IComponentProps };
-
   protected readonly eventBus = new EventBus();
 
-  constructor(tagName = 'div', props: IComponentProps = {}) {
+  private _id = v4();
+
+  private readonly _rootElementId: string | undefined;
+
+  private readonly _meta: { tagName: string; props: IComponentProps };
+
+  private _element: any;
+
+  constructor(
+    tagName = 'div',
+    props: IComponentProps = {},
+    _rootElementId?: string,
+  ) {
     this._meta = {
       tagName,
       props,
     };
     this.props = this._makePropsProxy({ ...props, __id: this._id });
+    this._rootElementId = _rootElementId;
     this._registerEvents(this.eventBus);
 
     this.eventBus.emit(Block.EVENTS.INIT);
   }
-
-  private _element: any;
 
   get element() {
     return this._element;
@@ -64,15 +71,13 @@ export abstract class Block {
   // eslint-disable-next-line class-methods-use-this
   componentWillUnmount(): void {}
 
-  abstract render(): string;
+  show() {
+    this.eventBus.emit(Block.EVENTS.FLOW_CDU);
+  }
 
   protected init() {
     this._createResources();
     this.eventBus.emit(Block.EVENTS.FLOW_CDM);
-  }
-
-  protected show() {
-    this.eventBus.emit(Block.EVENTS.FLOW_CDU);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -134,10 +139,22 @@ export abstract class Block {
       currentElement?.parentNode?.replaceChild(this.element, currentElement);
     }
 
-    this.eventDispatcher.clear();
+    if (this._rootElementId) {
+      const rootElement = document.getElementById(this._rootElementId);
+      if (rootElement) {
+        rootElement.innerHTML = '';
+        rootElement.appendChild(this.element);
+      }
+    }
+
+    this._detachEvents();
     this._updateChildren();
     this._updateAttributes();
     this._addEvents();
+  }
+
+  private _detachEvents(): void {
+    this.eventDispatcher.clear();
   }
 
   private _addEvents() {
@@ -176,4 +193,6 @@ export abstract class Block {
       });
     }
   }
+
+  abstract render(): string;
 }
