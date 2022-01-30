@@ -1,24 +1,15 @@
 import './styles/index';
-import { registerComponents } from './view-components';
-import { registerHelpers } from './lib';
-import { resolvePageByRoute } from './router';
+import { Router } from './lib/router/router';
+import { Routes } from './constants/routes';
+import { SignInPage } from './pages/sign-in-page/sign-in-page';
 
-const rootElement = document.getElementById('root');
+const ROOT_ELEMENT_ID = 'root';
+
+const rootElement = document.getElementById(ROOT_ELEMENT_ID);
 if (!rootElement) {
   throw new Error(`Root element #${rootElement} is not found`);
 }
 
-window.addEventListener('hashchange', () => handleNavigation());
+const router = new Router(ROOT_ELEMENT_ID);
 
-registerComponents();
-registerHelpers();
-handleNavigation();
-
-async function handleNavigation(): Promise<void> {
-  if (!rootElement) {
-    throw new Error(`Root element #${rootElement} is not found`);
-  }
-  const url = document.location.hash;
-  rootElement.innerHTML = await resolvePageByRoute(url);
-  window.scrollTo(0, 0);
-}
+router.use(Routes.SIGN_IN, SignInPage).start();
