@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import { registerPageTemplate } from './register-page.tmpl';
-import { InputProps } from '../../components/input';
+import { InputProps } from '../../view-components/input';
 import { Routes } from '../../constants/routes';
 
 const fields: InputProps[] = [

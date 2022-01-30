@@ -1,7 +1,7 @@
 import './account-page.css';
 import Handlebars from 'handlebars';
 import { accountPageTemplate } from './account-page.tmpl';
-import { InputProps } from '../../components/input';
+import { InputProps } from '../../view-components/input';
 import { Routes } from '../../constants/routes';
 
 const fields: InputProps[] = [

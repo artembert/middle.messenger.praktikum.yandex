@@ -1,5 +1,5 @@
 import './styles/index';
-import { registerComponents } from './components';
+import { registerComponents } from './view-components';
 import { registerHelpers } from './lib';
 import { resolvePageByRoute } from './router';
 
