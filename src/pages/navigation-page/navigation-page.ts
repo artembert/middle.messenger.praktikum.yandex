@@ -10,20 +10,20 @@ interface INavigationPageProps {
 
 const template = Handlebars.compile(navigationPageTemplate);
 
-export class NavigationPage extends Block {
+export class NavigationPage extends Block<INavigationPageProps> {
   constructor(rootId: string) {
     const routes: string[] = Object.values(Routes);
     super(
       'div',
       {
         routes,
-      } as INavigationPageProps,
+      },
       rootId,
     );
   }
 
   render(): string {
-    const { routes } = this.props as INavigationPageProps;
+    const { routes } = this.props;
     return template({
       routes,
     });

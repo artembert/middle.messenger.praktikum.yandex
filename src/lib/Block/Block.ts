@@ -3,7 +3,7 @@ import { IComponentProps } from '../interfaces/component-props.interface';
 import { EventBus } from '../EventBus/EventBus';
 import { EventDispatcher } from '../EventDispatcher/EventDispatcher';
 
-export abstract class Block {
+export abstract class Block<TProps extends IComponentProps = {}> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -12,7 +12,7 @@ export abstract class Block {
     FLOW_RENDER: 'flow:render',
   };
 
-  public props: IComponentProps;
+  public props: TProps;
 
   protected readonly eventDispatcher = new EventDispatcher();
 
@@ -24,13 +24,13 @@ export abstract class Block {
 
   private readonly _rootElementId: string | undefined;
 
-  private readonly _meta: { tagName: string; props: IComponentProps };
+  private readonly _meta: { tagName: string; props: TProps };
 
   private _element: any;
 
   constructor(
     tagName = 'div',
-    props: IComponentProps = {},
+    props: TProps = {} as TProps,
     _rootElementId?: string,
   ) {
     this._meta = {
@@ -52,7 +52,7 @@ export abstract class Block {
     this.eventBus.emit(Block.EVENTS.FLOW_CDU);
   }
 
-  setProps(nextProps: IComponentProps) {
+  setProps(nextProps: TProps) {
     if (!nextProps) {
       return;
     }
@@ -99,12 +99,14 @@ export abstract class Block {
     this.eventDispatcher.node = this._element;
   }
 
-  private _makePropsProxy(props: IComponentProps) {
+  private _makePropsProxy(props: TProps) {
     const self = this;
     return new Proxy(props, {
-      set(target: IComponentProps, prop: string, value) {
-        // eslint-disable-next-line no-param-reassign
+      set(target: TProps, prop: string, value) {
+        /* eslint-disable no-param-reassign */
+        // @ts-ignore
         target[prop] = value;
+        /* eslint-enable no-param-reassign */
         self.eventBus.emit(Block.EVENTS.FLOW_CDU);
         return true;
       },

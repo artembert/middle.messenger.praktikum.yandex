@@ -17,7 +17,7 @@ interface ISignInPageProps {
 
 const template = Handlebars.compile(signInPageTemplate);
 
-export class SignInPage extends Block {
+export class SignInPage extends Block<ISignInPageProps> {
   constructor(rootId: string) {
     const appSignInButtonProps: IButtonProps = {
       mode: 'primary',
@@ -46,7 +46,7 @@ export class SignInPage extends Block {
         linkToRegister: new Link(linkToRegisterProps),
         loginInput: new Input(loginInputProps),
         passwordInput: new Input(passwordInputProps),
-      } as ISignInPageProps,
+      },
       rootId,
     );
   }
@@ -54,8 +54,7 @@ export class SignInPage extends Block {
   render(): string {
     const {
       signInButton, linkToRegister, loginInput, passwordInput,
-    } = this
-      .props as ISignInPageProps;
+    } = this.props;
     return template({
       appSignInButton: signInButton.render(),
       appLinkToRegister: linkToRegister.render(),

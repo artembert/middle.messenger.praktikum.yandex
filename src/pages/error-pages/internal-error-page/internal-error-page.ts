@@ -11,7 +11,7 @@ interface IInternalErrorPageProps {
 const chatsPageLink = `/${Routes.CHATS}`;
 const template = Handlebars.compile(internalErrorPageTemplate);
 
-export class InternalErrorPage extends Block {
+export class InternalErrorPage extends Block<IInternalErrorPageProps> {
   constructor(rootId: string) {
     const linkToChatsProps: ILinkProps = {
       mode: 'link',
@@ -23,13 +23,13 @@ export class InternalErrorPage extends Block {
       'div',
       {
         linkToChats: new Link(linkToChatsProps),
-      } as IInternalErrorPageProps,
+      },
       rootId,
     );
   }
 
   render(): string {
-    const { linkToChats } = this.props as IInternalErrorPageProps;
+    const { linkToChats } = this.props;
     return template({
       appLinkToChats: linkToChats.render(),
     });

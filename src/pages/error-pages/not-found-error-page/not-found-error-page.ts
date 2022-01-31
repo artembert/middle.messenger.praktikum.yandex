@@ -11,7 +11,7 @@ interface INotFoundErrorPageProps {
 const chatsPageLink = `/${Routes.CHATS}`;
 const template = Handlebars.compile(notFoundErrorPageTemplate);
 
-export class NotFoundErrorPage extends Block {
+export class NotFoundErrorPage extends Block<INotFoundErrorPageProps> {
   constructor(rootId: string) {
     const linkToChatsProps: ILinkProps = {
       mode: 'link',
@@ -23,13 +23,13 @@ export class NotFoundErrorPage extends Block {
       'div',
       {
         linkToChats: new Link(linkToChatsProps),
-      } as INotFoundErrorPageProps,
+      },
       rootId,
     );
   }
 
   render(): string {
-    const { linkToChats } = this.props as INotFoundErrorPageProps;
+    const { linkToChats } = this.props;
     return template({
       appLinkToChats: linkToChats.render(),
     });

@@ -11,7 +11,7 @@ export interface IButtonProps extends IComponentProps {
   submit?: boolean;
 }
 
-export class Button extends Block {
+export class Button extends Block<IButtonProps> {
   constructor(props: IButtonProps) {
     super('button', props);
   }
