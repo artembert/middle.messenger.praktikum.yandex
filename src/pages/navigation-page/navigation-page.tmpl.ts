@@ -4,13 +4,13 @@ export const navigationPageTemplate = `
     Страницы
   </h1>
   <nav>
-  <ul class="navigation-page__links">
-    {{#each routes}}
-      <li>
-        {{> app-link href=this mode="link" text=this }}
-      </li>
-    {{/each}}
-  </ul>
+    <ul class="navigation-page__links">
+      {{#each routes}}
+        <li>
+          <a href={{this}}>{{this}}</a>
+        </li>
+      {{/each}}
+    </ul>
   </nav>
 </main>
 `;
