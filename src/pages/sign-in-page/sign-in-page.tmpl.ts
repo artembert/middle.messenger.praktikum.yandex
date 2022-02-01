@@ -5,12 +5,12 @@ export const signInPageTemplate = `
       Вход
     </h1>
     <div class="window__content">
-      {{{ appLoginInput }}}
-      {{{ appPasswordInput }}}
+      <appLoginInput></appLoginInput>
+      <appPasswordInput></appPasswordInput>
     </div>
     <div class="window__footer form-action-buttons">
-      {{{ appLinkToRegister }}}
-      {{{ appSignInButton }}}
+      <appLinkToRegister></appLinkToRegister>
+      <appSignInButton></appSignInButton>
     </div>
   </form>
 </main>
