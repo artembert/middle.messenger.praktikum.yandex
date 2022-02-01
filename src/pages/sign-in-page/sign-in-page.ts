@@ -6,6 +6,12 @@ import { Button } from '../../components/button/button';
 import { Link } from '../../components/link/link';
 import { Input } from '../../components/input/input';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
+import {
+  alphabet,
+  maxLength,
+  minLength,
+  notOnlyNumbers,
+} from '../../presentation-logic/forms/validate-input';
 
 const registerLink = `/${Routes.REGISTER}`;
 
@@ -17,33 +23,30 @@ interface IChildren {
 }
 
 interface ISignInPageProps extends IComponentProps {
-  children: IChildren;
+  children?: IChildren;
 }
 
 const template = Handlebars.compile(signInPageTemplate);
 
 export class SignInPage extends Block<ISignInPageProps> {
-  constructor(rootId: string) {
-    super(
-      'div',
-      {
-        children: getChildren(),
-      },
-      rootId,
-    );
-  }
+  private _loginValue: string = '';
 
-  render(): string {
-    return template({});
-  }
-}
-
-function getChildren(): IChildren {
-  return {
+  private _childrenComponents: IChildren = {
     appLoginInput: new Input({
       name: 'login',
       label: 'Логин',
       mode: 'default',
+      validationFns: [
+        minLength(3),
+        maxLength(20),
+        alphabet(),
+        notOnlyNumbers(),
+      ],
+      internalEvents: {
+        input: {
+          blur: (e: FocusEvent) => this._handleInput(e),
+        },
+      },
     }),
     appPasswordInput: new Input({
       name: 'Password',
@@ -61,4 +64,25 @@ function getChildren(): IChildren {
       href: registerLink,
     }),
   };
+
+  constructor(rootId: string) {
+    super('div', {}, rootId);
+    this.setProps({
+      children: this._childrenComponents,
+    });
+  }
+
+  render(): string {
+    return template({});
+  }
+
+  private _handleInput(e: FocusEvent): void {
+    this._loginValue = (e.currentTarget as HTMLInputElement).value;
+    const { isValid, errorMessage } = this._childrenComponents.appLoginInput.validate();
+    this._childrenComponents.appLoginInput.setProps({
+      value: this._loginValue,
+      error: errorMessage ?? '',
+      mode: isValid ? 'default' : 'error',
+    });
+  }
 }
