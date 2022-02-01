@@ -26,6 +26,8 @@ export abstract class Block<TProps extends IComponentProps = {}> {
 
   private readonly _meta: { tagName: string; props: TProps };
 
+  private _internalEventListeners: Record<string, EventDispatcher> = {};
+
   private _element!: HTMLElement;
 
   constructor(
@@ -154,13 +156,21 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     }
 
     this._detachEvents();
-    this._updateChildren();
+    this._detachInternalEvents();
+
+    this._addChildrenComponents();
     this._updateAttributes();
+
+    this._addInternalEvents();
     this._addEvents();
   }
 
   private _detachEvents(): void {
     this.eventDispatcher.clear();
+  }
+
+  private _detachInternalEvents(): void {
+    this._internalEventListeners = {};
   }
 
   private _addEvents() {
@@ -180,7 +190,7 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     });
   }
 
-  private _updateChildren(): void {
+  private _addChildrenComponents(): void {
     const { children = {} } = this.props;
 
     Object.entries(children).forEach(
@@ -195,6 +205,21 @@ export abstract class Block<TProps extends IComponentProps = {}> {
         }
       },
     );
+  }
+
+  private _addInternalEvents(): void {
+    const { internalEvents = {} } = this.props;
+    Object.entries(internalEvents).forEach(([selector, listeners]) => {
+      const targetElement = this._element.querySelector(selector);
+      if (targetElement) {
+        this._internalEventListeners[selector] = new EventDispatcher(
+          targetElement,
+        );
+        Object.entries(listeners).forEach(([event, handler]) => {
+          this._internalEventListeners[selector].add(event, handler);
+        });
+      }
+    });
   }
 
   abstract render(): string;

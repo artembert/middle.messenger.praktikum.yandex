@@ -1,10 +1,13 @@
 import { ChildrenComponents } from './children-components.type';
 
+type EventListenersForEvent = Record<string, (...args: any) => void>;
+
 export interface IComponentProps {
   [key: string]: any;
 
   attributes?: any;
   children?: ChildrenComponents;
-  events?: Record<string, (...args: any) => void>;
+  events?: EventListenersForEvent;
+  internalEvents?: Record<string, EventListenersForEvent>;
   classNames?: string[];
 }

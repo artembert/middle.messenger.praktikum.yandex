@@ -1,22 +1,21 @@
 type EventHandler = (...args: any) => void;
 
 export class EventDispatcher {
-  // @ts-ignore
-  protected _node: HTMLElement;
+  protected _node!: Element;
 
   private _events = new Set<{ eventName: string; callback: EventHandler }>();
 
-  constructor(element?: HTMLElement) {
+  constructor(element?: Element) {
     if (element) {
       this.node = element;
     }
   }
 
-  get node(): HTMLElement {
+  get node(): Element {
     return this._node;
   }
 
-  set node(node: HTMLElement) {
+  set node(node: Element) {
     this._node = node;
   }
 
