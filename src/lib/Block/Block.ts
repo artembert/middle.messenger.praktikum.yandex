@@ -26,7 +26,7 @@ export abstract class Block<TProps extends IComponentProps = {}> {
 
   private readonly _meta: { tagName: string; props: TProps };
 
-  private _element: any;
+  private _element!: HTMLElement;
 
   constructor(
     tagName = 'div',
@@ -44,7 +44,7 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     this.eventBus.emit(Block.EVENTS.INIT);
   }
 
-  get element() {
+  get element(): HTMLElement {
     return this._element;
   }
 
@@ -76,7 +76,17 @@ export abstract class Block<TProps extends IComponentProps = {}> {
   }
 
   protected init() {
-    this._createResources();
+    const {
+      tagName,
+      props: { classNames = [] },
+    } = this._meta;
+    const element = document.createElement(tagName);
+    classNames.forEach((name) => {
+      element.classList.add(name);
+    });
+    this._element = element;
+    this.eventDispatcher.node = this._element;
+
     this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
 
@@ -91,12 +101,6 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
-  }
-
-  private _createResources() {
-    const { tagName } = this._meta;
-    this._element = document.createElement(tagName);
-    this.eventDispatcher.node = this._element;
   }
 
   private _makePropsProxy(props: TProps) {
