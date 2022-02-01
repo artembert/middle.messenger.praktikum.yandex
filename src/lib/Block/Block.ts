@@ -180,24 +180,21 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     });
   }
 
-  private _updateChildren() {
+  private _updateChildren(): void {
     const { children = {} } = this.props;
 
-    if (Array.isArray(children)) {
-      this._element.innerHTML = '';
-      children.forEach((child) => {
-        this._element.appendChild(child.element);
-      });
-    } else {
-      Object.keys(children).forEach((childName) => {
-        const oldEl = this._element.querySelector(
-          `[data-id='${children[childName]._id}']`,
-        );
-        if (oldEl) {
-          oldEl.replaceWith(children[childName].element);
+    Object.entries(children).forEach(
+      ([childTag, childBlock]: [string, Block]) => {
+        const childrenAnchors = this._element.getElementsByTagName(childTag);
+        if (childrenAnchors && childrenAnchors.length > 0) {
+          Array.from(childrenAnchors).forEach((anchor) => {
+            const block = childBlock.element;
+            block.classList.add(childTag);
+            anchor.replaceWith(block);
+          });
         }
-      });
-    }
+      },
+    );
   }
 
   abstract render(): string;

@@ -15,13 +15,15 @@ export interface IInputProps extends IComponentProps {
   value?: string;
 }
 
-export class Input extends Block {
+export class Input extends Block<IInputProps> {
   constructor(props: IInputProps) {
-    const className = resolveClassNames(props.mode);
     super('div', {
-      ...props,
+      mode: props.mode ?? 'default',
+      label: props.label,
+      value: props.value,
       type: props.type ?? 'text',
-      className,
+      name: props.name,
+      classNames: resolveClassNames(props.mode),
     });
   }
 
@@ -31,15 +33,15 @@ export class Input extends Block {
   }
 }
 
-function resolveClassNames(mode?: Mode): string {
+function resolveClassNames(mode?: Mode): string[] {
   switch (mode) {
     case 'error':
-      return 'input input_mode_error';
+      return ['input', 'input_mode_error'];
     case 'readonly':
-      return 'input input_mode_readonly';
+      return ['input', 'input_mode_readonly'];
     case 'default':
-      return 'input input_mode_default';
+      return ['input', 'input_mode_default'];
     default:
-      return 'input input_mode_default';
+      return ['input', 'input_mode_default'];
   }
 }

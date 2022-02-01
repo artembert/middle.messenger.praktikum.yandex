@@ -1,10 +1,10 @@
-import type { IChildComponent } from './child-component.interface';
+import { ChildrenComponents } from './children-components.type';
 
 export interface IComponentProps {
   [key: string]: any;
 
   attributes?: any;
-  child?: IChildComponent | HTMLElement | string;
+  children?: ChildrenComponents;
   events?: Record<string, (...args: any) => void>;
-  className?: string;
+  classNames?: string[];
 }
