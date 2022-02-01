@@ -25,11 +25,20 @@ export class Input extends Block<IInputProps> {
       name: props.name,
       classNames: resolveClassNames(props.mode),
     });
+
+    if (this.props.mode === 'readonly') {
+      this._getHtmlInputElement().disabled = true;
+    }
   }
 
   override render(): string {
     const template = Handlebars.compile(inputTemplate);
     return template(this.props);
+  }
+
+  private _getHtmlInputElement(): HTMLInputElement {
+    const el = this.element;
+    return el.getElementsByTagName('input')[0];
   }
 }
 
