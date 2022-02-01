@@ -13,7 +13,7 @@ export interface IButtonProps extends IComponentProps {
 
 export class Button extends Block<IButtonProps> {
   constructor(props: IButtonProps) {
-    super('button', props);
+    super('div', props);
   }
 
   override render(): string {
