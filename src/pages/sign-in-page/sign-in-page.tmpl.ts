@@ -1,6 +1,6 @@
 export const signInPageTemplate = `
 <main class="window window_modal">
-  <form action="" method="post" class="window__wrapper">
+  <form action="" method="post" class="window__wrapper" id="{{formId}}">
     <h1 class="window__title title">
       Вход
     </h1>

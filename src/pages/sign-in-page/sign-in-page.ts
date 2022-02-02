@@ -1,4 +1,5 @@
 import Handlebars from 'handlebars';
+import { v4 } from 'uuid';
 import { signInPageTemplate } from './sign-in-page.tmpl';
 import { Routes } from '../../constants/routes';
 import { Block } from '../../lib/Block/Block';
@@ -13,8 +14,7 @@ import {
   notOnlyNumbers,
   password,
 } from '../../presentation-logic/forms/validate-input';
-
-const registerLink = `/${Routes.REGISTER}`;
+import { getFormData } from '../../presentation-logic/forms/get-form-data';
 
 interface IChildren {
   appLoginInput: Input;
@@ -27,6 +27,9 @@ interface ISignInPageProps extends IComponentProps {
   children?: IChildren;
 }
 
+const registerLink = `/${Routes.REGISTER}`;
+const formId = `i${v4()}`;
+const formSelector = `#${formId}`;
 const template = Handlebars.compile(signInPageTemplate);
 
 export class SignInPage extends Block<ISignInPageProps> {
@@ -78,11 +81,16 @@ export class SignInPage extends Block<ISignInPageProps> {
     super('div', {}, rootId);
     this.setProps({
       children: this._childrenComponents,
+      internalEvents: {
+        [formSelector]: {
+          submit: (e: SubmitEvent) => this._handleFormSubmit(e),
+        },
+      },
     });
   }
 
   render(): string {
-    return template({});
+    return template({ formId });
   }
 
   private _handleInput(e: FocusEvent): void {
@@ -103,5 +111,12 @@ export class SignInPage extends Block<ISignInPageProps> {
       error: errorMessage ?? '',
     });
     this._childrenComponents.appPasswordInput.setValidState(isValid);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  private _handleFormSubmit(e: SubmitEvent): void {
+    e.preventDefault();
+    const formData = getFormData(e.target as HTMLFormElement);
+    console.log('Sign in form', formData);
   }
 }
