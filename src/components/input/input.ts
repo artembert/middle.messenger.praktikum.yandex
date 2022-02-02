@@ -20,6 +20,8 @@ export interface IInputProps extends IComponentProps {
   validationFns?: InputValidationFn[];
 }
 
+const invalidClassName = 'input_mode_error';
+
 export class Input extends Block<IInputProps> {
   constructor(props: IInputProps) {
     super('div', {
@@ -58,6 +60,18 @@ export class Input extends Block<IInputProps> {
     };
   }
 
+  public setValidState(isValid: boolean): void {
+    if (isValid) {
+      this.props.classNames = this.props.classNames
+        ? this.props.classNames.filter((name) => name !== invalidClassName)
+        : [];
+    } else {
+      this.props.classNames = this.props.classNames
+        ? [...this.props.classNames, invalidClassName]
+        : [invalidClassName];
+    }
+  }
+
   private _getHtmlInputElement(): HTMLInputElement {
     const el = this.element;
     return el.getElementsByTagName('input')[0];
@@ -71,7 +85,7 @@ export class Input extends Block<IInputProps> {
 function resolveClassNames(mode?: Mode): string[] {
   switch (mode) {
     case 'error':
-      return ['input', 'input_mode_error'];
+      return ['input', invalidClassName];
     case 'readonly':
       return ['input', 'input_mode_readonly'];
     case 'default':

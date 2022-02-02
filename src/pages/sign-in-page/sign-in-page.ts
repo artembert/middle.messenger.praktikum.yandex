@@ -91,8 +91,8 @@ export class SignInPage extends Block<ISignInPageProps> {
     this._childrenComponents.appLoginInput.setProps({
       value: this._loginValue,
       error: errorMessage ?? '',
-      mode: isValid ? 'default' : 'error',
     });
+    this._childrenComponents.appLoginInput.setValidState(isValid);
   }
 
   private _handlePasswordChange(e: FocusEvent): void {
@@ -101,7 +101,7 @@ export class SignInPage extends Block<ISignInPageProps> {
     this._childrenComponents.appPasswordInput.setProps({
       value: this._passwordValue,
       error: errorMessage ?? '',
-      mode: isValid ? 'default' : 'error',
     });
+    this._childrenComponents.appPasswordInput.setValidState(isValid);
   }
 }
