@@ -11,6 +11,7 @@ import {
   maxLength,
   minLength,
   notOnlyNumbers,
+  password,
 } from '../../presentation-logic/forms/validate-input';
 
 const registerLink = `/${Routes.REGISTER}`;
@@ -30,6 +31,8 @@ const template = Handlebars.compile(signInPageTemplate);
 
 export class SignInPage extends Block<ISignInPageProps> {
   private _loginValue: string = '';
+
+  private _passwordValue: string = '';
 
   private _childrenComponents: IChildren = {
     appLoginInput: new Input({
@@ -52,6 +55,12 @@ export class SignInPage extends Block<ISignInPageProps> {
       name: 'Password',
       label: 'Пароль',
       type: 'password',
+      validationFns: [minLength(8), maxLength(40), password()],
+      internalEvents: {
+        input: {
+          blur: (e: FocusEvent) => this._handlePasswordChange(e),
+        },
+      },
     }),
     appSignInButton: new Button({
       mode: 'primary',
@@ -81,6 +90,16 @@ export class SignInPage extends Block<ISignInPageProps> {
     const { isValid, errorMessage } = this._childrenComponents.appLoginInput.validate();
     this._childrenComponents.appLoginInput.setProps({
       value: this._loginValue,
+      error: errorMessage ?? '',
+      mode: isValid ? 'default' : 'error',
+    });
+  }
+
+  private _handlePasswordChange(e: FocusEvent): void {
+    this._passwordValue = (e.currentTarget as HTMLInputElement).value;
+    const { isValid, errorMessage } = this._childrenComponents.appPasswordInput.validate();
+    this._childrenComponents.appPasswordInput.setProps({
+      value: this._passwordValue,
       error: errorMessage ?? '',
       mode: isValid ? 'default' : 'error',
     });

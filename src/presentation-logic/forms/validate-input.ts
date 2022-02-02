@@ -36,3 +36,11 @@ export const alphabet = () => (inputValue: string): string => {
   }
   return 'Допустима латиница и кириллица';
 };
+
+export const password = () => (inputValue: string): string => {
+  const testingValue = inputValue || '';
+  if (/(?=.*\d)(?=.*[a-z/а-я])(?=.*[A-Z/А-Я]).{8,}/.test(testingValue)) {
+    return '';
+  }
+  return 'Должен содерать по крайней мере одну цифру, одну строчную букву и одну заглавную букву';
+};
