@@ -92,10 +92,14 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  protected componentDidUpdate() {
+  /* eslint-disable class-methods-use-this, @typescript-eslint/no-unused-vars */
+
+  // @ts-ignore
+  protected componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
     return true;
   }
+
+  /* eslint-enable class-methods-use-this, @typescript-eslint/no-unused-vars */
 
   private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
@@ -127,9 +131,9 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  private _componentDidUpdate() {
-    const response = this.componentDidUpdate();
-    if (response) {
+  private _componentDidUpdate(oldProps: TProps, newProps: TProps) {
+    const shouldBeUpdated = this.componentDidUpdate(oldProps, newProps);
+    if (shouldBeUpdated) {
       this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
   }
@@ -159,6 +163,7 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     this._detachInternalEvents();
 
     this._addChildrenComponents();
+    this._updateClassNames();
     this._updateAttributes();
 
     this._addInternalEvents();
@@ -171,6 +176,13 @@ export abstract class Block<TProps extends IComponentProps = {}> {
 
   private _detachInternalEvents(): void {
     this._internalEventListeners = {};
+  }
+
+  private _updateClassNames(): void {
+    if (this._element && this.props.classNames) {
+      this._element.classList.remove(...this._element.classList);
+      this._element.classList.add(...this.props.classNames);
+    }
   }
 
   private _addEvents() {
@@ -199,7 +211,6 @@ export abstract class Block<TProps extends IComponentProps = {}> {
         if (childrenAnchors && childrenAnchors.length > 0) {
           Array.from(childrenAnchors).forEach((anchor) => {
             const block = childBlock.element;
-            block.classList.add(childTag);
             anchor.replaceWith(block);
           });
         }
