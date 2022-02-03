@@ -48,7 +48,7 @@ export class Input extends Block<IInputProps> {
 
   public validate(): IValidationResult {
     const { validationFns = [] } = this.props;
-    const inputValue = this._getInputValue();
+    const inputValue = this.getValue();
     const validationResult: string[] = [];
     validationFns.forEach((validator) => {
       validationResult.push(validator(inputValue));
@@ -72,13 +72,13 @@ export class Input extends Block<IInputProps> {
     }
   }
 
+  public getValue(): string {
+    return this._getHtmlInputElement().value;
+  }
+
   private _getHtmlInputElement(): HTMLInputElement {
     const el = this.element;
     return el.getElementsByTagName('input')[0];
-  }
-
-  private _getInputValue(): string {
-    return this._getHtmlInputElement().value;
   }
 }
 

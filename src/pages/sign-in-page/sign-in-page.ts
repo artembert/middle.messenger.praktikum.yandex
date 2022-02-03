@@ -50,7 +50,7 @@ export class SignInPage extends Block<ISignInPageProps> {
       ],
       internalEvents: {
         input: {
-          blur: (e: FocusEvent) => this._handleInput(e),
+          blur: () => this._handleLoginChange(),
         },
       },
     }),
@@ -61,7 +61,7 @@ export class SignInPage extends Block<ISignInPageProps> {
       validationFns: [minLength(8), maxLength(40), password()],
       internalEvents: {
         input: {
-          blur: (e: FocusEvent) => this._handlePasswordChange(e),
+          blur: () => this._handlePasswordChange(),
         },
       },
     }),
@@ -93,8 +93,8 @@ export class SignInPage extends Block<ISignInPageProps> {
     return template({ formId });
   }
 
-  private _handleInput(e: FocusEvent): void {
-    this._loginValue = (e.currentTarget as HTMLInputElement).value;
+  private _handleLoginChange(): void {
+    this._loginValue = this._childrenComponents.appLoginInput.getValue();
     const { isValid, errorMessage } = this._childrenComponents.appLoginInput.validate();
     this._childrenComponents.appLoginInput.setProps({
       value: this._loginValue,
@@ -103,8 +103,8 @@ export class SignInPage extends Block<ISignInPageProps> {
     this._childrenComponents.appLoginInput.setValidState(isValid);
   }
 
-  private _handlePasswordChange(e: FocusEvent): void {
-    this._passwordValue = (e.currentTarget as HTMLInputElement).value;
+  private _handlePasswordChange(): void {
+    this._passwordValue = this._childrenComponents.appPasswordInput.getValue();
     const { isValid, errorMessage } = this._childrenComponents.appPasswordInput.validate();
     this._childrenComponents.appPasswordInput.setProps({
       value: this._passwordValue,
@@ -113,9 +113,10 @@ export class SignInPage extends Block<ISignInPageProps> {
     this._childrenComponents.appPasswordInput.setValidState(isValid);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   private _handleFormSubmit(e: SubmitEvent): void {
     e.preventDefault();
+    this._handleLoginChange();
+    this._handlePasswordChange();
     const formData = getFormData(e.target as HTMLFormElement);
     console.log('Sign in form', formData);
   }
