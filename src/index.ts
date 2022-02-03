@@ -6,6 +6,7 @@ import { NotFoundErrorPage } from './pages/error-pages/not-found-error-page/not-
 import { NavigationPage } from './pages/navigation-page/navigation-page';
 import { InternalErrorPage } from './pages/error-pages/internal-error-page/internal-error-page';
 import { RegisterPage } from './pages/register-page/register-page';
+import { ChatPage } from './pages/chat-page/chat-page';
 
 const ROOT_ELEMENT_ID = 'root';
 
@@ -21,5 +22,6 @@ router
   .use(Routes.REGISTER, RegisterPage)
   .use(Routes.NOT_FOUND, NotFoundErrorPage)
   .use(Routes.INTERNAL_ERROR, InternalErrorPage)
+  .use(Routes.CHATS, ChatPage)
   .use(Routes.INDEX, NavigationPage)
   .start();

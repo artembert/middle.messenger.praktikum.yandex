@@ -9,6 +9,14 @@ export const validationMessage = {
   passwordRepeated: 'Пароли должны совпадать',
 };
 
+export const notEmpty = () => (inputValue: string): string => {
+  const testingValue = inputValue || '';
+  if (testingValue.length === 0) {
+    return 'Не может быть пустым';
+  }
+  return '';
+};
+
 export const minLength = (restriction: number) => (inputValue: string): string => {
   const testingValue = inputValue || '';
   if (testingValue.length < restriction) {

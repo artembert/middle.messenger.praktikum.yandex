@@ -3,8 +3,17 @@ export const chatPageTemplate = `
   <aside class="chat-page__roster">
     {{> app-roster chats=chats accountPageLink=accountPageLink }}
   </aside>
-  <main class="chat-page__main">
-    Выберите чат чтобы отправить сообщение
-  </main>
-</div>
+  <div class="chat-page__main">
+    <!--    Выберите чат чтобы отправить сообщение-->
+    <form action="" method="post" class="chat-page__footer chat-footer" id="{{newMessageFormId}}">
+      <div class="chat-footer__additional-actions"></div>
+      <div class="chat-footer__input">
+        <appInputChatMessage></appInputChatMessage>
+      </div>
+      <div class="chat-footer__send-message-button">
+        <appButtonSendMessage></appButtonSendMessage>
+      </div>
+    </form>
+  </div>
+</main>
 `;
