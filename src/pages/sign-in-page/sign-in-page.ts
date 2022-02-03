@@ -8,7 +8,7 @@ import { Link } from '../../components/link/link';
 import { Input } from '../../components/input/input';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import {
-  alphabet,
+  login,
   maxLength,
   minLength,
   notOnlyNumbers,
@@ -42,12 +42,7 @@ export class SignInPage extends Block<ISignInPageProps> {
       name: 'login',
       label: 'Логин',
       mode: 'default',
-      validationFns: [
-        minLength(3),
-        maxLength(20),
-        alphabet(),
-        notOnlyNumbers(),
-      ],
+      validationFns: [minLength(3), maxLength(20), login(), notOnlyNumbers()],
       internalEvents: {
         input: {
           blur: () => this._handleLoginChange(),

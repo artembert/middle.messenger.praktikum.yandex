@@ -5,6 +5,7 @@ import { SignInPage } from './pages/sign-in-page/sign-in-page';
 import { NotFoundErrorPage } from './pages/error-pages/not-found-error-page/not-found-error-page';
 import { NavigationPage } from './pages/navigation-page/navigation-page';
 import { InternalErrorPage } from './pages/error-pages/internal-error-page/internal-error-page';
+import { RegisterPage } from './pages/register-page/register-page';
 
 const ROOT_ELEMENT_ID = 'root';
 
@@ -17,6 +18,7 @@ const router = new Router(ROOT_ELEMENT_ID);
 
 router
   .use(Routes.SIGN_IN, SignInPage)
+  .use(Routes.REGISTER, RegisterPage)
   .use(Routes.NOT_FOUND, NotFoundErrorPage)
   .use(Routes.INTERNAL_ERROR, InternalErrorPage)
   .use(Routes.INDEX, NavigationPage)
