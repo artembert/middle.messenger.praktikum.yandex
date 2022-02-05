@@ -1,18 +1,18 @@
 export const changePasswordPageTemplate = `
-<main class="change-password-page">
-  <div class="change-password-page__main">
-    <h1 class="change-password-page__title title">
+<main class="window window_modal change-password-page">
+  <form action="" method="post" class="window__wrapper" id="{{formId}}">
+    <h1 class="window__title title">
       Изменить пароль
     </h1>
-    <form action="" method="post" class="change-password-page__fields">
-      {{#each fields}}
-        {{> app-input name=name label=label mode=mode error=error mode=mode }}
-      {{/each}}
-    </form>
-    <div class="change-password-page__actions form-action-buttons">
-      {{> app-link href=accountPageLink text="Отменить" mode="secondary" }}
-      {{> app-link href=accountPageLink text="Сохранить пароль" mode="primary" }}
+    <div class="window__content">
+      <appInputOldPassword></appInputOldPassword>
+      <appInputPassword></appInputPassword>
+      <appInputPasswordRepeat></appInputPasswordRepeat>
     </div>
-  </div>
+    <div class="window__footer form-action-buttons">
+      <appLinkToAccountPage></appLinkToAccountPage>
+      <appButtonSave></appButtonSave>
+    </div>
+  </form>
 </main>
 `;
