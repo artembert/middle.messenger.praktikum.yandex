@@ -12,4 +12,5 @@
   --color-text-placeholder: var(--gray-4);
   --color-error: var(--red-3);
   --color-accent: var(--blue-3);
+  --color-input-background: #ffffff;
 }
