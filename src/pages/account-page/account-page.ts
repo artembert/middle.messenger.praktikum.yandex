@@ -68,7 +68,7 @@ export class AccountPage extends Block<IAccountPageProps> {
       name: 'phone',
       label: 'Телефон',
       mode: 'readonly',
-      value: '+7 (999) 528-07-52',
+      value: '+79995280752',
     }),
     appLinkToChatPage: new Link({
       mode: 'secondary',
