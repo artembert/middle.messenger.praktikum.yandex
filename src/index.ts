@@ -8,6 +8,7 @@ import { InternalErrorPage } from './pages/error-pages/internal-error-page/inter
 import { RegisterPage } from './pages/register-page/register-page';
 import { ChatPage } from './pages/chat-page/chat-page';
 import { AccountPage } from './pages/account-page/account-page';
+import { EditAccountPage } from './pages/edit-account-page/edit-account-page';
 
 const ROOT_ELEMENT_ID = 'root';
 
@@ -25,5 +26,6 @@ router
   .use(Routes.INTERNAL_ERROR, InternalErrorPage)
   .use(Routes.CHATS, ChatPage)
   .use(Routes.ACCOUNT, AccountPage)
+  .use(Routes.EDIT_ACCOUNT, EditAccountPage)
   .use(Routes.INDEX, NavigationPage)
   .start();
