@@ -1,9 +1,8 @@
 export const rosterTemplate = `
-<div class="roster">
   <div class="roster__header">
-    {{> app-link text="⚙️" mode="icon" href=accountPageLink }}
+    <appLinkToAccountPage></appLinkToAccountPage>
     <div class="roster__search">
-    {{> app-search-bar name="roster-search" placeholder="Поиск" }}
+      <appSearchBar></appSearchBar>
     </div>
   </div>
   <ul class="roster__items-list">
@@ -11,5 +10,4 @@ export const rosterTemplate = `
       {{> app-roster-item }}
     {{/each}}
   </ul>
-</div>
 `;

@@ -1,19 +1,22 @@
 export const accountPageTemplate = `
-<main class="account-page">
+<main class="account-page window">
   <div class="account-page__navigation">
-    {{> app-link href=chatPageLink text="Вернуться к чатам" mode="secondary" }}
+    <appLinkToChatPage></appLinkToChatPage>
   </div>
-  <div class="account-page__main">
+  <div class="account-page__main window__wrapper">
     {{> app-account-header title="Аккаунт"}}
-    <form action="" method="post" class="account-page__fields">
-      {{#each fields}}
-        {{> app-input name=name label=label mode=mode error=error mode=mode }}
-      {{/each}}
-    </form>
-    <div class="account-page__actions">
-      {{> app-link href=editAccountPageLink text="Редактировать аккаунт" mode="secondary" }}
-      {{> app-link href=changePasswordPageLink text="Изменить пароль" mode="secondary" }}
-      {{> app-link href=indexPageLink text="Выйти" mode="dangerous" }}
+    <div class="account-page__fields window__content">
+      <appInputEmail></appInputEmail>
+      <appInputLogin></appInputLogin>
+      <appInputFirstName></appInputFirstName>
+      <appInputSecondName></appInputSecondName>
+      <appInputDisplayName></appInputDisplayName>
+      <appInputPhone></appInputPhone>
+    </div>
+    <div class="account-page__actions window__footer">
+      <appLinkToEditAccountPage></appLinkToEditAccountPage>
+      <appLinkToChangePasswordPage></appLinkToChangePasswordPage>
+      <appLinkToExit></appLinkToExit>
     </div>
   </div>
 </main>

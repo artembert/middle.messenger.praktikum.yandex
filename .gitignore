@@ -1,5 +1,6 @@
 # Output
 dist
+tsc-artifacts
 
 # Dependency directories
 node_modules/

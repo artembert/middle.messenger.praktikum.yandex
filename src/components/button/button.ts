@@ -1,0 +1,24 @@
+import Handlebars from 'handlebars';
+import { buttonTemplate } from './button.tmpl';
+import { Block } from '../../lib/Block/Block';
+import { IComponentProps } from '../../lib/interfaces/component-props.interface';
+
+type ButtonMode = 'primary' | 'secondary' | 'dangerous' | 'link' | 'icon';
+
+export interface IButtonProps extends IComponentProps {
+  text: string;
+  mode: ButtonMode;
+  submit?: boolean;
+}
+
+const template = Handlebars.compile(buttonTemplate);
+
+export class Button extends Block<IButtonProps> {
+  constructor(props: IButtonProps) {
+    super('div', props);
+  }
+
+  override render(): string {
+    return template(this.props);
+  }
+}

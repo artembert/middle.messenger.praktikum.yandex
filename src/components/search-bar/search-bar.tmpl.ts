@@ -4,6 +4,7 @@ export const searchBarTemplate = `
     class="search-bar__field input-field"
     type="search"
     name="{{name}}"
+    value="{{value}}"
     placeholder="{{placeholder}}"
   />
 </div>
