@@ -34,7 +34,7 @@ export class ChatPage extends Block<IChatPageProps> {
   // @ts-ignore
   private _rosterSearch: string = '';
 
-  private _rosterChildredComponents = {
+  private _rosterChildrenComponents = {
     appSearchBar: new SearchBar({
       name: 'roster-search',
       placeholder: 'Поиск',
@@ -68,9 +68,9 @@ export class ChatPage extends Block<IChatPageProps> {
     }),
     appRoster: new Roster(
       {
-        appSearchBar: this._rosterChildredComponents.appSearchBar,
+        appSearchBar: this._rosterChildrenComponents.appSearchBar,
         appLinkToAccountPage:
-          this._rosterChildredComponents.appLinkToAccountPage,
+          this._rosterChildrenComponents.appLinkToAccountPage,
       },
       { classNames: ['chat-page__roster'], chats },
     ),
@@ -110,7 +110,7 @@ export class ChatPage extends Block<IChatPageProps> {
   }
 
   private _handleRosterSearchBarChange(): void {
-    this._rosterSearch = this._rosterChildredComponents.appSearchBar.getValue();
+    this._rosterSearch = this._rosterChildrenComponents.appSearchBar.getValue();
   }
 
   private _handleFormSubmit(e: SubmitEvent): void {
