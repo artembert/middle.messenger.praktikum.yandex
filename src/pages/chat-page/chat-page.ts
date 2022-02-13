@@ -2,7 +2,6 @@ import './chat-page.css';
 import Handlebars from 'handlebars';
 import { v4 } from 'uuid';
 import { chatPageTemplate } from './chat-page.tmpl';
-import { registerRosterComponent } from './roster';
 import { Routes } from '../../constants/routes';
 import { Block } from '../../lib/Block/Block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
@@ -10,10 +9,14 @@ import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { Button } from '../../components/button/button';
 import { Input } from '../../components/input/input';
 import { notEmpty } from '../../presentation-logic/forms/validate-input';
+import { SearchBar } from '../../components/search-bar/search-bar';
+import { Roster } from './roster/roster';
+import { Link } from '../../components/link/link';
 
 interface IChildren {
   appInputChatMessage: Input;
   appButtonSendMessage: Button;
+  appRoster: Roster;
 }
 
 interface IChatPageProps extends IComponentProps {
@@ -28,6 +31,25 @@ const template = Handlebars.compile(chatPageTemplate);
 
 export class ChatPage extends Block<IChatPageProps> {
   private _message: string = '';
+  // @ts-ignore
+  private _rosterSearch: string = '';
+
+  private _rosterChildredComponents = {
+    appSearchBar: new SearchBar({
+      name: 'roster-search',
+      placeholder: 'Поиск',
+      internalEvents: {
+        input: {
+          input: () => this._handleRosterSearchBarChange(),
+        },
+      },
+    }),
+    appLinkToAccountPage: new Link({
+      mode: 'icon',
+      text: '⚙️',
+      href: accountPageLink,
+    }),
+  };
 
   private _childrenComponents: IChildren = {
     appInputChatMessage: new Input({
@@ -44,6 +66,14 @@ export class ChatPage extends Block<IChatPageProps> {
       text: 'Отправить',
       submit: true,
     }),
+    appRoster: new Roster(
+      {
+        appSearchBar: this._rosterChildredComponents.appSearchBar,
+        appLinkToAccountPage:
+          this._rosterChildredComponents.appLinkToAccountPage,
+      },
+      { classNames: ['chat-page__roster'] },
+    ),
   };
 
   constructor(rootId: string) {
@@ -56,12 +86,11 @@ export class ChatPage extends Block<IChatPageProps> {
         },
       },
     });
+    this._childrenComponents.appRoster.setProps({ chats });
   }
 
   render(): string {
-    registerRosterComponent();
     return template({
-      chats,
       accountPageLink,
       newMessageFormId,
     });
@@ -79,6 +108,10 @@ export class ChatPage extends Block<IChatPageProps> {
       value: this._message,
     });
     this._childrenComponents.appInputChatMessage.setValidState(isValid);
+  }
+
+  private _handleRosterSearchBarChange(): void {
+    this._rosterSearch = this._rosterChildredComponents.appSearchBar.getValue();
   }
 
   private _handleFormSubmit(e: SubmitEvent): void {

@@ -1,8 +1,6 @@
 export const chatPageTemplate = `
 <main class="chat-page">
-  <aside class="chat-page__roster">
-    {{> app-roster chats=chats accountPageLink=accountPageLink }}
-  </aside>
+    <appRoster></appRoster>
   <div class="chat-page__main">
     <!--    Выберите чат чтобы отправить сообщение-->
     <form action="" method="post" class="chat-page__footer chat-footer" id="{{newMessageFormId}}">
