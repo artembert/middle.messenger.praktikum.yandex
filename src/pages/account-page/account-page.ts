@@ -31,6 +31,7 @@ const chatPageLink = `/${Routes.CHATS}`;
 const editAccountPageLink = `/${Routes.EDIT_ACCOUNT}`;
 const changePasswordPageLink = `/${Routes.CHANGE_PASSWORD}`;
 const indexPageLink = '/';
+const template = Handlebars.compile(accountPageTemplate);
 
 export class AccountPage extends Block<IAccountPageProps> {
   private _childrenComponents: IChildren = {
@@ -103,6 +104,6 @@ export class AccountPage extends Block<IAccountPageProps> {
     registerHelpers();
     registerAccountHeaderComponent();
     registerAvatarComponent();
-    return Handlebars.compile(accountPageTemplate)({});
+    return template({});
   }
 }

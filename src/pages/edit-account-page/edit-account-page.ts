@@ -40,6 +40,7 @@ interface IRegisterPageProps extends IComponentProps {
 const accountPageLink = `/${Routes.ACCOUNT}`;
 const formId = `i${v4()}`;
 const formSelector = `#${formId}`;
+const template = Handlebars.compile(editAccountPageTemplate);
 
 export class EditAccountPage extends Block<IRegisterPageProps> {
   private _email: string = 'user-eml-96@gmail.com';
@@ -148,12 +149,13 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
     registerHelpers();
     registerAccountHeaderComponent();
     registerAvatarComponent();
-    return Handlebars.compile(editAccountPageTemplate)({ formId });
+    return template({ formId });
   }
 
   private _handleEmailChange(): void {
     this._email = this._childrenComponents.appInputEmail.getValue();
-    const { isValid, errorMessage } = this._childrenComponents.appInputEmail.validate();
+    const { isValid, errorMessage } =
+      this._childrenComponents.appInputEmail.validate();
     this._childrenComponents.appInputEmail.setProps({
       value: this._email,
       error: errorMessage ?? '',
@@ -163,7 +165,8 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
 
   private _handleLoginChange(): void {
     this._login = this._childrenComponents.appInputLogin.getValue();
-    const { isValid, errorMessage } = this._childrenComponents.appInputLogin.validate();
+    const { isValid, errorMessage } =
+      this._childrenComponents.appInputLogin.validate();
     this._childrenComponents.appInputLogin.setProps({
       value: this._login,
       error: errorMessage ?? '',
@@ -173,7 +176,8 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
 
   private _handleFirstNameChange(): void {
     this._firstName = this._childrenComponents.appInputFirstName.getValue();
-    const { isValid, errorMessage } = this._childrenComponents.appInputFirstName.validate();
+    const { isValid, errorMessage } =
+      this._childrenComponents.appInputFirstName.validate();
     this._childrenComponents.appInputFirstName.setProps({
       value: this._firstName,
       error: errorMessage ?? '',
@@ -183,7 +187,8 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
 
   private _handleSecondNameChange(): void {
     this._secondName = this._childrenComponents.appInputSecondName.getValue();
-    const { isValid, errorMessage } = this._childrenComponents.appInputSecondName.validate();
+    const { isValid, errorMessage } =
+      this._childrenComponents.appInputSecondName.validate();
     this._childrenComponents.appInputSecondName.setProps({
       value: this._secondName,
       error: errorMessage ?? '',
@@ -200,7 +205,8 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
 
   private _handlePhoneChange(): void {
     this._phone = this._childrenComponents.appInputPhone.getValue();
-    const { isValid, errorMessage } = this._childrenComponents.appInputPhone.validate();
+    const { isValid, errorMessage } =
+      this._childrenComponents.appInputPhone.validate();
     this._childrenComponents.appInputPhone.setProps({
       value: this._phone,
       error: errorMessage ?? '',

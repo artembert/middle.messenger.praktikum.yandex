@@ -11,13 +11,14 @@ export interface ILinkProps extends IComponentProps {
   href: string;
 }
 
+const template = Handlebars.compile(linkTemplate);
+
 export class Link extends Block {
   constructor(props: ILinkProps) {
     super('a', props);
   }
 
   override render(): string {
-    const template = Handlebars.compile(linkTemplate);
     return template(this.props);
   }
 }

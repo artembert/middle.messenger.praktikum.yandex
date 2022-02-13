@@ -31,6 +31,7 @@ interface IChangePasswordPageProps extends IComponentProps {
 const accountPageLink = `/${Routes.ACCOUNT}`;
 const formId = `i${v4()}`;
 const formSelector = `#${formId}`;
+const template = Handlebars.compile(changePasswordPageTemplate);
 
 export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
   private _oldPassword: string = '';
@@ -97,12 +98,13 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
   }
 
   render(): string {
-    return Handlebars.compile(changePasswordPageTemplate)({ formId });
+    return template({ formId });
   }
 
   private _handleOldPasswordChange(): void {
     this._oldPassword = this._childrenComponents.appInputOldPassword.getValue();
-    const { isValid, errorMessage } = this._childrenComponents.appInputOldPassword.validate();
+    const { isValid, errorMessage } =
+      this._childrenComponents.appInputOldPassword.validate();
     this._childrenComponents.appInputOldPassword.setProps({
       value: this._oldPassword,
       error: errorMessage ?? '',
@@ -112,7 +114,8 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
 
   private _handlePasswordChange(): void {
     this._password = this._childrenComponents.appInputPassword.getValue();
-    const { isValid, errorMessage } = this._childrenComponents.appInputPassword.validate();
+    const { isValid, errorMessage } =
+      this._childrenComponents.appInputPassword.validate();
     this._childrenComponents.appInputPassword.setProps({
       value: this._password,
       error: errorMessage ?? '',
@@ -121,7 +124,8 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
   }
 
   private _handlePasswordRepeatChange(): void {
-    this._passwordRepeat = this._childrenComponents.appInputPasswordRepeat.getValue();
+    this._passwordRepeat =
+      this._childrenComponents.appInputPasswordRepeat.getValue();
     const isValid = this._password === this._passwordRepeat;
     const errorMessage = isValid ? '' : validationMessage.passwordRepeated;
     this._childrenComponents.appInputPasswordRepeat.setProps({

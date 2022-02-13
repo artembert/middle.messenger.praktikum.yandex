@@ -11,13 +11,14 @@ export interface IButtonProps extends IComponentProps {
   submit?: boolean;
 }
 
+const template = Handlebars.compile(buttonTemplate);
+
 export class Button extends Block<IButtonProps> {
   constructor(props: IButtonProps) {
     super('div', props);
   }
 
   override render(): string {
-    const template = Handlebars.compile(buttonTemplate);
     return template(this.props);
   }
 }

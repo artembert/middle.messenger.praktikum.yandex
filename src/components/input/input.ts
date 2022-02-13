@@ -21,6 +21,7 @@ export interface IInputProps extends IComponentProps {
 }
 
 const invalidClassName = 'input_mode_error';
+const template = Handlebars.compile(inputTemplate);
 
 export class Input extends Block<IInputProps> {
   constructor(props: IInputProps) {
@@ -42,7 +43,6 @@ export class Input extends Block<IInputProps> {
   }
 
   override render(): string {
-    const template = Handlebars.compile(inputTemplate);
     return template(this.props);
   }
 

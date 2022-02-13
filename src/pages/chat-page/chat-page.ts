@@ -26,6 +26,7 @@ const chats: undefined[] = new Array(20).fill(undefined);
 const accountPageLink = `/${Routes.ACCOUNT}`;
 const newMessageFormId = `i${v4()}`;
 const newMessageFormSelector = `#${newMessageFormId}`;
+const template = Handlebars.compile(chatPageTemplate);
 
 export class ChatPage extends Block<IChatPageProps> {
   private _message: string = '';
@@ -63,7 +64,7 @@ export class ChatPage extends Block<IChatPageProps> {
     registerSearchBarComponent();
     registerLinkComponent();
     registerRosterComponent();
-    return Handlebars.compile(chatPageTemplate)({
+    return template({
       chats,
       accountPageLink,
       newMessageFormId,
@@ -75,7 +76,8 @@ export class ChatPage extends Block<IChatPageProps> {
   }
 
   private _validateMessage(): void {
-    const { isValid, errorMessage } = this._childrenComponents.appInputChatMessage.validate();
+    const { isValid, errorMessage } =
+      this._childrenComponents.appInputChatMessage.validate();
     this._childrenComponents.appInputChatMessage.setProps({
       error: errorMessage ?? '',
       value: this._message,
