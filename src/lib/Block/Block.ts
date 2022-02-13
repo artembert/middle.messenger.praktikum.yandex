@@ -51,7 +51,7 @@ export abstract class Block<TProps extends IComponentProps = {}> {
   }
 
   leave() {
-    this.eventBus.emit(Block.EVENTS.FLOW_CDU);
+    this.eventBus.emit(Block.EVENTS.FLOW_CWU);
   }
 
   setProps(nextProps: TProps) {
