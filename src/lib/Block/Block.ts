@@ -207,7 +207,7 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     Object.entries(children).forEach(
       ([childTag, childBlock]: [string, Block]) => {
         const childrenAnchors = this._element.getElementsByTagName(childTag);
-        if (childrenAnchors && childrenAnchors.length > 0) {
+        if (childrenAnchors?.length > 0) {
           Array.from(childrenAnchors).forEach((anchor) => {
             const block = childBlock.element;
             anchor.replaceWith(block);
