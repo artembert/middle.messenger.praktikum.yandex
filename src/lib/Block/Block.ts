@@ -110,14 +110,13 @@ export abstract class Block<TProps extends IComponentProps = {}> {
   }
 
   private _makePropsProxy(props: TProps) {
-    const self = this;
     return new Proxy(props, {
-      set(target: TProps, prop: string, value) {
+      set: (target: TProps, prop: string, value) => {
         /* eslint-disable no-param-reassign */
         // @ts-ignore
         target[prop] = value;
         /* eslint-enable no-param-reassign */
-        self.eventBus.emit(Block.EVENTS.FLOW_CDU);
+        this.eventBus.emit(Block.EVENTS.FLOW_CDU);
         return true;
       },
       deleteProperty() {
