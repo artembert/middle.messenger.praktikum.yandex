@@ -72,7 +72,7 @@ export class ChatPage extends Block<IChatPageProps> {
         appLinkToAccountPage:
           this._rosterChildredComponents.appLinkToAccountPage,
       },
-      { classNames: ['chat-page__roster'] },
+      { classNames: ['chat-page__roster'], chats },
     ),
   };
 
@@ -86,7 +86,6 @@ export class ChatPage extends Block<IChatPageProps> {
         },
       },
     });
-    this._childrenComponents.appRoster.setProps({ chats });
   }
 
   render(): string {
