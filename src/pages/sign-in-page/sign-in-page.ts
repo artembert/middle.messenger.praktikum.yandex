@@ -90,20 +90,22 @@ export class SignInPage extends Block<ISignInPageProps> {
 
   private _handleLoginChange(): void {
     this._loginValue = this._childrenComponents.appLoginInput.getValue();
-    const { isValid, errorMessage } = this._childrenComponents.appLoginInput.validate();
+    const { isValid, errorMessage } =
+      this._childrenComponents.appLoginInput.validate();
     this._childrenComponents.appLoginInput.setProps({
       value: this._loginValue,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appLoginInput.setValidState(isValid);
   }
 
   private _handlePasswordChange(): void {
     this._passwordValue = this._childrenComponents.appPasswordInput.getValue();
-    const { isValid, errorMessage } = this._childrenComponents.appPasswordInput.validate();
+    const { isValid, errorMessage } =
+      this._childrenComponents.appPasswordInput.validate();
     this._childrenComponents.appPasswordInput.setProps({
       value: this._passwordValue,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appPasswordInput.setValidState(isValid);
   }

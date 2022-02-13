@@ -154,7 +154,7 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
       this._childrenComponents.appInputEmail.validate();
     this._childrenComponents.appInputEmail.setProps({
       value: this._email,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputEmail.setValidState(isValid);
   }
@@ -165,7 +165,7 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
       this._childrenComponents.appInputLogin.validate();
     this._childrenComponents.appInputLogin.setProps({
       value: this._login,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputLogin.setValidState(isValid);
   }
@@ -176,7 +176,7 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
       this._childrenComponents.appInputFirstName.validate();
     this._childrenComponents.appInputFirstName.setProps({
       value: this._firstName,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputFirstName.setValidState(isValid);
   }
@@ -187,7 +187,7 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
       this._childrenComponents.appInputSecondName.validate();
     this._childrenComponents.appInputSecondName.setProps({
       value: this._secondName,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputSecondName.setValidState(isValid);
   }
@@ -205,7 +205,7 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
       this._childrenComponents.appInputPhone.validate();
     this._childrenComponents.appInputPhone.setProps({
       value: this._phone,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputPhone.setValidState(isValid);
   }

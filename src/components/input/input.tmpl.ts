@@ -10,6 +10,8 @@ export const inputTemplate = `
   value="{{value}}"
 />
 <span class="input__validation-message error-message">
-  {{error}}
+  {{#each error}}
+    {{ this }}<br>
+  {{/each}}
 </span>
 `;

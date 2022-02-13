@@ -13,7 +13,7 @@ type Mode = 'default' | 'readonly' | 'error';
 export interface IInputProps extends IComponentProps {
   name?: string;
   label?: string;
-  error?: string;
+  error?: string[];
   type?: 'text' | 'password';
   mode?: Mode;
   value?: string;
@@ -56,7 +56,7 @@ export class Input extends Block<IInputProps> {
     const errors = validationResult.filter((result) => !!result);
     return {
       isValid: !errors.length,
-      errorMessage: errors[0],
+      errorMessage: errors,
     };
   }
 

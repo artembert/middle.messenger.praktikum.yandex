@@ -174,7 +174,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
       this._childrenComponents.appInputEmail.validate();
     this._childrenComponents.appInputEmail.setProps({
       value: this._email,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputEmail.setValidState(isValid);
   }
@@ -185,7 +185,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
       this._childrenComponents.appInputLogin.validate();
     this._childrenComponents.appInputLogin.setProps({
       value: this._login,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputLogin.setValidState(isValid);
   }
@@ -196,7 +196,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
       this._childrenComponents.appInputFirstName.validate();
     this._childrenComponents.appInputFirstName.setProps({
       value: this._firstName,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputFirstName.setValidState(isValid);
   }
@@ -207,7 +207,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
       this._childrenComponents.appInputSecondName.validate();
     this._childrenComponents.appInputSecondName.setProps({
       value: this._secondName,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputSecondName.setValidState(isValid);
   }
@@ -225,7 +225,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
       this._childrenComponents.appInputPhone.validate();
     this._childrenComponents.appInputPhone.setProps({
       value: this._phone,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputPhone.setValidState(isValid);
   }
@@ -236,7 +236,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
       this._childrenComponents.appInputPassword.validate();
     this._childrenComponents.appInputPassword.setProps({
       value: this._password,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputPassword.setValidState(isValid);
   }
@@ -245,10 +245,12 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     this._passwordRepeat =
       this._childrenComponents.appInputPasswordRepeat.getValue();
     const isValid = this._password === this._passwordRepeat;
-    const errorMessage = isValid ? '' : validationMessage.passwordRepeated;
+    const errorMessage = isValid
+      ? undefined
+      : [validationMessage.passwordRepeated];
     this._childrenComponents.appInputPasswordRepeat.setProps({
       value: this._passwordRepeat,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputPasswordRepeat.setValidState(isValid);
   }

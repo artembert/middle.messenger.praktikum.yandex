@@ -107,7 +107,7 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
       this._childrenComponents.appInputOldPassword.validate();
     this._childrenComponents.appInputOldPassword.setProps({
       value: this._oldPassword,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputOldPassword.setValidState(isValid);
   }
@@ -118,7 +118,7 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
       this._childrenComponents.appInputPassword.validate();
     this._childrenComponents.appInputPassword.setProps({
       value: this._password,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputPassword.setValidState(isValid);
   }
@@ -127,10 +127,12 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
     this._passwordRepeat =
       this._childrenComponents.appInputPasswordRepeat.getValue();
     const isValid = this._password === this._passwordRepeat;
-    const errorMessage = isValid ? '' : validationMessage.passwordRepeated;
+    const errorMessage = isValid
+      ? undefined
+      : [validationMessage.passwordRepeated];
     this._childrenComponents.appInputPasswordRepeat.setProps({
       value: this._passwordRepeat,
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputPasswordRepeat.setValidState(isValid);
   }

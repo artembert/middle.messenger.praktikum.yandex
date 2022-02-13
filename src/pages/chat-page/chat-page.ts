@@ -103,7 +103,7 @@ export class ChatPage extends Block<IChatPageProps> {
     const { isValid, errorMessage } =
       this._childrenComponents.appInputChatMessage.validate();
     this._childrenComponents.appInputChatMessage.setProps({
-      error: errorMessage ?? '',
+      error: errorMessage ?? undefined,
       value: this._message,
     });
     this._childrenComponents.appInputChatMessage.setValidState(isValid);
