@@ -27,7 +27,7 @@ export class Roster extends Block<IRosterProps> {
     this._childrenComponents = children;
     this.setProps({
       children: this._childrenComponents,
-      chats: this.props.chats,
+      chats: props?.chats,
     });
     registerRosterItemComponent();
   }
