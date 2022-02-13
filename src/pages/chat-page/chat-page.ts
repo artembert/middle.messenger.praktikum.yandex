@@ -31,6 +31,7 @@ const template = Handlebars.compile(chatPageTemplate);
 
 export class ChatPage extends Block<IChatPageProps> {
   private _message: string = '';
+
   // @ts-ignore
   private _rosterSearch: string = '';
 
