@@ -6,8 +6,6 @@ import { Input } from '../../components/input/input';
 import { Link } from '../../components/link/link';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { Block } from '../../lib/Block/Block';
-import { registerAccountHeaderComponent } from '../../view-components/account-header';
-import { registerAvatarComponent } from '../../view-components/avatar';
 import { registerHelpers } from '../../lib';
 
 interface IChildren {
@@ -102,8 +100,6 @@ export class AccountPage extends Block<IAccountPageProps> {
 
   render(): string {
     registerHelpers();
-    registerAccountHeaderComponent();
-    registerAvatarComponent();
     return template({});
   }
 }

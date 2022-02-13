@@ -19,8 +19,6 @@ import {
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { registerHelpers } from '../../lib';
-import { registerAccountHeaderComponent } from '../../view-components/account-header';
-import { registerAvatarComponent } from '../../view-components/avatar';
 
 interface IChildren {
   appInputEmail: Input;
@@ -147,8 +145,6 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
 
   render(): string {
     registerHelpers();
-    registerAccountHeaderComponent();
-    registerAvatarComponent();
     return template({ formId });
   }
 

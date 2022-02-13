@@ -7,8 +7,6 @@ import { Routes } from '../../constants/routes';
 import { Block } from '../../lib/Block/Block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
-import { registerLinkComponent } from '../../view-components/link';
-import { registerSearchBarComponent } from '../../view-components/search-bar';
 import { Button } from '../../components/button/button';
 import { Input } from '../../components/input/input';
 import { notEmpty } from '../../presentation-logic/forms/validate-input';
@@ -61,8 +59,6 @@ export class ChatPage extends Block<IChatPageProps> {
   }
 
   render(): string {
-    registerSearchBarComponent();
-    registerLinkComponent();
     registerRosterComponent();
     return template({
       chats,

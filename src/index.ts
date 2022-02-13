@@ -10,6 +10,7 @@ import { ChatPage } from './pages/chat-page/chat-page';
 import { AccountPage } from './pages/account-page/account-page';
 import { EditAccountPage } from './pages/edit-account-page/edit-account-page';
 import { ChangePasswordPage } from './pages/change-password-page/change-password-page';
+import { registerViewComponents } from './view-components';
 
 const ROOT_ELEMENT_ID = 'root';
 
@@ -17,6 +18,8 @@ const rootElement = document.getElementById(ROOT_ELEMENT_ID);
 if (!rootElement) {
   throw new Error(`Root element #${rootElement} is not found`);
 }
+
+registerViewComponents();
 
 const router = new Router(ROOT_ELEMENT_ID);
 
