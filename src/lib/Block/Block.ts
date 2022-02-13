@@ -58,8 +58,6 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     if (!nextProps) {
       return;
     }
-    this.eventBus.emit(Block.EVENTS.FLOW_CDU, this.props, nextProps);
-
     Object.assign(this.props, nextProps);
   }
 
