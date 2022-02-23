@@ -8,6 +8,8 @@ export class Router {
 
   private _routes: Route[] = [];
 
+  private _history: History = window.history;
+
   constructor(rootId: string) {
     this._rootId = rootId;
   }
@@ -15,26 +17,41 @@ export class Router {
   use(path: string, page: IPage): Router {
     const route = new Route(path, page, { rootId: this._rootId });
     this._routes.push(route);
-
     return this;
   }
 
   start(): Router {
-    window.addEventListener('hashchange', () => {
-      this._onRoute(document.location.hash);
+    window.addEventListener('popstate', () => {
+      this._onRoute(document.location.pathname);
     });
 
-    this._onRoute(document.location.hash);
+    this._onRoute(document.location.pathname);
     return this;
   }
 
-  private _onRoute(path: string): void {
+  go(pathname: string): void {
+    this._history.pushState({}, '', pathname);
+    this._onRoute(pathname);
+  }
+
+  public back(): void {
+    this._history.back();
+  }
+
+  public forward(): void {
+    this._history.forward();
+  }
+
+  private _onRoute(pathname: string): void {
+    const route = this._getRoute(pathname);
+    if (!route) {
+      return;
+    }
     if (this._currentRoute) {
       this._currentRoute.leave();
     }
-    const route = this._getRoute(path);
     this._currentRoute = route;
-    route?.render();
+    route.render();
   }
 
   private _getRoute(path: string): Route | undefined {

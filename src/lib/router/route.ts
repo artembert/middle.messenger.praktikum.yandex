@@ -6,7 +6,7 @@ interface IRouteProps {
 }
 
 export class Route {
-  private readonly _path: string;
+  private readonly _pathname: string;
 
   private readonly _pageClass: IPage;
 
@@ -14,15 +14,15 @@ export class Route {
 
   private _props: IRouteProps;
 
-  constructor(path: string, pageClass: IPage, props: IRouteProps) {
-    this._path = path;
+  constructor(pathname: string, pageClass: IPage, props: IRouteProps) {
+    this._pathname = pathname;
     this._pageClass = pageClass;
     this._props = props;
   }
 
-  navigate(path: string): void {
+  navigate(pathname: string): void {
     window.scrollTo(0, 0);
-    if (this.match(path)) {
+    if (this.match(pathname)) {
       this.render();
     }
   }
@@ -31,8 +31,8 @@ export class Route {
     this._page?.leave();
   }
 
-  match(path: string): boolean {
-    return this._path === path;
+  match(pathname: string): boolean {
+    return this._pathname === pathname;
   }
 
   render(): void {
