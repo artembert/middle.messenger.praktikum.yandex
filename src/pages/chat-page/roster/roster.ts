@@ -23,13 +23,13 @@ export class Roster extends Block<IRosterProps> {
   private _childrenComponents: IChildren;
 
   constructor(children: IChildren, props?: IRosterProps) {
+    registerRosterItemComponent();
     super('aside', { classNames: ['roster', ...(props?.classNames ?? [])] });
     this._childrenComponents = children;
     this.setProps({
       children: this._childrenComponents,
       chats: props?.chats,
     });
-    registerRosterItemComponent();
   }
 
   override render(): string {
