@@ -1,3 +1,1 @@
-export type Indexed<T = unknown> = {
-  [key in string]: T;
-};
+export type Indexed = Record<string, any>;

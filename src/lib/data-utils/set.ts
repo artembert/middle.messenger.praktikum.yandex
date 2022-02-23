@@ -1,11 +1,11 @@
 import { Indexed } from '../interfaces/indexed.type';
 import { merge } from './merge';
 
-export function set(
+export function set<T extends Indexed>(
   object: Indexed | unknown,
   path: unknown,
   value: unknown,
-): Indexed {
+): T {
   if (typeof object !== 'object' || object === null) {
     throw new Error('target recipient must be an object');
   }
@@ -20,5 +20,5 @@ export function set(
     }),
     value as any,
   );
-  return merge(object as Indexed, result);
+  return merge(object, result) as T;
 }
