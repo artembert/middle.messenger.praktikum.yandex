@@ -8,7 +8,7 @@ interface IInternalErrorPageProps {
   linkToChats: Link;
 }
 
-const chatsPageLink = `/${Routes.CHATS}`;
+const chatsPageLink = `..${Routes.CHATS}`;
 const template = Handlebars.compile(internalErrorPageTemplate);
 
 export class InternalErrorPage extends Block<IInternalErrorPageProps> {

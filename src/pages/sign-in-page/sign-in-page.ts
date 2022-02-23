@@ -27,7 +27,7 @@ interface ISignInPageProps extends IComponentProps {
   children?: IChildren;
 }
 
-const registerLink = `/${Routes.REGISTER}`;
+const registerLink = `..${Routes.REGISTER}`;
 const formId = `i${v4()}`;
 const formSelector = `#${formId}`;
 const template = Handlebars.compile(signInPageTemplate);

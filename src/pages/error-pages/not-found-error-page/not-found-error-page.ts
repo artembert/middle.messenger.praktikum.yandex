@@ -8,7 +8,7 @@ interface INotFoundErrorPageProps {
   linkToChats: Link;
 }
 
-const chatsPageLink = `/${Routes.CHATS}`;
+const chatsPageLink = `..${Routes.CHATS}`;
 const template = Handlebars.compile(notFoundErrorPageTemplate);
 
 export class NotFoundErrorPage extends Block<INotFoundErrorPageProps> {

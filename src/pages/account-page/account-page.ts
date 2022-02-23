@@ -25,9 +25,9 @@ interface IAccountPageProps extends IComponentProps {
   children?: IChildren;
 }
 
-const chatPageLink = `/${Routes.CHATS}`;
-const editAccountPageLink = `/${Routes.EDIT_ACCOUNT}`;
-const changePasswordPageLink = `/${Routes.CHANGE_PASSWORD}`;
+const chatPageLink = `..${Routes.CHATS}`;
+const editAccountPageLink = `..${Routes.EDIT_ACCOUNT}`;
+const changePasswordPageLink = `..${Routes.CHANGE_PASSWORD}`;
 const indexPageLink = '/';
 const template = Handlebars.compile(accountPageTemplate);
 

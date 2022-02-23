@@ -28,7 +28,7 @@ interface IChangePasswordPageProps extends IComponentProps {
   children?: IChildren;
 }
 
-const accountPageLink = `/${Routes.ACCOUNT}`;
+const accountPageLink = `..${Routes.ACCOUNT}`;
 const formId = `i${v4()}`;
 const formSelector = `#${formId}`;
 const template = Handlebars.compile(changePasswordPageTemplate);
