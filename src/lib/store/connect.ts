@@ -3,7 +3,7 @@ import { IComponentProps } from '../interfaces/component-props.interface';
 import { GlobalState, Store, STORE_EVENT } from './store';
 
 interface BlockConstructable {
-  new (tagName: string, props: unknown, _rootElementId?: string): Block;
+  new (tagName: string, props?: unknown, _rootElementId?: string): Block;
 }
 
 export type MapStateToProps<TProps extends IComponentProps> = (
@@ -13,23 +13,27 @@ export type MapStateToProps<TProps extends IComponentProps> = (
 export function connect<
   TComponent extends BlockConstructable,
   TProps extends IComponentProps,
->(Component: TComponent, mapStateToProps: MapStateToProps<TProps>) {
-  // @ts-ignore
-  return class extends Component {
-    constructor(
-      tag: string,
-      props = {} as IComponentProps,
-      _rootElementId = undefined,
-    ) {
-      const store = new Store();
-      super(
-        tag,
-        { ...props, ...mapStateToProps(store.getState()) },
-        _rootElementId,
-      );
-      store.on(STORE_EVENT.UPDATE, () => {
-        this.setProps({ ...mapStateToProps(store.getState()) });
-      });
-    }
+>(
+  mapStateToProps: MapStateToProps<TProps>,
+): (Component: TComponent) => TComponent {
+  return function wrapWithConnect(Component: TComponent) {
+    // @ts-ignore
+    return class extends Component {
+      constructor(
+        tag: string,
+        props = {} as IComponentProps,
+        _rootElementId = undefined,
+      ) {
+        const store = new Store();
+        super(
+          tag,
+          { ...props, ...mapStateToProps(store.getState()) },
+          _rootElementId,
+        );
+        store.on(STORE_EVENT.UPDATE, () => {
+          this.setProps({ ...mapStateToProps(store.getState()) });
+        });
+      }
+    };
   };
 }
