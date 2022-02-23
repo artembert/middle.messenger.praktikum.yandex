@@ -3,6 +3,7 @@ import { Routes } from '../../../constants/routes';
 import { notFoundErrorPageTemplate } from './not-found-error-page.tmpl';
 import { Block } from '../../../lib/Block/Block';
 import { ILinkProps, Link } from '../../../components/link/link';
+import { getDocumentTitle } from '../../../presentation-logic/document-title';
 
 interface INotFoundErrorPageProps {
   linkToChats: Link;
@@ -26,6 +27,11 @@ export class NotFoundErrorPage extends Block<INotFoundErrorPageProps> {
       },
       rootId,
     );
+  }
+
+  override componentDidMount() {
+    super.componentDidMount();
+    document.title = getDocumentTitle('Страница не найдена');
   }
 
   render(): string {

@@ -15,6 +15,7 @@ import {
   validationMessage,
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
+import { getDocumentTitle } from '../../presentation-logic/document-title';
 
 interface IChildren {
   appInputOldPassword: Input;
@@ -95,6 +96,11 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
         },
       },
     });
+  }
+
+  override componentDidMount() {
+    super.componentDidMount();
+    document.title = getDocumentTitle('Измененить пароль');
   }
 
   render(): string {

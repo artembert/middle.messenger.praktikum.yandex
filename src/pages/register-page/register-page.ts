@@ -19,6 +19,7 @@ import {
   phone,
   validationMessage,
 } from '../../presentation-logic/forms/validate-input';
+import { getDocumentTitle } from '../../presentation-logic/document-title';
 
 interface IChildren {
   appInputEmail: Input;
@@ -162,6 +163,11 @@ export class RegisterPage extends Block<IRegisterPageProps> {
         },
       },
     });
+  }
+
+  override componentDidMount() {
+    super.componentDidMount();
+    document.title = getDocumentTitle('Регистрация');
   }
 
   render(): string {

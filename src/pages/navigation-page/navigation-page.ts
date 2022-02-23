@@ -3,6 +3,7 @@ import Handlebars from 'handlebars';
 import { Routes } from '../../constants/routes';
 import { navigationPageTemplate } from './navigation-page.tmpl';
 import { Block } from '../../lib/Block/Block';
+import { getDocumentTitle } from '../../presentation-logic/document-title';
 
 interface INavigationPageProps {
   routes: string[];
@@ -20,6 +21,11 @@ export class NavigationPage extends Block<INavigationPageProps> {
       },
       rootId,
     );
+  }
+
+  override componentDidMount() {
+    super.componentDidMount();
+    document.title = getDocumentTitle();
   }
 
   render(): string {

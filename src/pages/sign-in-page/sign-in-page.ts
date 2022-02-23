@@ -15,6 +15,7 @@ import {
   password,
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
+import { getDocumentTitle } from '../../presentation-logic/document-title';
 
 interface IChildren {
   appLoginInput: Input;
@@ -82,6 +83,11 @@ export class SignInPage extends Block<ISignInPageProps> {
         },
       },
     });
+  }
+
+  override componentDidMount() {
+    super.componentDidMount();
+    document.title = getDocumentTitle('Вход');
   }
 
   render(): string {

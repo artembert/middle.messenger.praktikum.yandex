@@ -19,6 +19,7 @@ import {
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { registerHelpers } from '../../lib';
+import { getDocumentTitle } from '../../presentation-logic/document-title';
 
 interface IChildren {
   appInputEmail: Input;
@@ -141,6 +142,11 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
         },
       },
     });
+  }
+
+  override componentDidMount() {
+    super.componentDidMount();
+    document.title = getDocumentTitle('Редактировать аккаунт');
   }
 
   render(): string {

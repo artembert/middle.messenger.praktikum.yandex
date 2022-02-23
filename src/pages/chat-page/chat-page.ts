@@ -12,6 +12,7 @@ import { notEmpty } from '../../presentation-logic/forms/validate-input';
 import { SearchBar } from '../../components/search-bar/search-bar';
 import { Roster } from './roster/roster';
 import { Link } from '../../components/link/link';
+import { getDocumentTitle } from '../../presentation-logic/document-title';
 
 interface IChildren {
   appInputChatMessage: Input;
@@ -87,6 +88,11 @@ export class ChatPage extends Block<IChatPageProps> {
         },
       },
     });
+  }
+
+  override componentDidMount() {
+    super.componentDidMount();
+    document.title = getDocumentTitle('Чаты');
   }
 
   render(): string {

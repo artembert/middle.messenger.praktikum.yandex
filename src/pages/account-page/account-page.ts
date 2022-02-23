@@ -7,6 +7,7 @@ import { Link } from '../../components/link/link';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { Block } from '../../lib/Block/Block';
 import { registerHelpers } from '../../lib';
+import { getDocumentTitle } from '../../presentation-logic/document-title';
 
 interface IChildren {
   appInputEmail: Input;
@@ -96,6 +97,11 @@ export class AccountPage extends Block<IAccountPageProps> {
     this.setProps({
       children: this._childrenComponents,
     });
+  }
+
+  override componentDidMount() {
+    super.componentDidMount();
+    document.title = getDocumentTitle('Аккаунт');
   }
 
   render(): string {
