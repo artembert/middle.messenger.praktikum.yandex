@@ -7,7 +7,7 @@ import { NavigationPage } from './pages/navigation-page/navigation-page';
 import { InternalErrorPage } from './pages/error-pages/internal-error-page/internal-error-page';
 import { RegisterPage } from './pages/register-page/register-page';
 import { ChatPage } from './pages/chat-page/chat-page';
-import { AccountPage } from './pages/account-page/account-page';
+import AccountPage from './pages/account-page';
 import { EditAccountPage } from './pages/edit-account-page/edit-account-page';
 import { ChangePasswordPage } from './pages/change-password-page/change-password-page';
 import { registerViewComponents } from './view-components';
