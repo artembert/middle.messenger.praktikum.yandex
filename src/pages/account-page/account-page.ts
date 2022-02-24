@@ -8,6 +8,7 @@ import { IComponentProps } from '../../lib/interfaces/component-props.interface'
 import { Block } from '../../lib/Block/Block';
 import { registerHelpers } from '../../lib';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
+import { IPageConstructorParams } from '../../lib/models/page.interface';
 
 interface IChildren {
   appInputEmail: Input;
@@ -22,8 +23,9 @@ interface IChildren {
   appLinkToExit: Link;
 }
 
-interface IAccountPageProps extends IComponentProps {
+export interface IAccountPageProps extends IComponentProps {
   children?: IChildren;
+  storeValue?: string;
 }
 
 const chatPageLink = `..${Routes.CHATS}`;
@@ -92,8 +94,8 @@ export class AccountPage extends Block<IAccountPageProps> {
     }),
   };
 
-  constructor(rootId: string) {
-    super('div', {}, rootId);
+  constructor({ rootId, props }: IPageConstructorParams<IAccountPageProps>) {
+    super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,
     });

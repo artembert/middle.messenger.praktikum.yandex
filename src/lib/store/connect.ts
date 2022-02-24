@@ -1,17 +1,13 @@
-import { Block } from '../Block/Block';
 import { IComponentProps } from '../interfaces/component-props.interface';
 import { GlobalState, Store, STORE_EVENT } from './store';
-
-interface BlockConstructable {
-  new (tagName: string, props?: unknown, _rootElementId?: string): Block;
-}
+import { IPage, IPageConstructorParams } from '../models/page.interface';
 
 export type MapStateToProps<TProps extends IComponentProps> = (
   globalState: GlobalState,
 ) => Partial<TProps>;
 
 export function connect<
-  TComponent extends BlockConstructable,
+  TComponent extends IPage,
   TProps extends IComponentProps,
 >(
   mapStateToProps: MapStateToProps<TProps>,
@@ -19,17 +15,15 @@ export function connect<
   return function wrapWithConnect(Component: TComponent) {
     // @ts-ignore
     return class extends Component {
-      constructor(
-        tag: string,
+      constructor({
+        rootId,
         props = {} as IComponentProps,
-        _rootElementId = undefined,
-      ) {
+      }: IPageConstructorParams) {
         const store = new Store();
-        super(
-          tag,
-          { ...props, ...mapStateToProps(store.getState()) },
-          _rootElementId,
-        );
+        super({
+          props: { ...props, ...mapStateToProps(store.getState()) },
+          rootId,
+        });
         store.on(STORE_EVENT.UPDATE, () => {
           this.setProps({ ...mapStateToProps(store.getState()) });
         });

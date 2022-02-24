@@ -16,6 +16,7 @@ import {
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
+import { IPageConstructorParams } from '../../lib/models/page.interface';
 
 interface IChildren {
   appLoginInput: Input;
@@ -73,8 +74,8 @@ export class SignInPage extends Block<ISignInPageProps> {
     }),
   };
 
-  constructor(rootId: string) {
-    super('div', {}, rootId);
+  constructor({ rootId, props }: IPageConstructorParams<ISignInPageProps>) {
+    super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,
       internalEvents: {

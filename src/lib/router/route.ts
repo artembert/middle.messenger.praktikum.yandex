@@ -37,7 +37,10 @@ export class Route {
 
   render(): void {
     if (this._pageClass) {
-      this._page = new this._pageClass(this._props.rootId);
+      this._page = new this._pageClass({
+        rootId: this._props.rootId,
+        props: {},
+      });
       this._page.show();
     }
   }

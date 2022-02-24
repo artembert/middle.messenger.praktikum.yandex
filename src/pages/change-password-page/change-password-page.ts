@@ -16,6 +16,7 @@ import {
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
+import { IPageConstructorParams } from '../../lib/models/page.interface';
 
 interface IChildren {
   appInputOldPassword: Input;
@@ -86,8 +87,11 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
     }),
   };
 
-  constructor(rootId: string) {
-    super('div', {}, rootId);
+  constructor({
+    rootId,
+    props,
+  }: IPageConstructorParams<IChangePasswordPageProps>) {
+    super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,
       internalEvents: {

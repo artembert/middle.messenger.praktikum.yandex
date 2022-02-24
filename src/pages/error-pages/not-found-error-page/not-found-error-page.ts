@@ -4,6 +4,7 @@ import { notFoundErrorPageTemplate } from './not-found-error-page.tmpl';
 import { Block } from '../../../lib/Block/Block';
 import { ILinkProps, Link } from '../../../components/link/link';
 import { getDocumentTitle } from '../../../presentation-logic/document-title';
+import { IPageConstructorParams } from '../../../lib/models/page.interface';
 
 interface INotFoundErrorPageProps {
   linkToChats: Link;
@@ -13,7 +14,10 @@ const chatsPageLink = `..${Routes.CHATS}`;
 const template = Handlebars.compile(notFoundErrorPageTemplate);
 
 export class NotFoundErrorPage extends Block<INotFoundErrorPageProps> {
-  constructor(rootId: string) {
+  constructor({
+    rootId,
+    props,
+  }: IPageConstructorParams<INotFoundErrorPageProps>) {
     const linkToChatsProps: ILinkProps = {
       mode: 'link',
       text: 'Вернуться к чатам',
@@ -23,6 +27,7 @@ export class NotFoundErrorPage extends Block<INotFoundErrorPageProps> {
     super(
       'div',
       {
+        ...props,
         linkToChats: new Link(linkToChatsProps),
       },
       rootId,

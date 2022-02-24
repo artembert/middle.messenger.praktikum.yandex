@@ -20,6 +20,7 @@ import {
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { registerHelpers } from '../../lib';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
+import { IPageConstructorParams } from '../../lib/models/page.interface';
 
 interface IChildren {
   appInputEmail: Input;
@@ -32,7 +33,7 @@ interface IChildren {
   appButtonSave: Button;
 }
 
-interface IRegisterPageProps extends IComponentProps {
+interface IEditAccountPageProps extends IComponentProps {
   children?: IChildren;
 }
 
@@ -41,7 +42,7 @@ const formId = `i${v4()}`;
 const formSelector = `#${formId}`;
 const template = Handlebars.compile(editAccountPageTemplate);
 
-export class EditAccountPage extends Block<IRegisterPageProps> {
+export class EditAccountPage extends Block<IEditAccountPageProps> {
   private _email: string = 'user-eml-96@gmail.com';
 
   private _login: string = 'user-eml-96';
@@ -132,8 +133,11 @@ export class EditAccountPage extends Block<IRegisterPageProps> {
     }),
   };
 
-  constructor(rootId: string) {
-    super('div', {}, rootId);
+  constructor({
+    rootId,
+    props,
+  }: IPageConstructorParams<IEditAccountPageProps>) {
+    super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,
       internalEvents: {

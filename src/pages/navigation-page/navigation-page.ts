@@ -4,6 +4,7 @@ import { Routes } from '../../constants/routes';
 import { navigationPageTemplate } from './navigation-page.tmpl';
 import { Block } from '../../lib/Block/Block';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
+import { IPageConstructorParams } from '../../lib/models/page.interface';
 
 interface INavigationPageProps {
   routes: string[];
@@ -12,11 +13,12 @@ interface INavigationPageProps {
 const template = Handlebars.compile(navigationPageTemplate);
 
 export class NavigationPage extends Block<INavigationPageProps> {
-  constructor(rootId: string) {
+  constructor({ rootId, props }: IPageConstructorParams<INavigationPageProps>) {
     const routes: string[] = Object.values(Routes);
     super(
       'div',
       {
+        ...props,
         routes,
       },
       rootId,

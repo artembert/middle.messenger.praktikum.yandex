@@ -20,6 +20,7 @@ import {
   validationMessage,
 } from '../../presentation-logic/forms/validate-input';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
+import { IPageConstructorParams } from '../../lib/models/page.interface';
 
 interface IChildren {
   appInputEmail: Input;
@@ -153,8 +154,8 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     }),
   };
 
-  constructor(rootId: string) {
-    super('div', {}, rootId);
+  constructor({ rootId, props }: IPageConstructorParams<IRegisterPageProps>) {
+    super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,
       internalEvents: {

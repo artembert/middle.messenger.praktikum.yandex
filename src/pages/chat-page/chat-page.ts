@@ -13,6 +13,7 @@ import { SearchBar } from '../../components/search-bar/search-bar';
 import { Roster } from './roster/roster';
 import { Link } from '../../components/link/link';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
+import { IPageConstructorParams } from '../../lib/models/page.interface';
 
 interface IChildren {
   appInputChatMessage: Input;
@@ -78,8 +79,8 @@ export class ChatPage extends Block<IChatPageProps> {
     ),
   };
 
-  constructor(rootId: string) {
-    super('div', {}, rootId);
+  constructor({ rootId, props }: IPageConstructorParams<IChatPageProps>) {
+    super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,
       internalEvents: {
