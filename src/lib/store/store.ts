@@ -1,8 +1,11 @@
 import { EventBus } from '../EventBus/EventBus';
 import { set } from '../data-utils/set';
+import { INewUser } from '../interfaces/new-user.interface';
+import { getRandomString } from '../data-utils/get-random-string';
 
 export interface GlobalState {
   storeValue: string;
+  initialNewUser: INewUser;
 }
 
 export const enum STORE_EVENT {
@@ -13,7 +16,7 @@ export class Store {
   static instance: Store;
 
   private _state: GlobalState = {
-    storeValue: 'store-value',
+    ...getInitialState(),
   };
 
   private _eventBus: EventBus = new EventBus();
@@ -49,6 +52,20 @@ export class Store {
 
 function getInitialState(): GlobalState {
   return {
-    storeValue: '',
+    storeValue: 'store-value',
+    initialNewUser: getInitialNewUser(),
+  };
+}
+
+function getInitialNewUser(): INewUser {
+  const userSuffix = getRandomString(6);
+  return {
+    firstName: 'Дмитрий',
+    secondName: 'Федоров',
+    displayName: '',
+    email: `dmitry95-${userSuffix}@gmail.com`,
+    login: `dmitry_95-${userSuffix}`,
+    password: 'gcP!@S&Qup3^%uS#',
+    phone: '+73841370944',
   };
 }
