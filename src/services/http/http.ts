@@ -15,6 +15,7 @@ type Options = {
   data?: any;
   timeout?: number;
   headers?: RequestHeaders;
+  withCredentials?: boolean;
 };
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
@@ -79,9 +80,9 @@ function request<T extends unknown>(
     xhr.open(method, resolveUrl(url, options));
     setHeaders(xhr, defaultHeaders);
     setHeaders(xhr, options.headers);
+    xhr.withCredentials = options.withCredentials ?? false;
 
     xhr.onload = () => {
-      console.log(xhr);
       if (xhr.status !== 200) {
         reject(
           new HttpError({
