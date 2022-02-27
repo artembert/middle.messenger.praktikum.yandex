@@ -1,3 +1,5 @@
+import { HttpError } from './http-error';
+
 const enum METHOD {
   GET = 'GET',
   POST = 'POST',
@@ -17,51 +19,55 @@ type Options = {
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
+const defaultHeaders: RequestHeaders = {
+  'content-type': 'application/json',
+};
+
 /* eslint-disable class-methods-use-this */
 export class Http {
-  get(
+  get<T extends unknown>(
     url: string,
     options: OptionsWithoutMethod = {},
-  ): Promise<XMLHttpRequest> {
+  ): Promise<T> {
     return request(url, { ...options, method: METHOD.GET }, options.timeout);
   }
 
-  put(
+  put<T extends unknown>(
     url: string,
     options: OptionsWithoutMethod = {},
-  ): Promise<XMLHttpRequest> {
+  ): Promise<T> {
     return request(url, { ...options, method: METHOD.PUT }, options.timeout);
   }
 
-  post(
+  post<T extends unknown>(
     url: string,
     options: OptionsWithoutMethod = {},
-  ): Promise<XMLHttpRequest> {
+  ): Promise<T> {
     return request(url, { ...options, method: METHOD.POST }, options.timeout);
   }
 
-  patch(
+  patch<T extends unknown>(
     url: string,
     options: OptionsWithoutMethod = {},
-  ): Promise<XMLHttpRequest> {
+  ): Promise<T> {
     return request(url, { ...options, method: METHOD.PATCH }, options.timeout);
   }
 
-  delete(
+  delete<T extends unknown>(
     url: string,
     options: OptionsWithoutMethod = {},
-  ): Promise<XMLHttpRequest> {
+  ): Promise<T> {
     return request(url, { ...options, method: METHOD.DELETE }, options.timeout);
   }
 }
 
 /* eslint-enable class-methods-use-this */
 
-function request(
+function request<T extends unknown>(
   url: string,
   options: Options = { method: METHOD.GET },
   timeout = 5000,
-): Promise<XMLHttpRequest> {
+): Promise<T> {
   const { method, data } = options;
 
   return new Promise((resolve, reject) => {
@@ -71,10 +77,21 @@ function request(
     }
     const xhr = new XMLHttpRequest();
     xhr.open(method, resolveUrl(url, options));
+    setHeaders(xhr, defaultHeaders);
     setHeaders(xhr, options.headers);
 
     xhr.onload = () => {
-      resolve(xhr);
+      console.log(xhr);
+      if (xhr.status !== 200) {
+        reject(
+          new HttpError({
+            code: xhr.status,
+            payload: JSON.parse(xhr.response),
+          }),
+        );
+      }
+      const response = JSON.parse(xhr.response) as T;
+      resolve(response);
     };
 
     xhr.onabort = reject;
