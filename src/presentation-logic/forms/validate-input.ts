@@ -7,6 +7,7 @@ export interface IValidationResult {
 
 export const validationMessage = {
   passwordRepeated: 'Пароли должны совпадать',
+  unidentifiedError: 'Произошла ошибка. Попробуйте позже',
 };
 
 export const notEmpty =

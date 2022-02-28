@@ -13,6 +13,9 @@ export const registerPageTemplate = `
       <appInputPhone></appInputPhone>
       <appInputPassword></appInputPassword>
       <appInputPasswordRepeat></appInputPasswordRepeat>
+      {{#if validationMessage}}
+       <div class="validation-message error-message">{{validationMessage}}</div>
+      {{/if}}
     </div>
     <div class="window__footer form-action-buttons">
       <appLinkToSignIn></appLinkToSignIn>

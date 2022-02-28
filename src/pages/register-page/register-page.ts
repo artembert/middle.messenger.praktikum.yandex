@@ -21,6 +21,8 @@ import {
 } from '../../presentation-logic/forms/validate-input';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
+import { INewUser } from '../../lib/interfaces/new-user.interface';
+import { registerNewUser } from '../../business-logic/auth/register-new-user';
 
 interface IChildren {
   appInputEmail: Input;
@@ -35,8 +37,10 @@ interface IChildren {
   appButtonRegister: Button;
 }
 
-interface IRegisterPageProps extends IComponentProps {
+export interface IRegisterPageProps extends IComponentProps {
   children?: IChildren;
+  fieldsValue?: INewUser;
+  validationMessage?: string;
 }
 
 const signInLink = `..${Routes.SIGN_IN}`;
@@ -65,6 +69,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     appInputEmail: new Input({
       name: 'email',
       label: 'Почта',
+      value: this.props.fieldsValue?.email,
       validationFns: [email()],
       internalEvents: {
         input: {
@@ -75,6 +80,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     appInputLogin: new Input({
       name: 'login',
       label: 'Логин',
+      value: this.props.fieldsValue?.login,
       validationFns: [minLength(3), maxLength(20), notOnlyNumbers(), login()],
       internalEvents: {
         input: {
@@ -85,6 +91,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     appInputFirstName: new Input({
       name: 'first_name',
       label: 'Имя',
+      value: this.props.fieldsValue?.firstName,
       validationFns: [name()],
       internalEvents: {
         input: {
@@ -95,6 +102,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     appInputSecondName: new Input({
       name: 'second_name',
       label: 'Фамилия',
+      value: this.props.fieldsValue?.secondName,
       validationFns: [name()],
       internalEvents: {
         input: {
@@ -105,6 +113,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     appInputDisplayName: new Input({
       name: 'display_name',
       label: 'Имя в чате',
+      value: this.props.fieldsValue?.displayName,
       internalEvents: {
         input: {
           blur: () => this._handleDisplayNameChange(),
@@ -114,6 +123,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     appInputPhone: new Input({
       name: 'phone',
       label: 'Телефон',
+      value: this.props.fieldsValue?.phone,
       validationFns: [minLength(10), maxLength(15), phone()],
       internalEvents: {
         input: {
@@ -125,6 +135,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
       name: 'password',
       label: 'Пароль',
       type: 'password',
+      value: this.props.fieldsValue?.password,
       validationFns: [minLength(8), maxLength(40), password()],
       internalEvents: {
         input: {
@@ -136,6 +147,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
       name: 'password-repeat',
       label: 'Повтор пароля',
       type: 'password',
+      value: this.props.fieldsValue?.password,
       internalEvents: {
         input: {
           blur: () => this._handlePasswordRepeatChange(),
@@ -172,7 +184,10 @@ export class RegisterPage extends Block<IRegisterPageProps> {
   }
 
   render(): string {
-    return template({ formId });
+    return template({
+      formId,
+      validationMessage: this.props.validationMessage,
+    });
   }
 
   private _handleEmailChange(): void {
@@ -274,5 +289,33 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     this._handlePasswordRepeatChange();
     const formData = getFormData(e.target as HTMLFormElement);
     console.log('Register form', formData);
+    const newUser = convertFormToNewUser(formData);
+    registerNewUser(newUser).then(({ isSuccess, payload }) => {
+      if (!isSuccess) {
+        let message = validationMessage.unidentifiedError;
+        if (typeof payload === 'string') {
+          message = payload;
+        }
+        console.log(payload);
+        if (payload instanceof Error) {
+          message = payload.message;
+        }
+        this.setProps({ validationMessage: message });
+      }
+    });
   }
+}
+
+function convertFormToNewUser(
+  formData: Record<string, FormDataEntryValue>,
+): INewUser {
+  return {
+    email: formData.email as string,
+    firstName: formData.first_name as string,
+    secondName: formData.second_name as string,
+    displayName: formData.display_name as string,
+    login: formData.login as string,
+    password: formData.password as string,
+    phone: formData.phone as Phone,
+  };
 }
