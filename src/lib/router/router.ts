@@ -2,7 +2,9 @@ import { Route } from './route';
 import { IPage } from '../models/page.interface';
 
 export class Router {
-  private readonly _rootId: string;
+  static instance: Router;
+
+  private readonly _rootId!: string;
 
   private _currentRoute: Route | undefined;
 
@@ -10,8 +12,16 @@ export class Router {
 
   private _history: History = window.history;
 
-  constructor(rootId: string) {
+  constructor(rootId?: string) {
+    if (Router.instance) {
+      // eslint-disable-next-line no-constructor-return
+      return Router.instance;
+    }
+    if (!rootId) {
+      throw new Error('rootId is not provided');
+    }
     this._rootId = rootId;
+    Router.instance = this;
   }
 
   use(path: string, page: IPage): Router {
