@@ -7,3 +7,4 @@ import './forms.css';
 import './button.css';
 import './error-page.css';
 import './shadows.css';
+import './validation-message.css';

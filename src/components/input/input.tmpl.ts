@@ -9,7 +9,7 @@ export const inputTemplate = `
   id="{{name}}"
   value="{{value}}"
 />
-<span class="input__validation-message error-message">
+<span class="validation-message input__validation-message error-message">
   {{#each error}}
     {{ this }}<br>
   {{/each}}
