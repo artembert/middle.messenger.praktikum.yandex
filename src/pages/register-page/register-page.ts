@@ -23,6 +23,7 @@ import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { INewUser } from '../../lib/interfaces/new-user.interface';
 import { registerNewUser } from '../../business-logic/auth/register-new-user';
+import { saveUserToStore } from '../../business-logic/auth/save-user-to-store';
 
 interface IChildren {
   appInputEmail: Input;
@@ -288,17 +289,17 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     this._handlePasswordChange();
     this._handlePasswordRepeatChange();
     const formData = getFormData(e.target as HTMLFormElement);
-    console.log('Register form', formData);
     const newUser = convertFormToNewUser(formData);
-    registerNewUser(newUser).then(({ isSuccess, payload }) => {
-      if (!isSuccess) {
+    registerNewUser(newUser).then((res) => {
+      if (res.isSuccess) {
+        saveUserToStore(res.payload);
+      } else {
         let message = validationMessage.unidentifiedError;
-        if (typeof payload === 'string') {
-          message = payload;
+        if (typeof res.payload === 'string') {
+          message = res.payload;
         }
-        console.log(payload);
-        if (payload instanceof Error) {
-          message = payload.message;
+        if (res.payload instanceof Error) {
+          message = res.payload.message;
         }
         this.setProps({ validationMessage: message });
       }

@@ -2,10 +2,12 @@ import { EventBus } from '../EventBus/EventBus';
 import { set } from '../data-utils/set';
 import { INewUser } from '../interfaces/new-user.interface';
 import { getRandomString } from '../data-utils/get-random-string';
+import { IUser } from '../interfaces/user.interface';
 
 export interface GlobalState {
   storeValue: string;
   initialNewUser: INewUser;
+  user: IUser | null;
 }
 
 export const enum STORE_EVENT {
@@ -33,7 +35,7 @@ export class Store {
     return this._state;
   }
 
-  setState(path: string, value: any): GlobalState {
+  setState(path: keyof GlobalState | string, value: any): GlobalState {
     this._state = set(this._state, path, value);
     this._eventBus.emit(STORE_EVENT.UPDATE);
     return this._state;
@@ -54,6 +56,7 @@ function getInitialState(): GlobalState {
   return {
     storeValue: 'store-value',
     initialNewUser: getInitialNewUser(),
+    user: null,
   };
 }
 
