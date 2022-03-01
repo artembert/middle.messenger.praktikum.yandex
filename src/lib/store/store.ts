@@ -14,12 +14,12 @@ export const enum STORE_EVENT {
   UPDATE = 'update',
 }
 
+const localStorageKey = 'messenger-app-store';
+
 export class Store {
   static instance: Store;
 
-  private _state: GlobalState = {
-    ...getInitialState(),
-  };
+  private _state!: GlobalState;
 
   private _eventBus: EventBus = new EventBus();
 
@@ -28,6 +28,13 @@ export class Store {
       // eslint-disable-next-line no-constructor-return
       return Store.instance;
     }
+    const savedState = localStorage.getItem(localStorageKey);
+    this._state = savedState
+      ? JSON.parse(savedState) ?? getInitialState()
+      : getInitialState();
+    this.on(STORE_EVENT.UPDATE, () => {
+      localStorage.setItem(localStorageKey, JSON.stringify(this._state));
+    });
     Store.instance = this;
   }
 
