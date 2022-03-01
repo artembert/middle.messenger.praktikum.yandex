@@ -8,6 +8,7 @@ export interface IValidationResult {
 export const validationMessage = {
   passwordRepeated: 'Пароли должны совпадать',
   unidentifiedError: 'Произошла ошибка. Попробуйте позже',
+  invalidLoginOrPassword: 'Логин или пароль не подходит',
 };
 
 export const notEmpty =

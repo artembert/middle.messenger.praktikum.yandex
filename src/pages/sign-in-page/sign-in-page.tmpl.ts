@@ -7,6 +7,9 @@ export const signInPageTemplate = `
     <div class="window__content">
       <appLoginInput></appLoginInput>
       <appPasswordInput></appPasswordInput>
+      {{#if validationMessage}}
+        <div class="validation-message error-message">{{validationMessage}}</div>
+      {{/if}}
     </div>
     <div class="window__footer form-action-buttons">
       <appLinkToRegister></appLinkToRegister>

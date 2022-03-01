@@ -13,10 +13,14 @@ import {
   minLength,
   notOnlyNumbers,
   password,
+  validationMessage,
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
+import { signIn } from '../../business-logic/auth/sign-in';
+import { ICredentials } from '../../lib/interfaces/credentials.interface';
+import { Router } from '../../lib/router/router';
 
 interface IChildren {
   appLoginInput: Input;
@@ -25,8 +29,9 @@ interface IChildren {
   appLinkToRegister: Link;
 }
 
-interface ISignInPageProps extends IComponentProps {
+export interface ISignInPageProps extends IComponentProps {
   children?: IChildren;
+  validationMessage?: string;
 }
 
 const registerLink = `..${Routes.REGISTER}`;
@@ -52,7 +57,7 @@ export class SignInPage extends Block<ISignInPageProps> {
       },
     }),
     appPasswordInput: new Input({
-      name: 'Password',
+      name: 'password',
       label: 'Пароль',
       type: 'password',
       validationFns: [minLength(8), maxLength(40), password()],
@@ -92,7 +97,10 @@ export class SignInPage extends Block<ISignInPageProps> {
   }
 
   render(): string {
-    return template({ formId });
+    return template({
+      formId,
+      validationMessage: this.props.validationMessage,
+    });
   }
 
   private _handleLoginChange(): void {
@@ -122,6 +130,27 @@ export class SignInPage extends Block<ISignInPageProps> {
     this._handleLoginChange();
     this._handlePasswordChange();
     const formData = getFormData(e.target as HTMLFormElement);
-    console.log('Sign in form', formData);
+    const credentials = convertFormToCredentials(formData);
+    signIn(credentials).then((res) => {
+      if (res.isSuccess) {
+        const router = new Router();
+        router.go(Routes.CHATS);
+      } else {
+        let message = validationMessage.unidentifiedError;
+        if (typeof res.payload === 'string') {
+          message = res.payload;
+        }
+        this.setProps({ validationMessage: message });
+      }
+    });
   }
+}
+
+function convertFormToCredentials(
+  formData: Record<string, FormDataEntryValue>,
+): ICredentials {
+  return {
+    login: formData.login as string,
+    password: formData.password as string,
+  };
 }
