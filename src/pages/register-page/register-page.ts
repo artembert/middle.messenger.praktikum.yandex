@@ -23,7 +23,6 @@ import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { INewUser } from '../../lib/interfaces/new-user.interface';
 import { registerNewUser } from '../../business-logic/auth/register-new-user';
-import { saveUserToStore } from '../../business-logic/auth/save-user-to-store';
 import { Router } from '../../lib/router/router';
 
 interface IChildren {
@@ -293,7 +292,6 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     const newUser = convertFormToNewUser(formData);
     registerNewUser(newUser).then((res) => {
       if (res.isSuccess) {
-        saveUserToStore(res.payload);
         const router = new Router();
         router.go(Routes.SIGN_IN);
       } else {

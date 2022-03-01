@@ -91,7 +91,10 @@ function request<T extends unknown>(
           }),
         );
       }
-      const response = JSON.parse(xhr.response) as T;
+      const response =
+        xhr.response === 'OK'
+          ? (undefined as T)
+          : (JSON.parse(xhr.response) as T);
       resolve(response);
     };
 
