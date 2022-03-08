@@ -16,7 +16,7 @@
 
 .window__wrapper {
   background-color: #ffffff;
-  min-width: 380px;
+  width: 380px;
   box-shadow: var(--elevation-0);
   border-radius: var(--window-border-radius);
 }
