@@ -9,6 +9,7 @@ import { Block } from '../../lib/Block/Block';
 import { registerHelpers } from '../../lib';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
+import { IUser } from '../../lib/interfaces/user.interface';
 
 interface IChildren {
   appInputEmail: Input;
@@ -25,7 +26,7 @@ interface IChildren {
 
 export interface IAccountPageProps extends IComponentProps {
   children?: IChildren;
-  storeValue?: string;
+  fieldsValues?: IUser;
 }
 
 const chatPageLink = `..${Routes.CHATS}`;
@@ -40,37 +41,37 @@ export class AccountPage extends Block<IAccountPageProps> {
       name: 'email',
       label: 'Почта',
       mode: 'readonly',
-      value: 'user-eml-96@gmail.com',
+      value: this.props.fieldsValues?.email,
     }),
     appInputLogin: new Input({
       name: 'login',
       label: 'Логин',
       mode: 'readonly',
-      value: 'user-eml-96',
+      value: this.props.fieldsValues?.login,
     }),
     appInputFirstName: new Input({
       name: 'first_name',
       label: 'Имя',
       mode: 'readonly',
-      value: 'Дмитрий',
+      value: this.props.fieldsValues?.firstName,
     }),
     appInputSecondName: new Input({
       name: 'second_name',
       label: 'Фамилия',
       mode: 'readonly',
-      value: 'Федоров',
+      value: this.props.fieldsValues?.secondName,
     }),
     appInputDisplayName: new Input({
       name: 'display_name',
       label: 'Имя в чате',
       mode: 'readonly',
-      value: 'Дмитрий Ф.',
+      value: this.props.fieldsValues?.displayName,
     }),
     appInputPhone: new Input({
       name: 'phone',
       label: 'Телефон',
       mode: 'readonly',
-      value: '+79995280752',
+      value: this.props.fieldsValues?.phone,
     }),
     appLinkToChatPage: new Link({
       mode: 'secondary',
