@@ -10,6 +10,9 @@ export const editAccountPageTemplate = `
       <appInputSecondName></appInputSecondName>
       <appInputDisplayName></appInputDisplayName>
       <appInputPhone></appInputPhone>
+      {{#if validationMessage}}
+        <div class="validation-message error-message">{{validationMessage}}</div>
+      {{/if}}
     </div>
     <div class="edit-account-page__actions form-action-buttons window__footer">
       <appLinkToAccountPage></appLinkToAccountPage>

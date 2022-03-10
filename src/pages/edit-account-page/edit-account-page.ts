@@ -16,11 +16,15 @@ import {
   name,
   notOnlyNumbers,
   phone,
+  validationMessage,
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { registerHelpers } from '../../lib';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
+import { IUser } from '../../lib/interfaces/user.interface';
+import { updateUser } from '../../business-logic/user/update-user';
+import { Router } from '../../lib/router/router';
 
 interface IChildren {
   appInputEmail: Input;
@@ -33,8 +37,10 @@ interface IChildren {
   appButtonSave: Button;
 }
 
-interface IEditAccountPageProps extends IComponentProps {
+export interface IEditAccountPageProps extends IComponentProps {
   children?: IChildren;
+  fieldsValues?: IUser;
+  validationMessage?: string;
 }
 
 const accountPageLink = `..${Routes.ACCOUNT}`;
@@ -59,7 +65,7 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
     appInputEmail: new Input({
       name: 'email',
       label: 'Почта',
-      value: this._email,
+      value: this.props.fieldsValues?.email,
       validationFns: [email()],
       internalEvents: {
         input: {
@@ -70,7 +76,7 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
     appInputLogin: new Input({
       name: 'login',
       label: 'Логин',
-      value: this._login,
+      value: this.props.fieldsValues?.login,
       validationFns: [minLength(3), maxLength(20), notOnlyNumbers(), login()],
       internalEvents: {
         input: {
@@ -81,7 +87,7 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
     appInputFirstName: new Input({
       name: 'first_name',
       label: 'Имя',
-      value: this._firstName,
+      value: this.props.fieldsValues?.firstName,
       validationFns: [name()],
       internalEvents: {
         input: {
@@ -92,7 +98,7 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
     appInputSecondName: new Input({
       name: 'second_name',
       label: 'Фамилия',
-      value: this._secondName,
+      value: this.props.fieldsValues?.secondName,
       validationFns: [name()],
       internalEvents: {
         input: {
@@ -103,7 +109,7 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
     appInputDisplayName: new Input({
       name: 'display_name',
       label: 'Имя в чате',
-      value: this._displayName,
+      value: this.props.fieldsValues?.secondName,
       internalEvents: {
         input: {
           blur: () => this._handleDisplayNameChange(),
@@ -113,7 +119,7 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
     appInputPhone: new Input({
       name: 'phone',
       label: 'Телефон',
-      value: this._phone,
+      value: this.props.fieldsValues?.phone,
       validationFns: [minLength(10), maxLength(15), phone()],
       internalEvents: {
         input: {
@@ -155,10 +161,13 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
 
   render(): string {
     registerHelpers();
-    return template({ formId });
+    return template({
+      formId,
+      validationMessage: this.props.validationMessage,
+    });
   }
 
-  private _handleEmailChange(): void {
+  private _handleEmailChange(): boolean {
     this._email = this._childrenComponents.appInputEmail.getValue();
     const { isValid, errorMessage } =
       this._childrenComponents.appInputEmail.validate();
@@ -167,9 +176,10 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
       error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputEmail.setValidState(isValid);
+    return isValid;
   }
 
-  private _handleLoginChange(): void {
+  private _handleLoginChange(): boolean {
     this._login = this._childrenComponents.appInputLogin.getValue();
     const { isValid, errorMessage } =
       this._childrenComponents.appInputLogin.validate();
@@ -178,9 +188,10 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
       error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputLogin.setValidState(isValid);
+    return isValid;
   }
 
-  private _handleFirstNameChange(): void {
+  private _handleFirstNameChange(): boolean {
     this._firstName = this._childrenComponents.appInputFirstName.getValue();
     const { isValid, errorMessage } =
       this._childrenComponents.appInputFirstName.validate();
@@ -189,9 +200,10 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
       error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputFirstName.setValidState(isValid);
+    return isValid;
   }
 
-  private _handleSecondNameChange(): void {
+  private _handleSecondNameChange(): boolean {
     this._secondName = this._childrenComponents.appInputSecondName.getValue();
     const { isValid, errorMessage } =
       this._childrenComponents.appInputSecondName.validate();
@@ -200,6 +212,7 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
       error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputSecondName.setValidState(isValid);
+    return isValid;
   }
 
   private _handleDisplayNameChange(): void {
@@ -209,7 +222,7 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
     });
   }
 
-  private _handlePhoneChange(): void {
+  private _handlePhoneChange(): boolean {
     this._phone = this._childrenComponents.appInputPhone.getValue();
     const { isValid, errorMessage } =
       this._childrenComponents.appInputPhone.validate();
@@ -218,17 +231,55 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
       error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputPhone.setValidState(isValid);
+    return isValid;
+  }
+
+  private _isFormValid(): boolean {
+    return [
+      this._handleEmailChange(),
+      this._handleLoginChange(),
+      this._handleFirstNameChange(),
+      this._handleSecondNameChange(),
+      this._handlePhoneChange(),
+    ].every((isValid) => isValid);
   }
 
   private _handleFormSubmit(e: SubmitEvent): void {
     e.preventDefault();
-    this._handleEmailChange();
-    this._handleLoginChange();
-    this._handleFirstNameChange();
-    this._handleSecondNameChange();
-    this._handleDisplayNameChange();
-    this._handlePhoneChange();
+    if (!this._isFormValid()) {
+      return;
+    }
     const formData = getFormData(e.target as HTMLFormElement);
+    const user = convertFormToUser(formData);
+    updateUser(user).then((res) => {
+      if (res.isSuccess) {
+        const router = new Router();
+        router.go(Routes.ACCOUNT);
+      } else {
+        let message = validationMessage.unidentifiedError;
+        if (typeof res.payload === 'string') {
+          message = res.payload;
+        }
+        if (res.payload instanceof Error) {
+          message = res.payload.message;
+        }
+        this.setProps({ validationMessage: message });
+      }
+    });
+
     console.log('Edit account form', formData);
   }
+}
+
+function convertFormToUser(
+  formData: Record<string, FormDataEntryValue>,
+): Omit<IUser, 'id' | 'avatar'> {
+  return {
+    email: formData.email as string,
+    firstName: formData.first_name as string,
+    secondName: formData.second_name as string,
+    displayName: formData.display_name as string,
+    login: formData.login as string,
+    phone: formData.phone as Phone,
+  };
 }

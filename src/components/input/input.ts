@@ -26,6 +26,7 @@ const template = Handlebars.compile(inputTemplate);
 export class Input extends Block<IInputProps> {
   constructor(props: IInputProps) {
     super('div', {
+      ...props,
       mode: props.mode ?? 'default',
       label: props.label,
       value: props.value,

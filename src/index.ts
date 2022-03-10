@@ -8,7 +8,7 @@ import { InternalErrorPage } from './pages/error-pages/internal-error-page/inter
 import RegisterPage from './pages/register-page';
 import { ChatPage } from './pages/chat-page/chat-page';
 import AccountPage from './pages/account-page';
-import { EditAccountPage } from './pages/edit-account-page/edit-account-page';
+import EditAccountPage from './pages/edit-account-page';
 import { ChangePasswordPage } from './pages/change-password-page/change-password-page';
 import { registerViewComponents } from './view-components';
 
