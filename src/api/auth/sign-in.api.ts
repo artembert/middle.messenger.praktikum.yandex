@@ -25,6 +25,7 @@ export function signInApi(
   return http
     .post<undefined>(AuthEndpoint.SIGN_IN, {
       data: JSON.stringify(credentialsDTO),
+      withCredentials: true,
     })
     .then(
       () =>
