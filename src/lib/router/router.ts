@@ -55,7 +55,7 @@ export class Router {
   private _onRoute(pathname: string): void {
     const route = this._getRoute(pathname);
     if (!route) {
-      return;
+      throw new Error(`Route ${pathname} does not exists`);
     }
     if (this._currentRoute) {
       this._currentRoute.leave();
