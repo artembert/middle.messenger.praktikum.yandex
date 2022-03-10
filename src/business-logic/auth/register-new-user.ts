@@ -1,8 +1,6 @@
 import { AsyncServiceResponse } from '../types/async-service-response.type';
 import { INewUser } from '../../lib/interfaces/new-user.interface';
 import { registerNewUserApi } from '../../api/auth/register-new-user.api';
-import { getUserApi } from '../../api/auth/get-user.api';
-import { saveUserToStore } from './save-user-to-store';
 
 interface RegisterNewUserSuccess extends AsyncServiceResponse {
   isSuccess: true;
@@ -24,13 +22,5 @@ export async function registerNewUser(
       payload: registerResponse.payload,
     };
   }
-  const userRes = await getUserApi();
-  if (!userRes.isSuccess) {
-    return {
-      isSuccess: false,
-      payload: userRes.payload,
-    };
-  }
-  saveUserToStore(userRes.payload);
   return Promise.resolve({ isSuccess: true, payload: undefined });
 }

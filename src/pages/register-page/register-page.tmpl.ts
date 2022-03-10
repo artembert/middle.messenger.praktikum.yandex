@@ -1,6 +1,6 @@
 export const registerPageTemplate = `
 <main class="window window_modal">
-  <form action="" method="post" class="window__wrapper" id="{{formId}}">
+  <form action="" class="window__wrapper" id="{{formId}}">
     <h1 class="window__title title">
       Регистрация
     </h1>
