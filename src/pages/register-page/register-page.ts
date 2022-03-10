@@ -44,7 +44,6 @@ export interface IRegisterPageProps extends IComponentProps {
   validationMessage?: string;
 }
 
-const signInLink = `..${Routes.SIGN_IN}`;
 const formId = `i${v4()}`;
 const formSelector = `#${formId}`;
 const template = Handlebars.compile(registerPageTemplate);
@@ -158,7 +157,15 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     appLinkToSignIn: new Link({
       mode: 'secondary',
       text: 'Войти',
-      href: signInLink,
+      href: `..${Routes.SIGN_IN}`,
+      events: {
+        click: (e: unknown) => {
+          const router = new Router();
+          router.go(Routes.SIGN_IN);
+          (e as Event).preventDefault();
+          (e as Event).stopPropagation();
+        },
+      },
     }),
     appButtonRegister: new Button({
       mode: 'primary',
