@@ -11,7 +11,8 @@ export const AuthEndpoint = {
 
 export const UsersEndpoint = {
   INDEX: USERS_ENDPOINT,
-  UPDATE_AVATAR: `${USERS_ENDPOINT}/profile/`,
+  UPDATE_INFO: `${USERS_ENDPOINT}/profile/`,
+  UPDATE_AVATAR: `${USERS_ENDPOINT}/profile/avatar`,
   CHANGE_PASSWORD: `${USERS_ENDPOINT}/password/`,
   USER: `${USERS_ENDPOINT}/user/`,
   SEARCH: `${USERS_ENDPOINT}/search/`,
