@@ -39,7 +39,7 @@ export function signInApi(
         const errorMessage =
           error?.code === 401
             ? validationMessage.invalidLoginOrPassword
-            : error.message;
+            : error.payload;
         return {
           isSuccess: false,
           payload: errorMessage as string,
