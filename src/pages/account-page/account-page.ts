@@ -10,6 +10,7 @@ import { registerHelpers } from '../../lib';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { IUser } from '../../lib/interfaces/user.interface';
+import { Router } from '../../lib/router/router';
 
 interface IChildren {
   appInputEmail: Input;
@@ -29,10 +30,6 @@ export interface IAccountPageProps extends IComponentProps {
   fieldsValues?: IUser;
 }
 
-const chatPageLink = `..${Routes.CHATS}`;
-const editAccountPageLink = `..${Routes.EDIT_ACCOUNT}`;
-const changePasswordPageLink = `..${Routes.CHANGE_PASSWORD}`;
-const indexPageLink = '/';
 const template = Handlebars.compile(accountPageTemplate);
 
 export class AccountPage extends Block<IAccountPageProps> {
@@ -76,22 +73,54 @@ export class AccountPage extends Block<IAccountPageProps> {
     appLinkToChatPage: new Link({
       mode: 'secondary',
       text: 'Вернуться к чатам',
-      href: chatPageLink,
+      href: `..${Routes.CHATS}`,
+      events: {
+        click: (e: unknown) => {
+          const router = new Router();
+          router.go(Routes.CHATS);
+          (e as Event).preventDefault();
+          (e as Event).stopPropagation();
+        },
+      },
     }),
     appLinkToEditAccountPage: new Link({
       mode: 'secondary',
       text: 'Изменить информацию',
-      href: editAccountPageLink,
+      href: `..${Routes.EDIT_ACCOUNT}`,
+      events: {
+        click: (e: unknown) => {
+          const router = new Router();
+          router.go(Routes.EDIT_ACCOUNT);
+          (e as Event).preventDefault();
+          (e as Event).stopPropagation();
+        },
+      },
     }),
     appLinkToChangePasswordPage: new Link({
       mode: 'secondary',
       text: 'Изменить пароль',
-      href: changePasswordPageLink,
+      href: `..${Routes.CHANGE_PASSWORD}`,
+      events: {
+        click: (e: unknown) => {
+          const router = new Router();
+          router.go(Routes.CHANGE_PASSWORD);
+          (e as Event).preventDefault();
+          (e as Event).stopPropagation();
+        },
+      },
     }),
     appLinkToExit: new Link({
       mode: 'dangerous',
       text: 'Выйти',
-      href: indexPageLink,
+      href: `..${Routes.INDEX}`,
+      events: {
+        click: (e: unknown) => {
+          const router = new Router();
+          router.go(Routes.INDEX);
+          (e as Event).preventDefault();
+          (e as Event).stopPropagation();
+        },
+      },
     }),
   };
 
