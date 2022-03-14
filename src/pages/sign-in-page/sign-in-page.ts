@@ -21,6 +21,7 @@ import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { signIn } from '../../business-logic/auth/sign-in';
 import { ICredentials } from '../../lib/interfaces/credentials.interface';
 import { Router } from '../../lib/router/router';
+import { inAppNavigation } from '../../lib/router/in-app-navigation';
 
 interface IChildren {
   appLoginInput: Input;
@@ -76,12 +77,7 @@ export class SignInPage extends Block<ISignInPageProps> {
       text: 'Зарегистрироваться',
       href: `..${Routes.REGISTER}`,
       events: {
-        click: (e: unknown) => {
-          const router = new Router();
-          router.go(Routes.REGISTER);
-          (e as Event).preventDefault();
-          (e as Event).stopPropagation();
-        },
+        click: (e: unknown) => inAppNavigation(e, Routes.REGISTER),
       },
     }),
   };

@@ -24,6 +24,7 @@ import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { INewUser } from '../../lib/interfaces/new-user.interface';
 import { registerNewUser } from '../../business-logic/auth/register-new-user';
 import { Router } from '../../lib/router/router';
+import { inAppNavigation } from '../../lib/router/in-app-navigation';
 
 interface IChildren {
   appInputEmail: Input;
@@ -159,12 +160,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
       text: 'Войти',
       href: `..${Routes.SIGN_IN}`,
       events: {
-        click: (e: unknown) => {
-          const router = new Router();
-          router.go(Routes.SIGN_IN);
-          (e as Event).preventDefault();
-          (e as Event).stopPropagation();
-        },
+        click: (e: unknown) => inAppNavigation(e, Routes.SIGN_IN),
       },
     }),
     appButtonRegister: new Button({

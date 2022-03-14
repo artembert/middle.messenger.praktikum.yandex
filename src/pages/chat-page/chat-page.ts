@@ -14,7 +14,7 @@ import { Roster } from './roster/roster';
 import { Link } from '../../components/link/link';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
-import { Router } from '../../lib/router/router';
+import { inAppNavigation } from '../../lib/router/in-app-navigation';
 
 interface IChildren {
   appInputChatMessage: Input;
@@ -53,12 +53,7 @@ export class ChatPage extends Block<IChatPageProps> {
       text: '⚙️',
       href: `..${Routes.ACCOUNT}`,
       events: {
-        click: (e: unknown) => {
-          const router = new Router();
-          router.go(Routes.ACCOUNT);
-          (e as Event).preventDefault();
-          (e as Event).stopPropagation();
-        },
+        click: (e: unknown) => inAppNavigation(e, Routes.ACCOUNT),
       },
     }),
   };

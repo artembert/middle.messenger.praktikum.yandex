@@ -10,7 +10,7 @@ import { registerHelpers } from '../../lib';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { IUser } from '../../lib/interfaces/user.interface';
-import { Router } from '../../lib/router/router';
+import { inAppNavigation } from '../../lib/router/in-app-navigation';
 
 interface IChildren {
   appInputEmail: Input;
@@ -75,12 +75,7 @@ export class AccountPage extends Block<IAccountPageProps> {
       text: 'Вернуться к чатам',
       href: `..${Routes.CHATS}`,
       events: {
-        click: (e: unknown) => {
-          const router = new Router();
-          router.go(Routes.CHATS);
-          (e as Event).preventDefault();
-          (e as Event).stopPropagation();
-        },
+        click: (e: unknown) => inAppNavigation(e, Routes.CHATS),
       },
     }),
     appLinkToEditAccountPage: new Link({
@@ -88,12 +83,7 @@ export class AccountPage extends Block<IAccountPageProps> {
       text: 'Изменить информацию',
       href: `..${Routes.EDIT_ACCOUNT}`,
       events: {
-        click: (e: unknown) => {
-          const router = new Router();
-          router.go(Routes.EDIT_ACCOUNT);
-          (e as Event).preventDefault();
-          (e as Event).stopPropagation();
-        },
+        click: (e: unknown) => inAppNavigation(e, Routes.EDIT_ACCOUNT),
       },
     }),
     appLinkToChangePasswordPage: new Link({
@@ -101,12 +91,7 @@ export class AccountPage extends Block<IAccountPageProps> {
       text: 'Изменить пароль',
       href: `..${Routes.CHANGE_PASSWORD}`,
       events: {
-        click: (e: unknown) => {
-          const router = new Router();
-          router.go(Routes.CHANGE_PASSWORD);
-          (e as Event).preventDefault();
-          (e as Event).stopPropagation();
-        },
+        click: (e: unknown) => inAppNavigation(e, Routes.CHANGE_PASSWORD),
       },
     }),
     appLinkToExit: new Link({
@@ -114,12 +99,7 @@ export class AccountPage extends Block<IAccountPageProps> {
       text: 'Выйти',
       href: `..${Routes.INDEX}`,
       events: {
-        click: (e: unknown) => {
-          const router = new Router();
-          router.go(Routes.INDEX);
-          (e as Event).preventDefault();
-          (e as Event).stopPropagation();
-        },
+        click: (e: unknown) => inAppNavigation(e, Routes.INDEX),
       },
     }),
   };
