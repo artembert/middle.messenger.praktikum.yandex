@@ -27,7 +27,7 @@ interface IChildren {
   appLinkToAccountPage: Link;
 }
 
-interface IChangePasswordPageProps extends IComponentProps {
+export interface IChangePasswordPageProps extends IComponentProps {
   children?: IChildren;
 }
 
