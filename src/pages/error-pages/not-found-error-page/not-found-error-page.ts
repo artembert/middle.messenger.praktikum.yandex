@@ -11,7 +11,7 @@ interface IChildren {
   appBackToChatLink: Link;
 }
 
-interface INotFoundErrorPageProps {
+export interface INotFoundErrorPageProps {
   children?: IChildren;
 }
 
