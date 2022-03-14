@@ -25,6 +25,7 @@ import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { IUser } from '../../lib/interfaces/user.interface';
 import { updateUser } from '../../business-logic/user/update-user';
 import { Router } from '../../lib/router/router';
+import { inAppNavigation } from '../../lib/router/in-app-navigation';
 
 interface IChildren {
   appInputEmail: Input;
@@ -43,7 +44,6 @@ export interface IEditAccountPageProps extends IComponentProps {
   validationMessage?: string;
 }
 
-const accountPageLink = `..${Routes.ACCOUNT}`;
 const formId = `i${v4()}`;
 const formSelector = `#${formId}`;
 const template = Handlebars.compile(editAccountPageTemplate);
@@ -130,7 +130,10 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
     appLinkToAccountPage: new Link({
       mode: 'secondary',
       text: 'Отменить',
-      href: accountPageLink,
+      href: `..${Routes.ACCOUNT}`,
+      events: {
+        click: (e: unknown) => inAppNavigation(e, Routes.ACCOUNT),
+      },
     }),
     appButtonSave: new Button({
       mode: 'primary',

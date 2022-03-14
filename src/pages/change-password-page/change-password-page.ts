@@ -17,6 +17,7 @@ import {
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
+import { inAppNavigation } from '../../lib/router/in-app-navigation';
 
 interface IChildren {
   appInputOldPassword: Input;
@@ -30,7 +31,6 @@ interface IChangePasswordPageProps extends IComponentProps {
   children?: IChildren;
 }
 
-const accountPageLink = `..${Routes.ACCOUNT}`;
 const formId = `i${v4()}`;
 const formSelector = `#${formId}`;
 const template = Handlebars.compile(changePasswordPageTemplate);
@@ -83,7 +83,8 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
     appLinkToAccountPage: new Link({
       mode: 'secondary',
       text: 'Отменить',
-      href: accountPageLink,
+      href: `..${Routes.ACCOUNT}`,
+      click: (e: unknown) => inAppNavigation(e, Routes.ACCOUNT),
     }),
   };
 

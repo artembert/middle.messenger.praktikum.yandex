@@ -5,12 +5,12 @@ import { Block } from '../../../lib/Block/Block';
 import { ILinkProps, Link } from '../../../components/link/link';
 import { getDocumentTitle } from '../../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../../lib/models/page.interface';
+import { inAppNavigation } from '../../../lib/router/in-app-navigation';
 
 interface IInternalErrorPageProps {
   linkToChats: Link;
 }
 
-const chatsPageLink = `..${Routes.CHATS}`;
 const template = Handlebars.compile(internalErrorPageTemplate);
 
 export class InternalErrorPage extends Block<IInternalErrorPageProps> {
@@ -21,7 +21,8 @@ export class InternalErrorPage extends Block<IInternalErrorPageProps> {
     const linkToChatsProps: ILinkProps = {
       mode: 'link',
       text: 'Вернуться к чатам',
-      href: chatsPageLink,
+      href: `..${Routes.CHATS}`,
+      click: (e: unknown) => inAppNavigation(e, Routes.CHATS),
     };
 
     super(
