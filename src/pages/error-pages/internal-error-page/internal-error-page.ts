@@ -2,37 +2,41 @@ import Handlebars from 'handlebars';
 import { Routes } from '../../../constants/routes';
 import { internalErrorPageTemplate } from './internal-error-page.tmpl';
 import { Block } from '../../../lib/Block/Block';
-import { ILinkProps, Link } from '../../../components/link/link';
+import { Link } from '../../../components/link/link';
 import { getDocumentTitle } from '../../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../../lib/models/page.interface';
 import { inAppNavigation } from '../../../lib/router/in-app-navigation';
 
+interface IChildren {
+  appBackToChatLink: Link;
+}
+
 interface IInternalErrorPageProps {
-  linkToChats: Link;
+  children?: IChildren;
 }
 
 const template = Handlebars.compile(internalErrorPageTemplate);
 
 export class InternalErrorPage extends Block<IInternalErrorPageProps> {
+  private _childrenComponents: IChildren = {
+    appBackToChatLink: new Link({
+      mode: 'link',
+      text: 'Вернуться к чатам',
+      href: `..${Routes.CHATS}`,
+      events: {
+        click: (e: unknown) => inAppNavigation(e, Routes.CHATS),
+      },
+    }),
+  };
+
   constructor({
     rootId,
     props,
   }: IPageConstructorParams<IInternalErrorPageProps>) {
-    const linkToChatsProps: ILinkProps = {
-      mode: 'link',
-      text: 'Вернуться к чатам',
-      href: `..${Routes.CHATS}`,
-      click: (e: unknown) => inAppNavigation(e, Routes.CHATS),
-    };
-
-    super(
-      'div',
-      {
-        ...props,
-        linkToChats: new Link(linkToChatsProps),
-      },
-      rootId,
-    );
+    super('div', props, rootId);
+    this.setProps({
+      children: this._childrenComponents,
+    });
   }
 
   override componentDidMount() {
@@ -41,9 +45,6 @@ export class InternalErrorPage extends Block<IInternalErrorPageProps> {
   }
 
   render(): string {
-    const { linkToChats } = this.props;
-    return template({
-      appLinkToChats: linkToChats.render(),
-    });
+    return template({});
   }
 }

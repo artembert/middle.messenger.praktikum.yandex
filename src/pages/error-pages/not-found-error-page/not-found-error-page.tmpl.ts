@@ -8,7 +8,7 @@ export const notFoundErrorPageTemplate = `
       Страница не найдена
     </div>
     <div class="error-page__action">
-      {{{appLinkToChats}}}
+      <appBackToChatLink></appBackToChatLink>
     </div>
   </div>
 </main>

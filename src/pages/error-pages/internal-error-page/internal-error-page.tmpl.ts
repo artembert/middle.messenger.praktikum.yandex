@@ -8,7 +8,7 @@ export const internalErrorPageTemplate = `
       Что-то пошло не так
     </div>
     <div class="error-page__action">
-      {{{appLinkToChats}}}
+      <appBackToChatLink></appBackToChatLink>
     </div>
   </div>
 </main>
