@@ -27,7 +27,6 @@ export interface IChatPageProps extends IComponentProps {
 }
 
 const chats: undefined[] = new Array(20).fill(undefined);
-const accountPageLink = `..${Routes.ACCOUNT}`;
 const newMessageFormId = `i${v4()}`;
 const newMessageFormSelector = `#${newMessageFormId}`;
 const template = Handlebars.compile(chatPageTemplate);
@@ -102,7 +101,6 @@ export class ChatPage extends Block<IChatPageProps> {
 
   render(): string {
     return template({
-      accountPageLink,
       newMessageFormId,
     });
   }
