@@ -7,12 +7,10 @@ import { IUserId } from '../../lib/interfaces/user-id.interface';
 
 interface IRegisterApiResponseSuccess extends ApiResponse<IUserId> {
   isSuccess: true;
-  payload: IUserId;
 }
 
-interface IRegisterApiResponseFailed extends ApiResponse<IUserId> {
+interface IRegisterApiResponseFailed extends ApiResponse<Error | unknown> {
   isSuccess: false;
-  payload: Error | unknown;
 }
 
 const http = new Http();

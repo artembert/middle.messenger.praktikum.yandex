@@ -5,14 +5,17 @@ import { ICredentials } from '../../lib/interfaces/credentials.interface';
 import { HttpError } from '../../services/http/http-error';
 import { validationMessage } from '../../presentation-logic/forms/validate-input';
 
-interface ISignInApiResponseSuccess extends ApiResponse<undefined> {
-  isSuccess: true;
-  payload: undefined;
+interface Failed {
+  message: string;
+  code?: number;
 }
 
-interface ISignInApiResponseFailed extends ApiResponse<string> {
+interface ISignInApiResponseSuccess extends ApiResponse<undefined> {
+  isSuccess: true;
+}
+
+interface ISignInApiResponseFailed extends ApiResponse<Failed> {
   isSuccess: false;
-  payload: string;
 }
 
 const http = new Http();
@@ -36,18 +39,23 @@ export function signInApi(
     )
     .catch((error) => {
       if (error instanceof HttpError) {
-        const errorMessage =
-          error?.code === 401
-            ? validationMessage.invalidLoginOrPassword
-            : error.payload;
+        if (error.code === 401) {
+          return {
+            isSuccess: false,
+            payload: {
+              code: 400,
+              message: validationMessage.invalidLoginOrPassword,
+            } as Failed,
+          };
+        }
         return {
           isSuccess: false,
-          payload: errorMessage as string,
+          payload: { code: error.code, message: error.payload } as Failed,
         };
       }
       return {
         isSuccess: false,
-        payload: error.payload as string,
+        payload: { code: error?.code, message: error.payload } as Failed,
       };
     });
 }

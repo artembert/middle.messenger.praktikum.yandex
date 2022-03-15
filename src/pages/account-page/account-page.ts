@@ -11,6 +11,7 @@ import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { IUser } from '../../lib/interfaces/user.interface';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';
+import { logout } from '../../business-logic/auth/logout';
 
 interface IChildren {
   appInputEmail: Input;
@@ -97,9 +98,18 @@ export class AccountPage extends Block<IAccountPageProps> {
     appLinkToExit: new Link({
       mode: 'dangerous',
       text: 'Выйти',
-      href: `..${Routes.INDEX}`,
+      href: `..${Routes.SIGN_IN}`,
       events: {
-        click: (e: unknown) => inAppNavigation(e, Routes.INDEX),
+        click: (e: unknown) => {
+          (e as Event).preventDefault();
+          (e as Event).stopPropagation();
+          logout().then((res) => {
+            if (!res.isSuccess) {
+              console.error('Unable to logout');
+            }
+            inAppNavigation(e, Routes.SIGN_IN);
+          });
+        },
       },
     }),
   };

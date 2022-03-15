@@ -3,6 +3,8 @@ import { signInApi } from '../../api/auth/sign-in.api';
 import { ICredentials } from '../../lib/interfaces/credentials.interface';
 import { getUserApi } from '../../api/auth/get-user.api';
 import { saveUserToStore } from './save-user-to-store';
+import { logout } from './logout';
+import { validationMessage } from '../../presentation-logic/forms/validate-input';
 
 interface SignInSuccess extends AsyncServiceResponse {
   isSuccess: true;
@@ -19,7 +21,16 @@ export async function signIn(
 ): Promise<SignInSuccess | SignInFailed> {
   const res = await signInApi(credentials);
   if (!res.isSuccess) {
-    return res;
+    if (res.payload?.code === 400) {
+      const logoutRes = await logout();
+      if (!logoutRes.isSuccess) {
+        return {
+          isSuccess: false,
+          payload: validationMessage.userAlreadyInSystem,
+        };
+      }
+      await signIn(credentials);
+    }
   }
   const userRes = await getUserApi();
   if (!userRes.isSuccess) {

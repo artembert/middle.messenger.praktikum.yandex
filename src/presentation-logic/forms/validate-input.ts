@@ -9,6 +9,7 @@ export const validationMessage = {
   passwordRepeated: 'Пароли должны совпадать',
   unidentifiedError: 'Произошла ошибка. Попробуйте позже',
   invalidLoginOrPassword: 'Логин или пароль не подходит',
+  userAlreadyInSystem: 'Пользователь уже залогинен',
 };
 
 export const notEmpty =

@@ -7,12 +7,10 @@ import { HttpError } from '../../services/http/http-error';
 
 interface IGetUserApiResponseSuccess extends ApiResponse<IUser> {
   isSuccess: true;
-  payload: IUser;
 }
 
-interface IGetUserApiResponseFailed extends ApiResponse<IUser> {
+interface IGetUserApiResponseFailed extends ApiResponse<Error | unknown> {
   isSuccess: false;
-  payload: Error | unknown;
 }
 
 const http = new Http();

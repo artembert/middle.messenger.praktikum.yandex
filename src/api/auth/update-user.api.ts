@@ -9,12 +9,10 @@ import { userMapper } from './mappers/user.mapper';
 
 interface IUpdateUserApiResponseSuccess extends ApiResponse<IUser> {
   isSuccess: true;
-  payload: IUser;
 }
 
-interface IUpdateUserApiResponseFailed extends ApiResponse<IUser> {
+interface IUpdateUserApiResponseFailed extends ApiResponse<Error | unknown> {
   isSuccess: false;
-  payload: Error | unknown;
 }
 
 const http = new Http();
