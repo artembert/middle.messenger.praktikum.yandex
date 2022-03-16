@@ -26,6 +26,8 @@ import { IUser } from '../../lib/interfaces/user.interface';
 import { updateUser } from '../../business-logic/user/update-user';
 import { Router } from '../../lib/router/router';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';
+import { AccountHeader } from '../../components/account-header/account-header';
+import { AvatarEditable } from '../../components/avatar-editable/avatar-editable';
 
 interface IChildren {
   appInputEmail: Input;
@@ -36,6 +38,7 @@ interface IChildren {
   appInputPhone: Input;
   appLinkToAccountPage: Link;
   appButtonSave: Button;
+  appAccountHeader: AccountHeader;
 }
 
 export interface IEditAccountPageProps extends IComponentProps {
@@ -139,6 +142,18 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
       mode: 'primary',
       text: 'Сохранить',
       submit: true,
+    }),
+    appAccountHeader: new AccountHeader({
+      title: 'Редактировать аккаунт',
+      children: {
+        appAvatarEditable: new AvatarEditable({
+          internalEvents: {
+            button: {
+              click: (e) => inAppNavigation(e, Routes.CHANGE_AVATAR),
+            },
+          },
+        }),
+      },
     }),
   };
 

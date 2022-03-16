@@ -1,10 +1,10 @@
-.avatar {
+.avatar-editable {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.avatar__button {
+.avatar-editable__button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,12 +15,12 @@
   padding: 0;
 }
 
-.avatar_size_l .avatar__button {
+.avatar-editable_size_l .avatar-editable__button {
   width: 96px;
   height: 96px;
   background-color: var(--gray-1);
 }
 
-.avatar_size_l .avatar__button:hover {
+.avatar-editable_size_l .avatar-editable__button:hover {
   background-color: var(--blue-2);
 }

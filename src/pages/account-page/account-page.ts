@@ -12,6 +12,8 @@ import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { IUser } from '../../lib/interfaces/user.interface';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';
 import { logout } from '../../business-logic/auth/logout';
+import { AccountHeader } from '../../components/account-header/account-header';
+import { AvatarEditable } from '../../components/avatar-editable/avatar-editable';
 
 interface IChildren {
   appInputEmail: Input;
@@ -24,6 +26,7 @@ interface IChildren {
   appLinkToEditAccountPage: Link;
   appLinkToChangePasswordPage: Link;
   appLinkToExit: Link;
+  appAccountHeader: AccountHeader;
 }
 
 export interface IAccountPageProps extends IComponentProps {
@@ -110,6 +113,18 @@ export class AccountPage extends Block<IAccountPageProps> {
             inAppNavigation(e, Routes.SIGN_IN);
           });
         },
+      },
+    }),
+    appAccountHeader: new AccountHeader({
+      title: 'Аккаунт',
+      children: {
+        appAvatarEditable: new AvatarEditable({
+          internalEvents: {
+            button: {
+              click: (e) => inAppNavigation(e, Routes.CHANGE_AVATAR),
+            },
+          },
+        }),
       },
     }),
   };

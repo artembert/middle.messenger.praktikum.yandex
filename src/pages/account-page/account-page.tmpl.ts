@@ -4,7 +4,7 @@ export const accountPageTemplate = `
     <appLinkToChatPage></appLinkToChatPage>
   </div>
   <div class="account-page__main window__wrapper">
-    {{> app-account-header title="Аккаунт"}}
+    <appAccountHeader></appAccountHeader>
     <div class="account-page__fields window__content">
       <appInputEmail></appInputEmail>
       <appInputLogin></appInputLogin>

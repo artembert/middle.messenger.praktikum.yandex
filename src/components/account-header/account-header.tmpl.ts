@@ -4,7 +4,7 @@ export const accountHeaderTemplate = `
     {{title}}
   </h1>
   <div class="account-header__avatar">
-    {{> app-avatar size='L'}}
+    <appAvatarEditable></appAvatarEditable>
   </div>
 </div>
 `;

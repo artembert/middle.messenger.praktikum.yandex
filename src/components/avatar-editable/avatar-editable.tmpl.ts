@@ -1,30 +1,19 @@
-export const avatarTemplate = `
-<div 
-  {{#switch size}}
-    {{#case "L"}}
-      class='avatar avatar_size_l'
-    {{/case}}
-    {{#case "M"}}
-      class='avatar avatar_size_m'
-    {{/case}}
-    {{#case "S"}}
-      class='avatar avatar_size_s'
-    {{/case}}
-  {{/switch}}
-  >
+export const avatarEditableTemplate = `
+<div
+  class='avatar-editable avatar-editable_size_l'
+>
   <button type="button"
-    class="avatar__button"
-    >
-    {{#switch size}}
-    {{#case "L"}}
-      <span class="avatar__icon">
-      <svg
-        width="30"
-        height="30"
-        viewBox="0 0 30 30"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+          class="avatar-editable__button"
+          id="avatar"
+  >
+      <span class="avatar-editable__icon">
+        <svg
+          width="30"
+          height="30"
+          viewBox="0 0 30 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"
@@ -32,16 +21,7 @@ export const avatarTemplate = `
           fill="#CDCDCD"
         ></path>
       </svg>
-    {{/case}}
-    {{#case "M"}}
-      avatar_size_m
-    {{/case}}
-    {{#case "S"}}
-      avatar_size_s
-    {{/case}}
-  {{/switch}}
-    
-    </span>
+  </span>
   </button>
 </div>
 `;
