@@ -18,6 +18,9 @@ import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';
+import { INewPassword } from '../../lib/interfaces/new-password.interface';
+import { Router } from '../../lib/router/router';
+import { changePassword } from '../../business-logic/user/change-password';
 
 interface IChildren {
   appInputOldPassword: Input;
@@ -112,7 +115,7 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
     return template({ formId });
   }
 
-  private _handleOldPasswordChange(): void {
+  private _handleOldPasswordChange(): boolean {
     this._oldPassword = this._childrenComponents.appInputOldPassword.getValue();
     const { isValid, errorMessage } =
       this._childrenComponents.appInputOldPassword.validate();
@@ -121,9 +124,10 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
       error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputOldPassword.setValidState(isValid);
+    return isValid;
   }
 
-  private _handlePasswordChange(): void {
+  private _handlePasswordChange(): boolean {
     this._password = this._childrenComponents.appInputPassword.getValue();
     const { isValid, errorMessage } =
       this._childrenComponents.appInputPassword.validate();
@@ -132,9 +136,10 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
       error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputPassword.setValidState(isValid);
+    return isValid;
   }
 
-  private _handlePasswordRepeatChange(): void {
+  private _handlePasswordRepeatChange(): boolean {
     this._passwordRepeat =
       this._childrenComponents.appInputPasswordRepeat.getValue();
     const isValid = this._password === this._passwordRepeat;
@@ -146,14 +151,48 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
       error: errorMessage ?? undefined,
     });
     this._childrenComponents.appInputPasswordRepeat.setValidState(isValid);
+    return isValid;
   }
 
   private _handleFormSubmit(e: SubmitEvent): void {
     e.preventDefault();
-    this._handleOldPasswordChange();
-    this._handlePasswordChange();
-    this._handlePasswordRepeatChange();
+    if (!this._isFormValid()) {
+      return;
+    }
     const formData = getFormData(e.target as HTMLFormElement);
+    const newPassword = convertFormToNewPassword(formData);
+    changePassword(newPassword).then((res) => {
+      if (res.isSuccess) {
+        const router = new Router();
+        router.go(Routes.ACCOUNT);
+      } else {
+        let message = validationMessage.unidentifiedError;
+        if (typeof res.payload === 'string') {
+          message = res.payload;
+        }
+        if (res.payload instanceof Error) {
+          message = res.payload.message;
+        }
+        this.setProps({ validationMessage: message });
+      }
+    });
     console.log('Change password form', formData);
   }
+
+  private _isFormValid(): boolean {
+    return [
+      this._handleOldPasswordChange(),
+      this._handlePasswordChange(),
+      this._handlePasswordRepeatChange(),
+    ].every((isValid) => isValid);
+  }
+}
+
+function convertFormToNewPassword(
+  formData: Record<string, FormDataEntryValue>,
+): INewPassword {
+  return {
+    oldPassword: formData['old-password'] as string,
+    newPassword: formData.password as Phone,
+  };
 }
