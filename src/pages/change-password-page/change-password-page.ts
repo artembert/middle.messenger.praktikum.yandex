@@ -87,7 +87,9 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
       mode: 'secondary',
       text: 'Отменить',
       href: `..${Routes.ACCOUNT}`,
-      click: (e: unknown) => inAppNavigation(e, Routes.ACCOUNT),
+      events: {
+        click: (e: unknown) => inAppNavigation(e, Routes.ACCOUNT),
+      },
     }),
   };
 
