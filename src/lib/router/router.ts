@@ -1,5 +1,6 @@
 import { Route } from './route';
 import { IPage } from '../models/page.interface';
+import { Routes } from '../../constants/routes';
 
 export class Router {
   static instance: Router;
@@ -24,8 +25,8 @@ export class Router {
     Router.instance = this;
   }
 
-  use(path: string, page: IPage): Router {
-    const route = new Route(path, page, { rootId: this._rootId });
+  use(path: string, page: IPage, isPrivate: boolean = false): Router {
+    const route = new Route(path, page, { rootId: this._rootId }, isPrivate);
     this._routes.push(route);
     return this;
   }
@@ -61,7 +62,11 @@ export class Router {
       this._currentRoute.leave();
     }
     this._currentRoute = route;
-    route.render();
+    route.navigate().then(({ isSuccess }) => {
+      if (!isSuccess) {
+        this.go(Routes.SIGN_IN);
+      }
+    });
   }
 
   private _getRoute(path: string): Route | undefined {

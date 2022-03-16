@@ -28,9 +28,9 @@ router
   .use(Routes.REGISTER, RegisterPage)
   .use(Routes.NOT_FOUND, NotFoundErrorPage)
   .use(Routes.INTERNAL_ERROR, InternalErrorPage)
-  .use(Routes.CHATS, ChatPage)
-  .use(Routes.ACCOUNT, AccountPage)
-  .use(Routes.EDIT_ACCOUNT, EditAccountPage)
-  .use(Routes.CHANGE_PASSWORD, ChangePasswordPage)
+  .use(Routes.CHATS, ChatPage, true)
+  .use(Routes.ACCOUNT, AccountPage, true)
+  .use(Routes.EDIT_ACCOUNT, EditAccountPage, true)
+  .use(Routes.CHANGE_PASSWORD, ChangePasswordPage, true)
   .use(Routes.INDEX, NavigationPage)
   .start();
