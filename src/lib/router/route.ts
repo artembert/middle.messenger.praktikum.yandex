@@ -1,17 +1,16 @@
 import { IPage } from '../models/page.interface';
 import { Block } from '../Block/Block';
-import { checkAuthorization } from '../../business-logic/auth/check-authorization';
 
 interface IRouteProps {
   rootId: string;
 }
 
 export class Route {
+  public readonly isPrivate: boolean;
+
   private readonly _pathname: string;
 
   private readonly _pageClass: IPage;
-
-  private readonly _isPrivate: boolean;
 
   private _page: Block | null = null;
 
@@ -26,31 +25,10 @@ export class Route {
     this._pathname = pathname;
     this._pageClass = pageClass;
     this._props = props;
-    this._isPrivate = isPrivate;
+    this.isPrivate = isPrivate;
   }
 
-  async navigate(): Promise<{ isSuccess: boolean }> {
-    if (this._isPrivate) {
-      const { isSuccess: isAuthorized } = await checkAuthorization();
-      if (isAuthorized) {
-        this._render();
-        return { isSuccess: true };
-      }
-      return { isSuccess: false };
-    }
-    this._render();
-    return { isSuccess: true };
-  }
-
-  leave(): void {
-    this._page?.leave();
-  }
-
-  match(pathname: string): boolean {
-    return this._pathname === pathname;
-  }
-
-  private _render(): void {
+  render(): void {
     window.scrollTo(0, 0);
     if (this._pageClass) {
       this._page = new this._pageClass({
@@ -59,5 +37,13 @@ export class Route {
       });
       this._page.show();
     }
+  }
+
+  leave(): void {
+    this._page?.leave();
+  }
+
+  match(pathname: string): boolean {
+    return this._pathname === pathname;
   }
 }

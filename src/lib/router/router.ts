@@ -1,6 +1,7 @@
 import { Route } from './route';
 import { IPage } from '../models/page.interface';
 import { Routes } from '../../constants/routes';
+import { checkAuthorization } from '../../business-logic/auth/check-authorization';
 
 export class Router {
   static instance: Router;
@@ -12,6 +13,8 @@ export class Router {
   private _routes: Route[] = [];
 
   private _history: History = window.history;
+
+  private _loader: Route | undefined;
 
   constructor(rootId?: string) {
     if (Router.instance) {
@@ -45,15 +48,20 @@ export class Router {
     this._onRoute(pathname);
   }
 
-  public back(): void {
+  setLoader(loader: IPage): Router {
+    this._loader = new Route('', loader, { rootId: this._rootId });
+    return this;
+  }
+
+  back(): void {
     this._history.back();
   }
 
-  public forward(): void {
+  forward(): void {
     this._history.forward();
   }
 
-  private _onRoute(pathname: string): void {
+  private async _onRoute(pathname: string): Promise<void> {
     const route = this._getRoute(pathname);
     if (!route) {
       throw new Error(`Route ${pathname} does not exists`);
@@ -62,11 +70,17 @@ export class Router {
       this._currentRoute.leave();
     }
     this._currentRoute = route;
-    route.navigate().then(({ isSuccess }) => {
-      if (!isSuccess) {
-        this.go(Routes.SIGN_IN);
-      }
-    });
+    if (!this._currentRoute.isPrivate) {
+      return route.render();
+    }
+    if (this._loader) {
+      this._loader.render();
+    }
+    const { isSuccess: isAuthorized } = await checkAuthorization();
+    if (isAuthorized) {
+      return route.render();
+    }
+    return this.go(Routes.SIGN_IN);
   }
 
   private _getRoute(path: string): Route | undefined {
