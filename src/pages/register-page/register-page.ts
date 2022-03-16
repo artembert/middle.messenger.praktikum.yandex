@@ -296,7 +296,7 @@ export class RegisterPage extends Block<IRegisterPageProps> {
     registerNewUser(newUser).then((res) => {
       if (res.isSuccess) {
         const router = new Router();
-        router.go(Routes.SIGN_IN);
+        router.go(Routes.CHATS);
       } else {
         let message = validationMessage.unidentifiedError;
         if (typeof res.payload === 'string') {
