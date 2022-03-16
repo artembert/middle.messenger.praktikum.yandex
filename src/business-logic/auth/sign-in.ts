@@ -19,9 +19,9 @@ interface SignInFailed extends AsyncServiceResponse {
 export async function signIn(
   credentials: ICredentials,
 ): Promise<SignInSuccess | SignInFailed> {
-  const res = await signInApi(credentials);
-  if (!res.isSuccess) {
-    if (res.payload?.code === 400) {
+  const signInFirstAttempt = await signInApi(credentials);
+  if (!signInFirstAttempt.isSuccess) {
+    if (signInFirstAttempt.payload?.code === 400) {
       const logoutRes = await logout();
       if (!logoutRes.isSuccess) {
         return {
@@ -29,7 +29,13 @@ export async function signIn(
           payload: validationMessage.userAlreadyInSystem,
         };
       }
-      await signIn(credentials);
+      const signInSecondAttempt = await signInApi(credentials);
+      if (!signInSecondAttempt.isSuccess) {
+        return {
+          isSuccess: false,
+          payload: signInSecondAttempt.payload.message,
+        };
+      }
     }
   }
   const userRes = await getUserApi();
