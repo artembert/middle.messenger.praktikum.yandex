@@ -64,6 +64,7 @@ export class Router {
   private async _onRoute(pathname: string): Promise<void> {
     const route = this._getRoute(pathname);
     if (!route) {
+      this.go(Routes.NOT_FOUND);
       throw new Error(`Route ${pathname} does not exists`);
     }
     if (this._currentRoute) {
