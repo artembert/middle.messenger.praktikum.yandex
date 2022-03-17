@@ -4,11 +4,14 @@ export const changeAvatarPageTemplate = `
     <h1 class="window__title title">
       Загрузить аватар
     </h1>
-    <div class="window__content">
+    <div class="window__content change-password-page__window-content">
       <input type="file"
-             id="avatar"
+             id="{{uploadInputId}}"
              name="avatar"
              accept="image/png, image/jpeg">
+      {{#if validationMessage}}
+        <div class="validation-message error-message">{{validationMessage}}</div>
+      {{/if}}
     </div>
     <div class="window__footer form-action-buttons">
       <appLinkToAccountPage></appLinkToAccountPage>

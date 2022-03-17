@@ -16,13 +16,12 @@ type Options = {
   timeout?: number;
   headers?: RequestHeaders;
   withCredentials?: boolean;
+  isFormData?: boolean;
 };
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
-const defaultHeaders: RequestHeaders = {
-  'content-type': 'application/json',
-};
+const defaultHeaders: RequestHeaders = {};
 
 /* eslint-disable class-methods-use-this */
 export class Http {
@@ -78,8 +77,10 @@ function request<T extends unknown>(
     }
     const xhr = new XMLHttpRequest();
     xhr.open(method, resolveUrl(url, options));
-    setHeaders(xhr, defaultHeaders);
-    setHeaders(xhr, options.headers);
+    if (!options.isFormData) {
+      setHeaders(xhr, { 'content-type': 'application/json' });
+    }
+    setHeaders(xhr, { ...defaultHeaders, ...options.headers });
     xhr.withCredentials = options.withCredentials ?? false;
 
     xhr.onload = () => {

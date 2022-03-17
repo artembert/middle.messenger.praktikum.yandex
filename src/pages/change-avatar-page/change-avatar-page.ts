@@ -7,14 +7,12 @@ import { Button } from '../../components/button/button';
 import { Link } from '../../components/link/link';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { Block } from '../../lib/Block/Block';
-import { validationMessage } from '../../presentation-logic/forms/validate-input';
-import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';
-import { INewPassword } from '../../lib/interfaces/new-password.interface';
+import { changeAvatar } from '../../business-logic/user/change-avatar';
 import { Router } from '../../lib/router/router';
-import { changePassword } from '../../business-logic/user/change-password';
+import { validationMessage } from '../../presentation-logic/forms/validate-input';
 
 interface IChildren {
   appButtonSave: Button;
@@ -23,10 +21,12 @@ interface IChildren {
 
 export interface IChangeAvatarPageProps extends IComponentProps {
   children?: IChildren;
+  validationMessage?: string;
 }
 
 const formId = `i${v4()}`;
 const formSelector = `#${formId}`;
+const uploadInputId = `i${v4()}`;
 const template = Handlebars.compile(changeAvatarPageTemplate);
 
 export class ChangeAvatarPage extends Block<IChangeAvatarPageProps> {
@@ -67,29 +67,17 @@ export class ChangeAvatarPage extends Block<IChangeAvatarPageProps> {
   }
 
   render(): string {
-    return template({ formId });
+    return template({
+      formId,
+      uploadInputId,
+      validationMessage: this.props.validationMessage,
+    });
   }
-
-  // private _handleOldPasswordChange(): boolean {
-  //   this._oldPassword = this._childrenComponents.appInputOldPassword.getValue();
-  //   const { isValid, errorMessage } =
-  //     this._childrenComponents.appInputOldPassword.validate();
-  //   this._childrenComponents.appInputOldPassword.setProps({
-  //     value: this._oldPassword,
-  //     error: errorMessage ?? undefined,
-  //   });
-  //   this._childrenComponents.appInputOldPassword.setValidState(isValid);
-  //   return isValid;
-  // }
 
   private _handleFormSubmit(e: SubmitEvent): void {
     e.preventDefault();
-    if (!this._isFormValid()) {
-      return;
-    }
-    const formData = getFormData(e.target as HTMLFormElement);
-    const newPassword = convertFormToNewPassword(formData);
-    changePassword(newPassword).then((res) => {
+    const form: HTMLFormElement = e.target as HTMLFormElement;
+    changeAvatar(new FormData(form)).then((res) => {
       if (res.isSuccess) {
         const router = new Router();
         router.go(Routes.ACCOUNT);
@@ -104,19 +92,5 @@ export class ChangeAvatarPage extends Block<IChangeAvatarPageProps> {
         this.setProps({ validationMessage: message });
       }
     });
-    console.log('Change password form', formData);
   }
-
-  private _isFormValid(): boolean {
-    return [].every((isValid) => isValid);
-  }
-}
-
-function convertFormToNewPassword(
-  formData: Record<string, FormDataEntryValue>,
-): INewPassword {
-  return {
-    oldPassword: formData['old-password'] as string,
-    newPassword: formData.password as Phone,
-  };
 }
