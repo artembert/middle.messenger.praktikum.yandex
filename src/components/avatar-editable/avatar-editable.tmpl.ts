@@ -1,11 +1,12 @@
 export const avatarEditableTemplate = `
-<div
-  class='avatar-editable avatar-editable_size_l'
->
+<div class='avatar-editable'>
   <button type="button"
           class="avatar-editable__button"
           id="avatar"
   >
+    {{#if image}}
+        <img class="avatar-editable__image" src="{{image}}" alt="avatar">
+    {{else}}
       <span class="avatar-editable__icon">
         <svg
           width="30"
@@ -21,7 +22,8 @@ export const avatarEditableTemplate = `
           fill="#CDCDCD"
         ></path>
       </svg>
-  </span>
+    </span>
+    {{/if}}
   </button>
 </div>
 `;

@@ -18,6 +18,8 @@ export class AvatarEditable extends Block<IAvatarEditableProps> {
   }
 
   override render(): string {
-    return template(this.props);
+    const { image } = this.props;
+    console.log(image);
+    return template({ image });
   }
 }

@@ -14,6 +14,7 @@ import { inAppNavigation } from '../../lib/router/in-app-navigation';
 import { logout } from '../../business-logic/auth/logout';
 import { AccountHeader } from '../../components/account-header/account-header';
 import { AvatarEditable } from '../../components/avatar-editable/avatar-editable';
+import { resolveAvatarSrc } from '../../presentation-logic/avatar-src';
 
 interface IChildren {
   appInputEmail: Input;
@@ -119,6 +120,7 @@ export class AccountPage extends Block<IAccountPageProps> {
       title: 'Аккаунт',
       children: {
         appAvatarEditable: new AvatarEditable({
+          image: resolveAvatarSrc(this.props.fieldsValues?.avatar),
           internalEvents: {
             button: {
               click: (e) => inAppNavigation(e, Routes.CHANGE_AVATAR),

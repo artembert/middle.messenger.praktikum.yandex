@@ -10,17 +10,39 @@
   justify-content: center;
   border-radius: 50%;
   border: none;
-  background: transparent;
   margin: 0;
   padding: 0;
-}
-
-.avatar-editable_size_l .avatar-editable__button {
+  position: relative;
   width: 96px;
   height: 96px;
   background-color: var(--gray-1);
 }
 
-.avatar-editable_size_l .avatar-editable__button:hover {
+.avatar-editable__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatar-editable__button:hover {
   background-color: var(--blue-2);
+  border-radius: 50%;
+}
+
+.avatar-editable__button:hover.avatar-editable__button::after {
+  content: '↑';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--blue-3);
+  z-index: 1;
+  opacity: 0.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: #ffffff;
+  border: 2px solid var(--blue-3);
 }

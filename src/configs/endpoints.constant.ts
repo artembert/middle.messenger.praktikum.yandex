@@ -1,5 +1,6 @@
 const AUTH_ENDPOINT = 'https://ya-praktikum.tech/api/v2/auth';
 const USERS_ENDPOINT = 'https://ya-praktikum.tech/api/v2/user';
+export const RESOURCES_ENDPOINT = 'https://ya-praktikum.tech/api/v2/resources';
 
 export const AuthEndpoint = {
   INDEX: AUTH_ENDPOINT,
