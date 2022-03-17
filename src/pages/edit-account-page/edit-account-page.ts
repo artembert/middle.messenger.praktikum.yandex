@@ -19,7 +19,6 @@ import {
   validationMessage,
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
-import { registerHelpers } from '../../lib';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { IUser } from '../../lib/interfaces/user.interface';
@@ -180,7 +179,6 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
   }
 
   render(): string {
-    registerHelpers();
     return template({
       formId,
       validationMessage: this.props.validationMessage,

@@ -6,7 +6,6 @@ import { Input } from '../../components/input/input';
 import { Link } from '../../components/link/link';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { Block } from '../../lib/Block/Block';
-import { registerHelpers } from '../../lib';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { IUser } from '../../lib/interfaces/user.interface';
@@ -144,7 +143,6 @@ export class AccountPage extends Block<IAccountPageProps> {
   }
 
   render(): string {
-    registerHelpers();
     return template({});
   }
 }
