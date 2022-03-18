@@ -1,6 +1,6 @@
 import { AuthEndpoint } from '../../constants/endpoints.constant';
-import { Http } from '../../services/http/http';
-import { HttpError } from '../../services/http/http-error';
+import { Http } from '../../lib/http/http';
+import { HttpError } from '../../lib/http/http-error';
 
 interface ILogoutApiResponseSuccess extends ApiResponse<undefined> {
   isSuccess: true;

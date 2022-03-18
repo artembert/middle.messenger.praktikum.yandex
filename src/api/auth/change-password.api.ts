@@ -1,6 +1,6 @@
 import { UsersEndpoint } from '../../constants/endpoints.constant';
-import { HttpError } from '../../services/http/http-error';
-import { Http } from '../../services/http/http';
+import { HttpError } from '../../lib/http/http-error';
+import { Http } from '../../lib/http/http';
 import { newPasswordMapper } from './mappers/new-password.mapper';
 import { INewPassword } from '../../lib/interfaces/new-password.interface';
 

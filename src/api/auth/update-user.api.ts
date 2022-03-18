@@ -1,6 +1,6 @@
 import { UsersEndpoint } from '../../constants/endpoints.constant';
-import { HttpError } from '../../services/http/http-error';
-import { Http } from '../../services/http/http';
+import { HttpError } from '../../lib/http/http-error';
+import { Http } from '../../lib/http/http';
 import { IUser } from '../../lib/interfaces/user.interface';
 import { IEditableUserInfo } from '../../lib/interfaces/editable-user-info';
 import { userInfoEditableMapper } from './mappers/update-user.mapper';

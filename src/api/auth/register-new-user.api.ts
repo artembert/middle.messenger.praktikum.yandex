@@ -1,8 +1,8 @@
 import { INewUser } from '../../lib/interfaces/new-user.interface';
 import { newUserMapper } from './mappers/new-user.mapper';
 import { AuthEndpoint } from '../../constants/endpoints.constant';
-import { HttpError } from '../../services/http/http-error';
-import { Http } from '../../services/http/http';
+import { HttpError } from '../../lib/http/http-error';
+import { Http } from '../../lib/http/http';
 import { IUserId } from '../../lib/interfaces/user-id.interface';
 
 interface IRegisterApiResponseSuccess extends ApiResponse<IUserId> {
