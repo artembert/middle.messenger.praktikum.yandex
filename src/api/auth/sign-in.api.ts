@@ -1,5 +1,5 @@
 import { Http } from '../../services/http/http';
-import { AuthEndpoint } from '../../configs/endpoints.constant';
+import { AuthEndpoint } from '../../constants/endpoints.constant';
 import { credentialsMapper } from './mappers/credentials.mapper';
 import { ICredentials } from '../../lib/interfaces/credentials.interface';
 import { HttpError } from '../../services/http/http-error';

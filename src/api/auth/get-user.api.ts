@@ -1,4 +1,4 @@
-import { AuthEndpoint } from '../../configs/endpoints.constant';
+import { AuthEndpoint } from '../../constants/endpoints.constant';
 import { Http } from '../../services/http/http';
 import { IUser } from '../../lib/interfaces/user.interface';
 import { IUserDTO } from './dto/user.dto';

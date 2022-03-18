@@ -1,6 +1,6 @@
 import { INewUser } from '../../lib/interfaces/new-user.interface';
 import { newUserMapper } from './mappers/new-user.mapper';
-import { AuthEndpoint } from '../../configs/endpoints.constant';
+import { AuthEndpoint } from '../../constants/endpoints.constant';
 import { HttpError } from '../../services/http/http-error';
 import { Http } from '../../services/http/http';
 import { IUserId } from '../../lib/interfaces/user-id.interface';

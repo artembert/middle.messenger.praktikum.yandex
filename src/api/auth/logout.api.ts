@@ -1,4 +1,4 @@
-import { AuthEndpoint } from '../../configs/endpoints.constant';
+import { AuthEndpoint } from '../../constants/endpoints.constant';
 import { Http } from '../../services/http/http';
 import { HttpError } from '../../services/http/http-error';
 

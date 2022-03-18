@@ -1,4 +1,4 @@
-import { UsersEndpoint } from '../../configs/endpoints.constant';
+import { UsersEndpoint } from '../../constants/endpoints.constant';
 import { HttpError } from '../../services/http/http-error';
 import { Http } from '../../services/http/http';
 import { IUser } from '../../lib/interfaces/user.interface';
