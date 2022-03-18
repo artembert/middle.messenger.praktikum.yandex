@@ -1,7 +1,7 @@
 import './account-header.css';
 import Handlebars from 'handlebars';
 import { accountHeaderTemplate } from './account-header.tmpl';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { AvatarEditable } from '../avatar-editable/avatar-editable';
 

@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import { loadingPageTemplate } from './loading-page.tmpl';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 

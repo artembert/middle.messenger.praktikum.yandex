@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 import { v4 } from 'uuid';
 import { Routes } from '../../constants/routes';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { registerPageTemplate } from './register-page.tmpl';

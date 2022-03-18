@@ -2,7 +2,7 @@ import Handlebars from 'handlebars';
 import { v4 } from 'uuid';
 import { signInPageTemplate } from './sign-in-page.tmpl';
 import { Routes } from '../../constants/routes';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import { Button } from '../../components/button/button';
 import { Link } from '../../components/link/link';
 import { Input } from '../../components/input/input';

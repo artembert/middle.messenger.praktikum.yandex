@@ -1,7 +1,7 @@
 import './search-bar.css';
 import Handlebars from 'handlebars';
 import { searchBarTemplate } from './search-bar.tmpl';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 
 export interface ISearchBarProps extends IComponentProps {

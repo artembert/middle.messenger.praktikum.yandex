@@ -1,5 +1,5 @@
 import { IPage } from '../models/page.interface';
-import { Block } from '../Block/Block';
+import { Block } from '../block/block';
 
 interface IRouteProps {
   rootId: string;

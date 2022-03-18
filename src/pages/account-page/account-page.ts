@@ -5,7 +5,7 @@ import { Routes } from '../../constants/routes';
 import { Input } from '../../components/input/input';
 import { Link } from '../../components/link/link';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { IUser } from '../../lib/interfaces/user.interface';

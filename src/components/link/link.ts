@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import { linkTemplate } from './link.tmpl';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 
 type Mode = 'primary' | 'secondary' | 'dangerous' | 'link' | 'icon';

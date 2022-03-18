@@ -1,7 +1,7 @@
 import './roster.css';
 import Handlebars from 'handlebars';
 import { registerRosterItemComponent } from './roster-item';
-import { Block } from '../../../lib/Block/Block';
+import { Block } from '../../../lib/block/block';
 import { SearchBar } from '../../../components/search-bar/search-bar';
 import { IComponentProps } from '../../../lib/interfaces/component-props.interface';
 import { rosterTemplate } from './roster.tmpl';

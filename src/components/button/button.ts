@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import { buttonTemplate } from './button.tmpl';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 
 type ButtonMode = 'primary' | 'secondary' | 'dangerous' | 'link' | 'icon';

@@ -1,4 +1,4 @@
-import { EventBus } from '../EventBus/EventBus';
+import { EventBus } from '../event-bus/event-bus';
 import { set } from '../data-utils/set';
 import { INewUser } from '../interfaces/new-user.interface';
 import { getRandomString } from '../data-utils/get-random-string';

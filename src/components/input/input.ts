@@ -1,7 +1,7 @@
 import './input.css';
 import Handlebars from 'handlebars';
 import { inputTemplate } from './input.tmpl';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import {
   InputValidationFn,

@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 import { IComponentProps } from '../interfaces/component-props.interface';
-import { EventBus } from '../EventBus/EventBus';
-import { EventDispatcher } from '../EventDispatcher/EventDispatcher';
+import { EventBus } from '../event-bus/event-bus';
+import { EventDispatcher } from '../event-dispatcher/event-dispatcher';
 
 export abstract class Block<TProps extends IComponentProps = {}> {
   static EVENTS = {

@@ -7,7 +7,7 @@ import { Input } from '../../components/input/input';
 import { Link } from '../../components/link/link';
 import { Button } from '../../components/button/button';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import {
   email,
   login,

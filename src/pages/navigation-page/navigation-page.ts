@@ -2,7 +2,7 @@ import './navigation-page.css';
 import Handlebars from 'handlebars';
 import { Routes } from '../../constants/routes';
 import { navigationPageTemplate } from './navigation-page.tmpl';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 

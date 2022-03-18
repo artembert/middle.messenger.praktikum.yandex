@@ -1,7 +1,7 @@
 import './avatar-editable.css';
 import Handlebars from 'handlebars';
 import { avatarEditableTemplate } from './avatar-editable.tmpl';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 
 export interface IAvatarEditableProps extends IComponentProps {

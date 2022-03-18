@@ -6,7 +6,7 @@ import { Routes } from '../../constants/routes';
 import { Button } from '../../components/button/button';
 import { Link } from '../../components/link/link';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
-import { Block } from '../../lib/Block/Block';
+import { Block } from '../../lib/block/block';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';
