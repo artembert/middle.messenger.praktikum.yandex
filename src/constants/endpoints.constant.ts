@@ -1,5 +1,6 @@
 const AUTH_ENDPOINT = 'https://ya-praktikum.tech/api/v2/auth';
 const USERS_ENDPOINT = 'https://ya-praktikum.tech/api/v2/user';
+const CHATS_ENDPOINT = 'https://ya-praktikum.tech/api/v2/chats';
 export const RESOURCES_ENDPOINT = 'https://ya-praktikum.tech/api/v2/resources';
 
 export const AuthEndpoint = {
@@ -17,4 +18,8 @@ export const UsersEndpoint = {
   CHANGE_PASSWORD: `${USERS_ENDPOINT}/password/`,
   USER: `${USERS_ENDPOINT}/user/`,
   SEARCH: `${USERS_ENDPOINT}/search/`,
+};
+
+export const ChatsEndpoint = {
+  INDEX: CHATS_ENDPOINT,
 };
