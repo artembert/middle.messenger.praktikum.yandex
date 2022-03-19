@@ -2,60 +2,32 @@ import './chat-page.css';
 import Handlebars from 'handlebars';
 import { v4 } from 'uuid';
 import { chatPageTemplate } from './chat-page.tmpl';
-import { Routes } from '../../constants/routes';
 import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { Button } from '../../components/button/button';
 import { Input } from '../../components/input/input';
 import { notEmpty } from '../../presentation-logic/forms/validate-input';
-import { SearchBar } from '../../components/search-bar/search-bar';
-import { Roster } from './roster/roster';
-import { Link } from '../../components/link/link';
+import Roster from './roster';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
-import { inAppNavigation } from '../../lib/router/in-app-navigation';
 
 interface IChildren {
   appInputChatMessage: Input;
   appButtonSendMessage: Button;
-  appRoster: Roster;
+  appRoster: Block;
 }
 
 export interface IChatPageProps extends IComponentProps {
   children?: IChildren;
 }
 
-const chats: undefined[] = new Array(20).fill(undefined);
 const newMessageFormId = `i${v4()}`;
 const newMessageFormSelector = `#${newMessageFormId}`;
 const template = Handlebars.compile(chatPageTemplate);
 
 export class ChatPage extends Block<IChatPageProps> {
   private _message: string = '';
-
-  // @ts-ignore
-  private _rosterSearch: string = '';
-
-  private _rosterChildrenComponents = {
-    appSearchBar: new SearchBar({
-      name: 'roster-search',
-      placeholder: 'Поиск',
-      internalEvents: {
-        input: {
-          input: () => this._handleRosterSearchBarChange(),
-        },
-      },
-    }),
-    appLinkToAccountPage: new Link({
-      mode: 'icon',
-      text: '⚙️',
-      href: `..${Routes.ACCOUNT}`,
-      events: {
-        click: (e: unknown) => inAppNavigation(e, Routes.ACCOUNT),
-      },
-    }),
-  };
 
   private _childrenComponents: IChildren = {
     appInputChatMessage: new Input({
@@ -72,14 +44,7 @@ export class ChatPage extends Block<IChatPageProps> {
       text: 'Отправить',
       submit: true,
     }),
-    appRoster: new Roster(
-      {
-        appSearchBar: this._rosterChildrenComponents.appSearchBar,
-        appLinkToAccountPage:
-          this._rosterChildrenComponents.appLinkToAccountPage,
-      },
-      { classNames: ['chat-page__roster'], chats },
-    ),
+    appRoster: new Roster({ rootId: '', props: {} }),
   };
 
   constructor({ rootId, props }: IPageConstructorParams<IChatPageProps>) {
@@ -94,7 +59,7 @@ export class ChatPage extends Block<IChatPageProps> {
     });
   }
 
-  override componentDidMount() {
+  override componentDidMount(): void {
     super.componentDidMount();
     document.title = getDocumentTitle('Чаты');
   }
@@ -117,10 +82,6 @@ export class ChatPage extends Block<IChatPageProps> {
       value: this._message,
     });
     this._childrenComponents.appInputChatMessage.setValidState(isValid);
-  }
-
-  private _handleRosterSearchBarChange(): void {
-    this._rosterSearch = this._rosterChildrenComponents.appSearchBar.getValue();
   }
 
   private _handleFormSubmit(e: SubmitEvent): void {

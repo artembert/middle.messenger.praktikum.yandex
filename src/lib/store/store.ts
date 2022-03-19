@@ -3,11 +3,13 @@ import { set } from '../data-utils/set';
 import { INewUser } from '../interfaces/new-user.interface';
 import { getRandomString } from '../data-utils/get-random-string';
 import { IUser } from '../interfaces/user.interface';
+import { IChat } from '../interfaces/chat';
 
 export interface GlobalState {
   storeValue: string;
   initialNewUser: INewUser;
   user: IUser | null;
+  chats: IChat[];
 }
 
 export const enum STORE_EVENT {
@@ -64,6 +66,7 @@ function getInitialState(): GlobalState {
     storeValue: 'store-value',
     initialNewUser: getInitialNewUser(),
     user: null,
+    chats: [],
   };
 }
 
