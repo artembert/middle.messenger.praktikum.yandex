@@ -1,7 +1,9 @@
 export const inputTemplate = `
+{{#if label}}
 <label class="input__label input-label" for="{{name}}">
   {{label}}
 </label>
+{{/if}}
 <input
   class="input__field input-field"
   type="{{type}}"
