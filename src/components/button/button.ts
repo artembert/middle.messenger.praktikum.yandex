@@ -18,7 +18,10 @@ export class Button extends Block<IButtonProps> {
     super('button', {
       ...props,
       attributes: resolveAttributes(props),
-      classNames: resolveClassNames(props.mode),
+      classNames: [
+        ...resolveClassNames(props.mode),
+        ...(props.classNames ?? []),
+      ],
     });
   }
 
