@@ -1,5 +1,10 @@
 export const rosterItemTemplate = `
-<li class="roster-item">
-  <div class="roster-item__container"></div>
-</li>
+<div class="roster-item__container">
+    <appAvatar></appAvatar>
+    <div class="roster-item__first-line">
+        <div class="roster-item__title">{{ title }}</div>
+        <div class="roster-item__time">{{ time }}</div>
+    </div>
+    <div class="roster-item__message">{{ message }}</div>
+</div>
 `;
