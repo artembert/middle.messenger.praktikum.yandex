@@ -1,12 +1,12 @@
 /* eslint-disable class-methods-use-this */
 import { Mapper } from '../../mapper';
-import { userMapper } from '../../auth/mappers/user.mapper';
+import { chatUserMapper } from './chat-user.mapper';
 import { IChatDto } from '../dto/chat.dto';
 import { IChat } from '../../../lib/interfaces/chat';
 
 class ChatMapper implements Mapper {
   public toDTO(entity: IChat): IChatDto {
-    const user = userMapper.toDTO(entity.lastMessage.user);
+    const user = chatUserMapper.toDTO(entity.lastMessage.user);
     return {
       id: entity.id,
       title: entity.title,
@@ -21,7 +21,7 @@ class ChatMapper implements Mapper {
   }
 
   public toDomain(raw: IChatDto): IChat {
-    const user = userMapper.toDomain(raw.last_message.user);
+    const user = chatUserMapper.toDomain(raw.last_message.user);
     return {
       id: raw.id,
       title: raw.title,

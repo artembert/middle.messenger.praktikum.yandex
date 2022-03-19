@@ -1,4 +1,4 @@
-import { IUserDTO } from '../../auth/dto/user.dto';
+import { IChatUserDTO } from './chat-user.dto';
 
 export interface IChatDto {
   id: number;
@@ -6,7 +6,7 @@ export interface IChatDto {
   avatar: string;
   unread_count: number;
   last_message: {
-    user: IUserDTO;
+    user: IChatUserDTO;
     time: string;
     content: string;
   };

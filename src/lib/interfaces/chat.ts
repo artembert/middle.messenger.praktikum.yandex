@@ -1,4 +1,4 @@
-import { IUser } from './user.interface';
+import { IChatUser } from './chat-user.interface';
 
 export interface IChat {
   id: number;
@@ -6,7 +6,7 @@ export interface IChat {
   avatar: string;
   unreadCount: number;
   lastMessage: {
-    user: IUser;
+    user: IChatUser;
     time: Date;
     content: string;
   };
