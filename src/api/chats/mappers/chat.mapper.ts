@@ -14,7 +14,7 @@ class ChatMapper implements Mapper {
       unread_count: entity.unreadCount,
       last_message: {
         user,
-        time: entity.lastMessage.time,
+        time: entity.lastMessage.time.toUTCString(),
         content: entity.lastMessage.content,
       },
     };
@@ -29,7 +29,7 @@ class ChatMapper implements Mapper {
       unreadCount: raw.unread_count,
       lastMessage: {
         user,
-        time: raw.last_message.time,
+        time: new Date(raw.last_message.time),
         content: raw.last_message.content,
       },
     };

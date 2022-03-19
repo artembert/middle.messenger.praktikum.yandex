@@ -7,7 +7,7 @@ export interface IChat {
   unreadCount: number;
   lastMessage: {
     user: IUser;
-    time: string;
+    time: Date;
     content: string;
   };
 }
