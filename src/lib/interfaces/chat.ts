@@ -5,9 +5,11 @@ export interface IChat {
   title: string;
   avatar: string;
   unreadCount: number;
-  lastMessage: {
-    user: IChatUser;
-    time: Date;
-    content: string;
-  };
+  lastMessage: ILastMessage | undefined;
+}
+
+export interface ILastMessage {
+  user: IChatUser;
+  time: Date;
+  content: string;
 }

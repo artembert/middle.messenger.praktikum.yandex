@@ -33,8 +33,8 @@ export class RosterItem extends Block<IRosterItemProps> {
     return template({
       chat,
       title: getChatName(chat),
-      message: chat.lastMessage.content,
-      time: formatTime(chat.lastMessage.time),
+      message: chat.lastMessage?.content,
+      time: chat.lastMessage?.time ? formatTime(chat.lastMessage.time) : '',
     });
   }
 

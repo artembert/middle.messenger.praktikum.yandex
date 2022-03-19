@@ -5,9 +5,11 @@ export interface IChatDto {
   title: string;
   avatar: string;
   unread_count: number;
-  last_message: {
-    user: IChatUserDTO;
-    time: string;
-    content: string;
-  };
+  last_message: ILastMessageDto | null;
+}
+
+export interface ILastMessageDto {
+  user: IChatUserDTO;
+  time: string;
+  content: string;
 }
