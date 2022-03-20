@@ -93,12 +93,9 @@ export abstract class Block<TProps extends IComponentProps = {}> {
   }
 
   /* eslint-disable class-methods-use-this, @typescript-eslint/no-unused-vars */
-
-  // @ts-ignore
   protected componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
     return newProps !== oldProps;
   }
-
   /* eslint-enable class-methods-use-this, @typescript-eslint/no-unused-vars */
 
   private _registerEvents(eventBus: EventBus) {
