@@ -1,6 +1,6 @@
 import { IComponentProps } from '../interfaces/component-props.interface';
 import { GlobalState, Store, STORE_EVENT } from './store';
-import { IPage, IPageConstructorParams } from '../models/page.interface';
+import { IPage } from '../models/page.interface';
 
 export type MapStateToProps<TProps extends IComponentProps> = (
   globalState: GlobalState,
@@ -15,15 +15,9 @@ export function connect<
   return function wrapWithConnect(Component: TComponent) {
     // @ts-ignore
     return class extends Component {
-      constructor({
-        rootId,
-        props = {} as IComponentProps,
-      }: IPageConstructorParams) {
+      constructor(props = {} as IComponentProps, rootId: string) {
         const store = new Store();
-        super({
-          props: { ...props, ...mapStateToProps(store.getState()) },
-          rootId,
-        });
+        super({ ...props, ...mapStateToProps(store.getState()) }, rootId);
         store.on(STORE_EVENT.UPDATE, () => {
           this.setProps({ ...mapStateToProps(store.getState()) });
         });

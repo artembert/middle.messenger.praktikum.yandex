@@ -20,7 +20,6 @@ import {
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
-import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { IUser } from '../../lib/interfaces/user.interface';
 import { updateUser } from '../../business-logic/user/update-user';
 import { Router } from '../../lib/router/router';
@@ -158,10 +157,7 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
     }),
   };
 
-  constructor({
-    rootId,
-    props,
-  }: IPageConstructorParams<IEditAccountPageProps>) {
+  constructor(props: IEditAccountPageProps, rootId: string) {
     super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,

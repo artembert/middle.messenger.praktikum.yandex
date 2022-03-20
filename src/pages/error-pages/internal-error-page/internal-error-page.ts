@@ -4,7 +4,6 @@ import { internalErrorPageTemplate } from './internal-error-page.tmpl';
 import { Block } from '../../../lib/block/block';
 import { Link } from '../../../components/link/link';
 import { getDocumentTitle } from '../../../presentation-logic/document-title';
-import { IPageConstructorParams } from '../../../lib/models/page.interface';
 import { inAppNavigation } from '../../../lib/router/in-app-navigation';
 
 interface IChildren {
@@ -29,10 +28,7 @@ export class InternalErrorPage extends Block<IInternalErrorPageProps> {
     }),
   };
 
-  constructor({
-    rootId,
-    props,
-  }: IPageConstructorParams<IInternalErrorPageProps>) {
+  constructor(props: IInternalErrorPageProps, rootId: string) {
     super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,

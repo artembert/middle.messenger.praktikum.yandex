@@ -7,7 +7,6 @@ import { Link } from '../../components/link/link';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { Block } from '../../lib/block/block';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
-import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { IUser } from '../../lib/interfaces/user.interface';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';
 import { logout } from '../../business-logic/auth/logout';
@@ -130,7 +129,7 @@ export class AccountPage extends Block<IAccountPageProps> {
     }),
   };
 
-  constructor({ rootId, props }: IPageConstructorParams<IAccountPageProps>) {
+  constructor(props: IAccountPageProps, rootId: string) {
     super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,

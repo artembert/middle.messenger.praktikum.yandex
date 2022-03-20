@@ -17,7 +17,6 @@ import {
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
-import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { signIn } from '../../business-logic/auth/sign-in';
 import { ICredentials } from '../../lib/interfaces/credentials.interface';
 import { Router } from '../../lib/router/router';
@@ -82,7 +81,7 @@ export class SignInPage extends Block<ISignInPageProps> {
     }),
   };
 
-  constructor({ rootId, props }: IPageConstructorParams<ISignInPageProps>) {
+  constructor(props: ISignInPageProps, rootId: string) {
     super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,

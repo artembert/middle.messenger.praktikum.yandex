@@ -56,7 +56,8 @@ export class Roster extends Block<IRosterProps> {
     }),
   };
 
-  constructor(props: IRosterProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  constructor(props: IRosterProps, _: string) {
     super('aside', { classNames: ['roster', ...(props?.classNames ?? [])] });
     this.setProps({
       children: this._childrenComponents,

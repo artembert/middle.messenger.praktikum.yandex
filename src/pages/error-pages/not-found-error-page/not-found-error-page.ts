@@ -4,7 +4,6 @@ import { notFoundErrorPageTemplate } from './not-found-error-page.tmpl';
 import { Block } from '../../../lib/block/block';
 import { Link } from '../../../components/link/link';
 import { getDocumentTitle } from '../../../presentation-logic/document-title';
-import { IPageConstructorParams } from '../../../lib/models/page.interface';
 import { inAppNavigation } from '../../../lib/router/in-app-navigation';
 
 interface IChildren {
@@ -29,10 +28,7 @@ export class NotFoundErrorPage extends Block<INotFoundErrorPageProps> {
     }),
   };
 
-  constructor({
-    rootId,
-    props,
-  }: IPageConstructorParams<INotFoundErrorPageProps>) {
+  constructor(props: INotFoundErrorPageProps, rootId: string) {
     super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,

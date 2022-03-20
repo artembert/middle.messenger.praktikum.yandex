@@ -10,7 +10,6 @@ import { Input } from '../../components/input/input';
 import { notEmpty } from '../../presentation-logic/forms/validate-input';
 import Roster from './roster';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
-import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { getChats } from '../../business-logic/chats/get-chats';
 
 interface IChildren {
@@ -45,10 +44,10 @@ export class ChatPage extends Block<IChatPageProps> {
       text: 'Отправить',
       submit: true,
     }),
-    appRoster: new Roster({ rootId: '', props: {} }),
+    appRoster: new Roster({}, ''),
   };
 
-  constructor({ rootId, props }: IPageConstructorParams<IChatPageProps>) {
+  constructor(props: IChatPageProps, rootId: string) {
     super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,

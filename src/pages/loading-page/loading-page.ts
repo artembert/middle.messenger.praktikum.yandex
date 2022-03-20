@@ -1,7 +1,6 @@
 import Handlebars from 'handlebars';
 import { Block } from '../../lib/block/block';
 import { loadingPageTemplate } from './loading-page.tmpl';
-import { IPageConstructorParams } from '../../lib/models/page.interface';
 
 interface IChildren {}
 
@@ -14,7 +13,7 @@ const template = Handlebars.compile(loadingPageTemplate);
 export class LoadingPage extends Block<ILoadingPageProps> {
   private _childrenComponents: IChildren = {};
 
-  constructor({ rootId, props }: IPageConstructorParams<ILoadingPageProps>) {
+  constructor(props: ILoadingPageProps, rootId: string) {
     super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,

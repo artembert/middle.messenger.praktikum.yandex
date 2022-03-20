@@ -8,7 +8,6 @@ import { Link } from '../../components/link/link';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { Block } from '../../lib/block/block';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
-import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';
 import { changeAvatar } from '../../business-logic/user/change-avatar';
 import { Router } from '../../lib/router/router';
@@ -46,10 +45,7 @@ export class ChangeAvatarPage extends Block<IChangeAvatarPageProps> {
     }),
   };
 
-  constructor({
-    rootId,
-    props,
-  }: IPageConstructorParams<IChangeAvatarPageProps>) {
+  constructor(props: IChangeAvatarPageProps, rootId: string) {
     super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,

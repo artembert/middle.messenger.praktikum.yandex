@@ -16,7 +16,6 @@ import {
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
-import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';
 import { INewPassword } from '../../lib/interfaces/new-password.interface';
 import { Router } from '../../lib/router/router';
@@ -93,10 +92,7 @@ export class ChangePasswordPage extends Block<IChangePasswordPageProps> {
     }),
   };
 
-  constructor({
-    rootId,
-    props,
-  }: IPageConstructorParams<IChangePasswordPageProps>) {
+  constructor(props: IChangePasswordPageProps, rootId: string) {
     super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,
