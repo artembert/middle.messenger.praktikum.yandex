@@ -19,6 +19,9 @@ export function getChatsApi(): Promise<IResponseSuccess | IResponseFailed> {
   return http
     .get<IChatDto[]>(ChatsEndpoint.INDEX, {
       withCredentials: true,
+      data: {
+        limit: 20,
+      },
     })
     .then((res) => {
       const chats = res.map((item) => chatMapper.toDomain(item));
