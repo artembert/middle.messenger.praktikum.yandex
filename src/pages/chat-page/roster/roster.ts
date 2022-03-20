@@ -6,14 +6,16 @@ import { IComponentProps } from '../../../lib/interfaces/component-props.interfa
 import { rosterTemplate } from './roster.tmpl';
 import { Link } from '../../../components/link/link';
 import { IChat } from '../../../lib/interfaces/chat';
-import { Routes } from '../../../constants/routes';
+import { CreateChat } from './сreate-chat/create-chat';
 import { inAppNavigation } from '../../../lib/router/in-app-navigation';
+import { Routes } from '../../../constants/routes';
 import { ChatsList } from './chat-list/chats-list';
 
 interface IChildren {
   appSearchBar: SearchBar;
   appLinkToAccountPage?: Link;
   appChatsList: ChatsList;
+  appCreateChat: CreateChat;
 }
 
 export interface IRosterProps extends IComponentProps {
@@ -48,6 +50,9 @@ export class Roster extends Block<IRosterProps> {
     appChatsList: new ChatsList({
       classNames: ['roster__items-list'],
       chats: this.props.chats,
+    }),
+    appCreateChat: new CreateChat({
+      classNames: ['roster__create-chat'],
     }),
   };
 

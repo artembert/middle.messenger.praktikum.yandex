@@ -6,4 +6,5 @@ export const rosterTemplate = `
     </div>
   </div>
   <appChatsList></appChatsList>
+  <appCreateChat></appCreateChat>
 `;
