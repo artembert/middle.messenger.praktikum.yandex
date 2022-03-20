@@ -39,7 +39,7 @@ export abstract class Block<TProps extends IComponentProps = {}> {
       tagName,
       props,
     };
-    this.props = this._makePropsProxy({ ...props, __id: this._id });
+    this.props = makePropsProxy({ ...props, __id: this._id });
     this._rootElementId = _rootElementId;
     this._registerEvents(this.eventBus);
 
@@ -55,10 +55,12 @@ export abstract class Block<TProps extends IComponentProps = {}> {
   }
 
   setProps(nextProps: TProps) {
-    if (!nextProps) {
-      return;
+    const oldProps = { ...this.props };
+    const isPropsChanged = this._checkIsPropsChanged(nextProps);
+    if (isPropsChanged) {
+      Object.assign(this.props, nextProps);
+      this.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, nextProps);
     }
-    Object.assign(this.props, nextProps);
   }
 
   getContent() {
@@ -94,7 +96,7 @@ export abstract class Block<TProps extends IComponentProps = {}> {
 
   // @ts-ignore
   protected componentDidUpdate(oldProps: TProps, newProps: TProps): boolean {
-    return true;
+    return newProps !== oldProps;
   }
 
   /* eslint-enable class-methods-use-this, @typescript-eslint/no-unused-vars */
@@ -105,22 +107,6 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
-  }
-
-  private _makePropsProxy(props: TProps) {
-    return new Proxy(props, {
-      set: (target: TProps, prop: string, value) => {
-        /* eslint-disable no-param-reassign */
-        // @ts-ignore
-        target[prop] = value;
-        /* eslint-enable no-param-reassign */
-        this.eventBus.emit(Block.EVENTS.FLOW_CDU);
-        return true;
-      },
-      deleteProperty() {
-        throw new Error('Отказано в доступе');
-      },
-    });
   }
 
   private _componentDidMount() {
@@ -230,5 +216,27 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     });
   }
 
+  private _checkIsPropsChanged(nextProps: TProps): boolean {
+    const nextKeys = Object.keys(nextProps);
+    return !nextKeys.every(
+      (key: keyof TProps) => nextProps[key] === this.props[key],
+    );
+  }
+
   abstract render(): string;
+}
+
+function makePropsProxy<TProps extends {}>(props: TProps) {
+  return new Proxy(props, {
+    set: (target: TProps, prop: string, value) => {
+      /* eslint-disable no-param-reassign */
+      // @ts-ignore
+      target[prop] = value;
+      /* eslint-enable no-param-reassign */
+      return true;
+    },
+    deleteProperty() {
+      throw new Error('Отказано в доступе');
+    },
+  });
 }
