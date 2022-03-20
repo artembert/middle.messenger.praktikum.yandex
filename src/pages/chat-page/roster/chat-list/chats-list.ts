@@ -4,7 +4,6 @@ import { IComponentProps } from '../../../../lib/interfaces/component-props.inte
 import { chatsListTemplate } from './chats-list.tmpl';
 import { Block } from '../../../../lib/block/block';
 import { RosterItem } from '../roster-item/roster-item';
-import { getChats } from '../../../../business-logic/chats/get-chats';
 
 interface IChildren {
   [key: string]: RosterItem;
@@ -32,14 +31,6 @@ export class ChatsList extends Block<IChatsListProps> {
 
   override componentDidMount() {
     super.componentDidMount();
-    getChats().then((res) => {
-      if (res.isSuccess) {
-        this.setProps({
-          chats: res.payload,
-          children: getChatsListFromChats(res.payload),
-        });
-      }
-    });
   }
 }
 

@@ -11,6 +11,7 @@ import { notEmpty } from '../../presentation-logic/forms/validate-input';
 import Roster from './roster';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IPageConstructorParams } from '../../lib/models/page.interface';
+import { getChats } from '../../business-logic/chats/get-chats';
 
 interface IChildren {
   appInputChatMessage: Input;
@@ -62,6 +63,7 @@ export class ChatPage extends Block<IChatPageProps> {
   override componentDidMount(): void {
     super.componentDidMount();
     document.title = getDocumentTitle('Чаты');
+    getChats();
   }
 
   render(): string {

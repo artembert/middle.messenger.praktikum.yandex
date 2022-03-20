@@ -64,6 +64,24 @@ export class Roster extends Block<IRosterProps> {
     });
   }
 
+  override componentDidUpdate(
+    oldProps: IRosterProps,
+    newProps: IRosterProps,
+  ): boolean {
+    if (newProps.chats && oldProps.chats !== newProps.chats) {
+      this.setProps({
+        children: {
+          ...this._childrenComponents,
+          appChatsList: new ChatsList({
+            classNames: ['roster__items-list'],
+            chats: newProps.chats,
+          }),
+        },
+      });
+    }
+    return newProps !== oldProps;
+  }
+
   override render(): string {
     return template({});
   }
