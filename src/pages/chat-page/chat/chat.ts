@@ -10,11 +10,13 @@ import { Button } from '../../../components/button/button';
 import { getFormData } from '../../../presentation-logic/forms/get-form-data';
 import { Avatar } from '../../../components/avatar/avatar';
 import { getChatName } from '../../../presentation-logic/chat-name';
+import { Modal } from '../../../components/modal/modal';
 
 interface IChildren {
   appInputChatMessage: Input;
   appButtonSendMessage: Button;
   appAvatar?: Avatar;
+  appModal?: Modal;
 }
 
 export interface IChatProps extends IComponentProps {
@@ -48,6 +50,9 @@ export class Chat extends Block<IChatProps> {
       text: 'Отправить',
       submit: true,
     }),
+    appModal: new Modal({
+      title: 'Добавить участников',
+    }),
   };
 
   constructor(props: IChatProps) {
@@ -67,7 +72,6 @@ export class Chat extends Block<IChatProps> {
 
   override render(): string {
     const { chat } = this.props;
-    console.log('render');
     return template({
       newMessageFormId,
       headerActionsId,
@@ -114,9 +118,11 @@ export class Chat extends Block<IChatProps> {
 
   private _showUsersList(): void {
     console.log('add new member');
+    this._childrenComponents.appModal?._openDialog();
   }
 
   private _showMemberList(): void {
     console.log('remove members');
+    this._childrenComponents.appModal?._openDialog();
   }
 }

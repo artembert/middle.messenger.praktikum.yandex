@@ -19,6 +19,8 @@
   width: 380px;
   box-shadow: var(--elevation-0);
   border-radius: var(--window-border-radius);
+  border: none;
+  padding: 0;
 }
 
 .window__title {

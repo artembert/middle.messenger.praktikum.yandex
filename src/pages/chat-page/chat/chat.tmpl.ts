@@ -19,4 +19,5 @@ export const chatTemplate = `
     <appButtonSendMessage></appButtonSendMessage>
   </div>
 </form>
+<appModal></appModal>
 `;
