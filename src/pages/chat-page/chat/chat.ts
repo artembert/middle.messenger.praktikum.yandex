@@ -11,6 +11,7 @@ import { getFormData } from '../../../presentation-logic/forms/get-form-data';
 import { Avatar } from '../../../components/avatar/avatar';
 import { getChatName } from '../../../presentation-logic/chat-name';
 import { Modal } from '../../../components/modal/modal';
+import UserList from '../../../components/address-book';
 
 interface IChildren {
   appInputChatMessage: Input;
@@ -52,6 +53,9 @@ export class Chat extends Block<IChatProps> {
     }),
     appModal: new Modal({
       title: 'Добавить участников',
+      children: {
+        appContent: new UserList({}, ''),
+      },
     }),
   };
 

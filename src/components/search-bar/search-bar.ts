@@ -20,6 +20,7 @@ export class SearchBar extends Block<ISearchBarProps> {
       placeholder: props.placeholder,
       events: props.events ?? {},
       internalEvents: props.internalEvents ?? {},
+      classNames: ['search-bar', ...(props.classNames ?? [])],
     });
   }
 

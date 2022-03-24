@@ -10,6 +10,7 @@ export interface GlobalState {
   initialNewUser: INewUser;
   user: IUser | null;
   chats: IChat[];
+  users: IUser[];
 }
 
 export const enum STORE_EVENT {
@@ -67,6 +68,7 @@ function getInitialState(): GlobalState {
     initialNewUser: getInitialNewUser(),
     user: null,
     chats: [],
+    users: [],
   };
 }
 

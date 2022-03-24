@@ -6,8 +6,9 @@ import { IComponentProps } from '../../lib/interfaces/component-props.interface'
 import { Button } from '../button/button';
 
 interface IChildren {
-  appConfirm: Button;
-  appCancel: Button;
+  appConfirm?: Button;
+  appCancel?: Button;
+  appContent?: Block;
 }
 
 export interface IModalProps extends IComponentProps {
@@ -42,7 +43,10 @@ export class Modal extends Block<IModalProps> {
   constructor(props: IModalProps) {
     super('div', props);
     this.setProps({
-      children: this._childrenComponents,
+      children: {
+        ...this._childrenComponents,
+        appContent: props.children?.appContent,
+      },
     });
   }
 

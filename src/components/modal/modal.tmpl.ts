@@ -4,7 +4,9 @@ export const modalTemplate = `
     <h1 class="window__title title">
       {{title}}
     </h1>
-    <div class="window__content"></div>
+    <div class="window__content">
+        <appContent></appContent>
+    </div>
     <menu class="window__footer form-action-buttons">
       <appCancel></appCancel>
       <appConfirm></appConfirm>

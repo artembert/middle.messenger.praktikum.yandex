@@ -1,0 +1,49 @@
+import './user-item.css';
+import Handlebars from 'handlebars';
+import { rosterItemTemplate } from './user-item.tmpl';
+import { IUser } from '../../../lib/interfaces/user.interface';
+import { Avatar } from '../../avatar/avatar';
+import { IComponentProps } from '../../../lib/interfaces/component-props.interface';
+import { Block } from '../../../lib/block/block';
+
+interface IChildren {
+  appAvatar: Avatar;
+}
+
+interface IUserItemProps extends IComponentProps {
+  children?: IChildren;
+  user: IUser;
+}
+
+const template = Handlebars.compile(rosterItemTemplate);
+
+export class UserItem extends Block<IUserItemProps> {
+  constructor(props: IUserItemProps) {
+    super('li', {
+      ...props,
+      classNames: ['user-item', ...(props.classNames ?? [])],
+    });
+    this.setProps({
+      user: props.user,
+      children: this._getChildrenComponents(),
+    });
+  }
+
+  override render(): string {
+    const { user } = this.props;
+    return template({
+      title: user.displayName,
+      subtitle: `${user.firstName} ${user.secondName}`,
+    });
+  }
+
+  private _getChildrenComponents(): IChildren {
+    const { chat } = this.props;
+    return {
+      appAvatar: new Avatar({
+        image: chat?.avatar,
+        classNames: ['user-item__avatar'],
+      }),
+    };
+  }
+}
