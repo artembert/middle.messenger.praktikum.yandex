@@ -12,31 +12,27 @@ interface IChildren {
 interface IChatsListProps extends IComponentProps {
   children?: IChildren;
   chats?: IChat[];
+  currentChat?: IChat;
 }
 
 const template = Handlebars.compile(chatsListTemplate);
 
 export class ChatsList extends Block<IChatsListProps> {
   constructor(props: IChatsListProps) {
-    super('ul', { children: {}, ...props });
-    this.setProps({
-      chats: props.chats,
-      children: getChatsListFromChats(props.chats ?? []),
+    super('ul', {
+      ...props,
+      children: getChatsListFromChats(props.chats ?? [], props.currentChat),
     });
   }
 
   override render(): string {
     return template({ chats: Object.keys(this.props.children ?? []) });
   }
-
-  override componentDidMount() {
-    super.componentDidMount();
-  }
 }
 
 function getChatsListFromChats(
   chats: IChat[],
-  activeChat?: IChat,
+  currentChat?: IChat,
 ): {
   [key: string]: RosterItem;
 } {
@@ -44,8 +40,8 @@ function getChatsListFromChats(
     acc[`${RosterItem.name}-${index}`] = new RosterItem({
       chat,
       classNames:
-        activeChat && activeChat.id === chat.id
-          ? ['roster-item  active-chat']
+        currentChat && currentChat.id === chat.id
+          ? ['roster-item', 'roster-item_current']
           : ['roster-item'],
     });
 

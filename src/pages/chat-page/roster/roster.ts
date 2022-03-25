@@ -21,6 +21,7 @@ interface IChildren {
 export interface IRosterProps extends IComponentProps {
   children?: IChildren;
   chats?: IChat[];
+  currentChat?: IChat;
 }
 
 const template = Handlebars.compile(rosterTemplate);
@@ -50,6 +51,7 @@ export class Roster extends Block<IRosterProps> {
     appChatsList: new ChatsList({
       classNames: ['roster__items-list'],
       chats: this.props.chats,
+      currentChat: this.props.currentChat,
     }),
     appCreateChat: new CreateChat({
       classNames: ['roster__create-chat'],
@@ -72,10 +74,13 @@ export class Roster extends Block<IRosterProps> {
     if (newProps.chats && oldProps.chats !== newProps.chats) {
       this.setProps({
         children: {
-          ...this._childrenComponents,
+          appCreateChat: this._childrenComponents.appCreateChat,
+          appLinkToAccountPage: this._childrenComponents.appLinkToAccountPage,
+          appSearchBar: this._childrenComponents.appSearchBar,
           appChatsList: new ChatsList({
             classNames: ['roster__items-list'],
-            chats: newProps.chats,
+            chats: this.props.chats,
+            currentChat: this.props.currentChat,
           }),
         },
       });

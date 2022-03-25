@@ -10,12 +10,23 @@
 .roster-item__container {
   height: 48px;
   border-radius: 4px;
-  background-color: var(--blue-2);
+  background-color: var(--gray-1);
   display: grid;
   grid-template:
     'avatar firstLine'
     'avatar message';
   grid-template-columns: min-content 1fr;
+  padding: 0;
+  border: 0;
+  width: 100%;
+}
+
+.roster-item_current .roster-item__container {
+  background-color: var(--blue-2);
+}
+
+.roster-item:not(.roster-item_current) .roster-item__container:hover {
+  background-color: var(--blue-1);
 }
 
 .roster-item__avatar {
@@ -26,6 +37,7 @@
 .roster-item__first-line {
   grid-area: firstLine;
   display: flex;
+  overflow: hidden;
 }
 
 .roster-item__title {
@@ -35,6 +47,10 @@
   font-size: 14px;
   line-height: 1;
   padding-top: 8px;
+  text-align: start;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .roster-item__time {

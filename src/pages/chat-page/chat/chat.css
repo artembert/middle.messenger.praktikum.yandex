@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
+  overflow: hidden;
 }
 
 .chat__header {
@@ -14,8 +15,11 @@
 }
 
 .chat__title {
-  display: flex;
   margin-left: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 12px;
 }
 
 .chat__header-actions {

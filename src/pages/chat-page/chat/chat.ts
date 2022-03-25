@@ -15,6 +15,7 @@ import AddressBook from '../../../components/address-book';
 import { clearUsersInStore } from '../../../business-logic/user/clear-users-in-store';
 import { IUser } from '../../../lib/interfaces/user.interface';
 import { addUsersToChat } from '../../../business-logic/chats/add-users-to-chat';
+import { IChat } from '../../../lib/interfaces/chat';
 
 interface IChildren {
   appInputChatMessage: Input;
@@ -26,6 +27,7 @@ interface IChildren {
 export interface IChatProps extends IComponentProps {
   children?: IChildren;
   isDefaultHeaderActionSelected?: boolean;
+  currentChat?: IChat;
 }
 
 const newMessageFormId = `i${v4()}`;
@@ -85,11 +87,11 @@ export class Chat extends Block<IChatProps> {
   }
 
   override render(): string {
-    const { chat } = this.props;
+    const { currentChat } = this.props;
     return template({
       newMessageFormId,
       headerActionsId,
-      title: getChatName(chat),
+      title: getChatName(currentChat),
     });
   }
 

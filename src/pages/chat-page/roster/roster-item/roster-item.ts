@@ -7,6 +7,7 @@ import { IChat } from '../../../../lib/interfaces/chat';
 import { Avatar } from '../../../../components/avatar/avatar';
 import { getChatName } from '../../../../presentation-logic/chat-name';
 import { formatTime } from '../../../../presentation-logic/format-date';
+import { chooseChat } from '../../../../business-logic/chats/choose-chat';
 
 interface IChildren {
   appAvatar: Avatar;
@@ -25,6 +26,11 @@ export class RosterItem extends Block<IRosterItemProps> {
     this.setProps({
       chat: props.chat,
       children: this._getChildrenComponents(),
+      internalEvents: {
+        button: {
+          click: () => this._handleClick(),
+        },
+      },
     });
   }
 
@@ -46,5 +52,10 @@ export class RosterItem extends Block<IRosterItemProps> {
         classNames: ['roster-item__avatar'],
       }),
     };
+  }
+
+  private _handleClick(): void {
+    const { chat } = this.props;
+    chooseChat(chat);
   }
 }

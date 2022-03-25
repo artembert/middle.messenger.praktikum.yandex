@@ -6,6 +6,7 @@
   width: 32px;
   height: 32px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .avatar__image {
