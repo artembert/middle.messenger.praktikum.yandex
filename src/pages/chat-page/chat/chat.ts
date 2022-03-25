@@ -14,6 +14,7 @@ import { Modal } from '../../../components/modal/modal';
 import AddressBook from '../../../components/address-book';
 import { clearUsersInStore } from '../../../business-logic/user/clear-users-in-store';
 import { IUser } from '../../../lib/interfaces/user.interface';
+import { addUsersToChat } from '../../../business-logic/chats/add-users-to-chat';
 
 interface IChildren {
   appInputChatMessage: Input;
@@ -58,7 +59,7 @@ export class Chat extends Block<IChatProps> {
       children: {
         appContent: new AddressBook(
           {
-            action: (user: IUser) => handleAddUserToChat(user),
+            action: (user: IUser) => handleAddUserToChat(user, 2348),
             actionName: '+',
           },
           '',
@@ -144,6 +145,6 @@ function handleMemberListClose(): void {
   clearUsersInStore();
 }
 
-function handleAddUserToChat(user: IUser): void {
-  console.log(`add ${user} to the chat`);
+function handleAddUserToChat(user: IUser, chatId: number): void {
+  addUsersToChat([user.id], chatId);
 }
