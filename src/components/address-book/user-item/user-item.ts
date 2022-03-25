@@ -6,6 +6,7 @@ import { Avatar } from '../../avatar/avatar';
 import { IComponentProps } from '../../../lib/interfaces/component-props.interface';
 import { Block } from '../../../lib/block/block';
 import { Button } from '../../button/button';
+import { resolveAvatarSrc } from '../../../presentation-logic/avatar-src';
 
 interface IChildren {
   appAvatar?: Avatar;
@@ -44,7 +45,7 @@ export class UserItem extends Block<IUserItemProps> {
     return {
       ...children,
       appAvatar: new Avatar({
-        image: user?.avatar,
+        image: resolveAvatarSrc(user.avatar),
         classNames: ['user-item__avatar'],
       }),
     };

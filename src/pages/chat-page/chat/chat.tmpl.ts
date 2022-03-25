@@ -1,5 +1,6 @@
 export const chatTemplate = `
 <div class="chat__header">
+{{#if title}}
     <appAvatar></appAvatar>
     <h2 class="chat__title title">{{title}}</h2>
     <select class="chat__header-actions" id="{{headerActionsId}}">
@@ -7,6 +8,7 @@ export const chatTemplate = `
         <option value="add">Add member</option>
         <option value="remove">Remove member</option>
     </select>
+{{/if}}
 </div>
 </div>
 <div class="chat__main"></div>

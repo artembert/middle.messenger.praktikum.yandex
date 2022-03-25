@@ -91,7 +91,7 @@ export class Chat extends Block<IChatProps> {
     return template({
       newMessageFormId,
       headerActionsId,
-      title: getChatName(currentChat),
+      title: currentChat ? getChatName(currentChat) : '',
     });
   }
 

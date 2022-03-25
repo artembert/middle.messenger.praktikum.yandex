@@ -12,6 +12,7 @@
   align-items: center;
   padding: 16px 16px 11px;
   border-bottom: 1px solid var(--gray-2);
+  min-height: 60px;
 }
 
 .chat__title {
