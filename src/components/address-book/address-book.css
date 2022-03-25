@@ -1,5 +1,18 @@
 .address-book__list {
   margin: 16px 0 0;
-  padding: 0;
-  min-height: 300px;
+  padding: 4px 0;
+  height: calc(41px * 10 + 2px * 4);
+  background-color: var(--gray-1);
+}
+
+.address-book__search {
+  display: flex;
+}
+
+.address-book__search-bar {
+  flex-grow: 1;
+}
+
+.address-book__search-button {
+  margin-left: 8px;
 }

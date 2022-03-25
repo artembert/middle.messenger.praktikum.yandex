@@ -1,4 +1,7 @@
 export const addressBookTemplate = `
-<appSearchBar></appSearchBar>
+<form class="address-book__search" id="{{formId}}">
+    <appSearchBar></appSearchBar>
+    <appSearchButton></appSearchButton>
+</form>
 <appUserList></appUserList>
 `;

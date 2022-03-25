@@ -18,29 +18,15 @@ const template = Handlebars.compile(userListTemplate);
 
 export class UserList extends Block<IUserListProps> {
   constructor(props: IUserListProps) {
-    super('ul', { children: {}, ...props });
-    this.setProps({
+    super('ul', {
+      ...props,
       users: props.users,
-      children: getUserItemsFromUsers(props.chats ?? []),
+      children: getUserItemsFromUsers(props.users ?? []),
     });
   }
 
   override render(): string {
     return template({ users: Object.keys(this.props.children ?? []) });
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  override componentDidUpdate(
-    oldProps: IUserListProps,
-    newProps: IUserListProps,
-  ): boolean {
-    if (newProps.users && oldProps.users !== newProps.chats) {
-      this.setProps({ children: {} });
-      this.setProps({
-        children: getUserItemsFromUsers(this.props.users ?? []),
-      });
-    }
-    return newProps !== oldProps;
   }
 }
 

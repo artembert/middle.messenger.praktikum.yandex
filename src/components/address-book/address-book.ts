@@ -1,15 +1,18 @@
 import './address-book.css';
 import Handlebars from 'handlebars';
+import { v4 } from 'uuid';
 import { addressBookTemplate } from './address-book.tmpl';
 import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { SearchBar } from '../search-bar/search-bar';
 import { searchForUsers } from '../../business-logic/user/search-for-users';
 import { IUser } from '../../lib/interfaces/user.interface';
-import UserList from './user-list';
+import { Button } from '../button/button';
+import { UserList } from './user-list/user-list';
 
 interface IChildren {
   appSearchBar: SearchBar;
+  appSearchButton: Button;
   appUserList: Block;
 }
 
@@ -21,6 +24,8 @@ export interface IAddressBookProps extends IComponentProps {
   onCancel?: () => void;
 }
 
+const formId = `i${v4()}`;
+const formSelector = `#${formId}`;
 const template = Handlebars.compile(addressBookTemplate);
 
 export class AddressBook extends Block<IAddressBookProps> {
@@ -37,18 +42,24 @@ export class AddressBook extends Block<IAddressBookProps> {
         },
       },
     }),
-    appUserList: new UserList(
-      {
-        classNames: ['address-book__list'],
-      },
-      '',
-    ),
+    appSearchButton: new Button({
+      mode: 'primary',
+      text: 'Искать',
+      classNames: ['address-book__search-button'],
+      submit: true,
+    }),
+    appUserList: getUserListComponent(this.props.users),
   };
 
   constructor(props: IAddressBookProps) {
     super('div', {
       ...props,
       classNames: ['address-book', ...(props.classNames ?? [])],
+      internalEvents: {
+        [formSelector]: {
+          submit: (e) => this._handleSearchButtonClick(e),
+        },
+      },
     });
     this.setProps({
       children: this._childrenComponents,
@@ -56,12 +67,36 @@ export class AddressBook extends Block<IAddressBookProps> {
   }
 
   override render(): string {
-    return template({});
+    return template({ formId });
+  }
+
+  override componentDidUpdate(
+    oldProps: IAddressBookProps,
+    newProps: IAddressBookProps,
+  ): boolean {
+    if (oldProps === newProps) {
+      return false;
+    }
+    this._childrenComponents.appUserList = getUserListComponent(newProps.users);
+    return oldProps.children?.appSearchBar !== newProps.children?.appSearchBar;
   }
 
   private _handleUserNameChange(): void {
     this._userNameSearchValue =
       this._childrenComponents.appSearchBar.getValue();
-    searchForUsers(this._userNameSearchValue);
   }
+
+  private _handleSearchButtonClick(e: SubmitEvent): void {
+    e.preventDefault();
+    if (this._userNameSearchValue) {
+      searchForUsers(this._userNameSearchValue);
+    }
+  }
+}
+
+function getUserListComponent(users?: IUser[]): UserList {
+  return new UserList({
+    classNames: ['address-book__list'],
+    users,
+  });
 }

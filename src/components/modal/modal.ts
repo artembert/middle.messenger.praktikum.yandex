@@ -14,8 +14,10 @@ interface IChildren {
 export interface IModalProps extends IComponentProps {
   children?: IChildren;
   title?: string;
+  isOpen?: boolean;
   onConfirm?: () => void;
   onCancel?: () => void;
+  onClose?: () => void;
 }
 
 const template = Handlebars.compile(modalTemplate);
@@ -51,28 +53,44 @@ export class Modal extends Block<IModalProps> {
   }
 
   override render(): string {
-    const { title, open } = this.props;
-    return template({ dialogId: this._dialogId, title, open });
+    const { title, isOpen } = this.props;
+    return template({ dialogId: this._dialogId, title, isOpen });
   }
 
   _openDialog(): void {
+    this.setProps({ isOpen: true });
     const dialog = document.getElementById(this._dialogId) as HTMLDialogElement;
     (dialog as any).showModal();
+    dialog.addEventListener('cancel', this._closeEventListener);
   }
 
   private _cancel(): void {
-    const dialog = document.getElementById(this._dialogId) as HTMLDialogElement;
-    (dialog as any).close();
+    this.setProps({ isOpen: false });
     if (this.props.onCancel) {
       this.props.onCancel();
     }
+    this._onClose();
   }
 
   private _confirm(): void {
+    this.setProps({ isOpen: false });
+    if (this.props.onConfirm) {
+      this.props.onConfirm();
+    }
+    this._onClose();
+  }
+
+  private _onClose(): void {
     const dialog = document.getElementById(this._dialogId) as HTMLDialogElement;
+    dialog.removeEventListener('cancel', this._closeEventListener);
     (dialog as any).close();
-    if (this.props.onCancel) {
-      this.props.onCancel();
+    if (this.props.onClose) {
+      this.props.onClose();
     }
   }
+
+  private _closeEventListener: EventListener = (e) => {
+    e.preventDefault();
+    this._onClose();
+  };
 }
