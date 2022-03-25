@@ -1,3 +1,4 @@
+import './modal.css';
 import Handlebars from 'handlebars';
 import { v4 } from 'uuid';
 import { modalTemplate } from './modal.tmpl';
@@ -43,7 +44,10 @@ export class Modal extends Block<IModalProps> {
   };
 
   constructor(props: IModalProps) {
-    super('div', props);
+    super('div', {
+      ...props,
+      classNames: ['modal', ...(props.classNames ?? [])],
+    });
     this.setProps({
       children: {
         ...this._childrenComponents,
@@ -87,6 +91,7 @@ export class Modal extends Block<IModalProps> {
     if (this.props.onClose) {
       this.props.onClose();
     }
+    this.setProps({ isOpen: false });
   }
 
   private _closeEventListener: EventListener = (e) => {

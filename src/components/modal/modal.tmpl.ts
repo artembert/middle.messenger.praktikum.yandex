@@ -1,7 +1,6 @@
 export const modalTemplate = `
 <dialog class="window__wrapper" id="{{dialogId}}">
   {{#if isOpen}}
-  <div>
     <h1 class="window__title title">
       {{title}}
     </h1>
@@ -12,7 +11,6 @@ export const modalTemplate = `
       <appCancel></appCancel>
       <appConfirm></appConfirm>
     </menu>
-  </d>
  {{/if}}
 </dialog>
 `;
