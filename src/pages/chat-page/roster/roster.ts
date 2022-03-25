@@ -10,6 +10,7 @@ import { CreateChat } from './сreate-chat/create-chat';
 import { inAppNavigation } from '../../../lib/router/in-app-navigation';
 import { Routes } from '../../../constants/routes';
 import { ChatsList } from './chat-list/chats-list';
+import { Loader } from '../../../components/loader/loader';
 
 interface IChildren {
   appSearchBar: SearchBar;
@@ -74,16 +75,22 @@ export class Roster extends Block<IRosterProps> {
     if (newProps.chats && oldProps.chats !== newProps.chats) {
       this.setProps({
         children: {
-          appCreateChat: this._childrenComponents.appCreateChat,
-          appLinkToAccountPage: this._childrenComponents.appLinkToAccountPage,
-          appSearchBar: this._childrenComponents.appSearchBar,
-          appChatsList: new ChatsList({
-            classNames: ['roster__items-list'],
-            chats: this.props.chats,
-            currentChat: this.props.currentChat,
-          }),
+          ...this._getStaticChildrenComponents(),
+          appChatsList: new Loader({}),
         },
       });
+      setTimeout(() => {
+        this.setProps({
+          children: {
+            ...this._getStaticChildrenComponents(),
+            appChatsList: new ChatsList({
+              classNames: ['roster__items-list'],
+              chats: this.props.chats,
+              currentChat: this.props.currentChat,
+            }),
+          },
+        });
+      }, 300);
     }
     return newProps !== oldProps;
   }
@@ -94,5 +101,13 @@ export class Roster extends Block<IRosterProps> {
 
   private _handleSearchBarChange(): void {
     this._rosterSearch = this._childrenComponents.appSearchBar.getValue();
+  }
+
+  private _getStaticChildrenComponents(): Omit<IChildren, 'appChatsList'> {
+    return {
+      appCreateChat: this._childrenComponents.appCreateChat,
+      appLinkToAccountPage: this._childrenComponents.appLinkToAccountPage,
+      appSearchBar: this._childrenComponents.appSearchBar,
+    };
   }
 }
