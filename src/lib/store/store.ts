@@ -18,8 +18,6 @@ export const enum STORE_EVENT {
   UPDATE = 'update',
 }
 
-const localStorageKey = 'messenger-app-store';
-
 export class Store {
   static instance: Store;
 
@@ -32,13 +30,7 @@ export class Store {
       // eslint-disable-next-line no-constructor-return
       return Store.instance;
     }
-    const savedState = localStorage.getItem(localStorageKey);
-    this._state = savedState
-      ? JSON.parse(savedState) ?? getInitialState()
-      : getInitialState();
-    this.on(STORE_EVENT.UPDATE, () => {
-      localStorage.setItem(localStorageKey, JSON.stringify(this._state));
-    });
+    this._state = getInitialState();
     Store.instance = this;
   }
 
