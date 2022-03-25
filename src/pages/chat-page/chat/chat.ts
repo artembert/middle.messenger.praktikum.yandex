@@ -13,6 +13,7 @@ import { getChatName } from '../../../presentation-logic/chat-name';
 import { Modal } from '../../../components/modal/modal';
 import AddressBook from '../../../components/address-book';
 import { clearUsersInStore } from '../../../business-logic/user/clear-users-in-store';
+import { IUser } from '../../../lib/interfaces/user.interface';
 
 interface IChildren {
   appInputChatMessage: Input;
@@ -55,7 +56,13 @@ export class Chat extends Block<IChatProps> {
     appModal: new Modal({
       title: 'Добавить участников',
       children: {
-        appContent: new AddressBook({}, ''),
+        appContent: new AddressBook(
+          {
+            action: (user: IUser) => handleAddUserToChat(user),
+            actionName: '+',
+          },
+          '',
+        ),
       },
       onClose: () => handleMemberListClose(),
     }),
@@ -135,4 +142,8 @@ export class Chat extends Block<IChatProps> {
 
 function handleMemberListClose(): void {
   clearUsersInStore();
+}
+
+function handleAddUserToChat(user: IUser): void {
+  console.log(`add ${user} to the chat`);
 }

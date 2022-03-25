@@ -54,7 +54,7 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     this.eventBus.emit(Block.EVENTS.FLOW_CWU);
   }
 
-  setProps(nextProps: TProps) {
+  setProps(nextProps: Partial<TProps>) {
     const oldProps = { ...this.props };
     const isPropsChanged = this._checkIsPropsChanged(nextProps);
     if (isPropsChanged) {
@@ -213,7 +213,7 @@ export abstract class Block<TProps extends IComponentProps = {}> {
     });
   }
 
-  private _checkIsPropsChanged(nextProps: TProps): boolean {
+  private _checkIsPropsChanged(nextProps: Partial<TProps>): boolean {
     const nextKeys = Object.keys(nextProps);
     return !nextKeys.every(
       (key: keyof TProps) => nextProps[key] === this.props[key],

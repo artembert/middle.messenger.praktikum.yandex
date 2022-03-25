@@ -22,6 +22,8 @@ export interface IAddressBookProps extends IComponentProps {
   users?: IUser[];
   onConfirm?: () => void;
   onCancel?: () => void;
+  action?: (user: IUser) => void;
+  actionName?: string;
 }
 
 const formId = `i${v4()}`;
@@ -48,7 +50,11 @@ export class AddressBook extends Block<IAddressBookProps> {
       classNames: ['address-book__search-button'],
       submit: true,
     }),
-    appUserList: getUserListComponent(this.props.users),
+    appUserList: getUserListComponent(
+      this.props.users ?? [],
+      this.props.action!,
+      this.props.actionName!,
+    ),
   };
 
   constructor(props: IAddressBookProps) {
@@ -77,7 +83,11 @@ export class AddressBook extends Block<IAddressBookProps> {
     if (oldProps === newProps) {
       return false;
     }
-    this._childrenComponents.appUserList = getUserListComponent(newProps.users);
+    this._childrenComponents.appUserList = getUserListComponent(
+      newProps.users ?? [],
+      this.props.action!,
+      this.props.actionName!,
+    );
     return oldProps.children?.appSearchBar !== newProps.children?.appSearchBar;
   }
 
@@ -94,9 +104,15 @@ export class AddressBook extends Block<IAddressBookProps> {
   }
 }
 
-function getUserListComponent(users?: IUser[]): UserList {
+function getUserListComponent(
+  users: IUser[],
+  action: (user: IUser) => void,
+  actionName: string,
+): UserList {
   return new UserList({
     classNames: ['address-book__list'],
     users,
+    action,
+    actionName,
   });
 }

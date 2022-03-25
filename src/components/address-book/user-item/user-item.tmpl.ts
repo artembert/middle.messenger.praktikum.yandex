@@ -4,4 +4,5 @@ export const rosterItemTemplate = `
   <span class="user-item__title">{{title}}</span>
   <span class="user-item__subtitle">{{subtitle}}</span>
 </div>
+<appAction></appAction>
 `;

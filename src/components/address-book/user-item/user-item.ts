@@ -5,9 +5,11 @@ import { IUser } from '../../../lib/interfaces/user.interface';
 import { Avatar } from '../../avatar/avatar';
 import { IComponentProps } from '../../../lib/interfaces/component-props.interface';
 import { Block } from '../../../lib/block/block';
+import { Button } from '../../button/button';
 
 interface IChildren {
-  appAvatar: Avatar;
+  appAvatar?: Avatar;
+  appAction?: Button;
 }
 
 interface IUserItemProps extends IComponentProps {
@@ -38,10 +40,11 @@ export class UserItem extends Block<IUserItemProps> {
   }
 
   private _getChildrenComponents(): IChildren {
-    const { chat } = this.props;
+    const { user, children } = this.props;
     return {
+      ...children,
       appAvatar: new Avatar({
-        image: chat?.avatar,
+        image: user?.avatar,
         classNames: ['user-item__avatar'],
       }),
     };
