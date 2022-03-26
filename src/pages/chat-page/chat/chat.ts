@@ -92,6 +92,7 @@ export class Chat extends Block<IChatProps> {
       newMessageFormId,
       headerActionsId,
       title: currentChat ? getChatName(currentChat) : '',
+      hasCurrentChat: !!currentChat,
     });
   }
 
