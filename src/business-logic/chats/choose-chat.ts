@@ -1,7 +1,12 @@
 import { Store } from '../../lib/store/store';
 import { IChat } from '../../lib/interfaces/chat';
+import { getChatToken } from './get-chat-token';
 
-export function chooseChat(chat: IChat): void {
+export async function chooseChat(chat: IChat): Promise<void> {
   const store = new Store();
-  store.setState('currentChat', structuredClone(chat));
+  const tokenRes = await getChatToken(chat.id);
+  if (tokenRes.isSuccess) {
+    store.setState('currentChat', structuredClone(chat));
+    store.setState('chatToken', tokenRes.payload);
+  }
 }

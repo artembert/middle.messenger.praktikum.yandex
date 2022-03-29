@@ -12,6 +12,7 @@ export interface GlobalState {
   chats: IChat[];
   users: IUser[];
   currentChat: IChat | null;
+  chatToken: string | null;
 }
 
 export const enum STORE_EVENT {
@@ -63,6 +64,7 @@ function getInitialState(): GlobalState {
     chats: [],
     users: [],
     currentChat: null,
+    chatToken: null,
   };
 }
 

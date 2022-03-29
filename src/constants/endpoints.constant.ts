@@ -23,4 +23,5 @@ export const UsersEndpoint = {
 export const ChatsEndpoint = {
   INDEX: CHATS_ENDPOINT,
   USERS: `${CHATS_ENDPOINT}/users/`,
+  TOKEN: (chatId: number) => `${CHATS_ENDPOINT}/token/${chatId}`,
 };
