@@ -4,6 +4,7 @@ import { INewUser } from '../interfaces/new-user.interface';
 import { getRandomString } from '../data-utils/get-random-string';
 import { IUser } from '../interfaces/user.interface';
 import { IChat } from '../interfaces/chat';
+import { IChatMessage } from '../interfaces/chat-message.interface';
 
 export interface GlobalState {
   storeValue: string;
@@ -13,6 +14,7 @@ export interface GlobalState {
   users: IUser[];
   currentChat: IChat | null;
   chatToken: string | null;
+  messages: IChatMessage[];
 }
 
 export const enum STORE_EVENT {
@@ -65,6 +67,7 @@ function getInitialState(): GlobalState {
     users: [],
     currentChat: null,
     chatToken: null,
+    messages: [],
   };
 }
 
