@@ -6,7 +6,7 @@ import { IChatMessageDto } from '../dto/chat-message.dto';
 class ChatMessageMapper implements Mapper {
   public toDTO(entity: IChatMessage): IChatMessageDto {
     return {
-      time: entity.time,
+      time: entity.time.toISOString(),
       type: entity.type,
       user_id: entity.userId,
       content: entity.content,
@@ -15,7 +15,7 @@ class ChatMessageMapper implements Mapper {
 
   public toDomain(raw: IChatMessageDto): IChatMessage {
     return {
-      time: raw.time,
+      time: new Date(raw.time),
       type: raw.type,
       userId: raw.user_id,
       content: raw.content,

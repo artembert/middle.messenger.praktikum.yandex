@@ -1,5 +1,5 @@
 export interface IChatMessage {
-  time: string;
+  time: Date;
   type: string;
   userId: string;
   content: string;

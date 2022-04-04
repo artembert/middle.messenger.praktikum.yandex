@@ -12,6 +12,7 @@ export const chatTemplate = `
 </div>
 <div class="chat__main">
 {{#if hasCurrentChat}}
+    <appChatMessages></appChatMessages>
 {{else}}
     <div class="chat__main-placeholder">Выберите чат</div>
 {{/if}}

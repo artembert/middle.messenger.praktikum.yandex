@@ -20,12 +20,16 @@ import {
   IMessageResponse,
   MessageType,
 } from '../../../api/chats/chat-web-socket';
+import { addMessages } from '../../../business-logic/chats/add-messages';
+import MessageList from './message-list';
+import { clearChatMessages } from '../../../business-logic/chats/clear-chat-messages';
 
 interface IChildren {
   appInputChatMessage: Input;
   appButtonSendMessage: Button;
   appAvatar?: Avatar;
   appModal?: Modal;
+  appChatMessages?: Block;
 }
 
 export interface IChatProps extends IComponentProps {
@@ -77,6 +81,7 @@ export class Chat extends Block<IChatProps> {
       },
       onClose: () => handleMemberListClose(),
     }),
+    appChatMessages: new MessageList({}, ''),
   };
 
   constructor(props: IChatProps) {
@@ -109,6 +114,7 @@ export class Chat extends Block<IChatProps> {
     newProps: IChatProps,
   ): boolean {
     if (this.props.currentChat && this.props.chatToken && this.props.userId) {
+      clearChatMessages();
       this._openSocket(
         this.props.userId,
         this.props.currentChat.id,
@@ -173,9 +179,8 @@ export class Chat extends Block<IChatProps> {
 
   private _socketMessageHandler(response: IMessageResponse) {
     if (response.type === MessageType.CHAT_MESSAGE) {
-      console.log(response);
-      // addMessages(response.content);
-      // this._socket?.increaseOffsetBy(response.content.length);
+      addMessages(response.content);
+      this._socket?.increaseOffsetBy(response.content.length);
     }
   }
 }
