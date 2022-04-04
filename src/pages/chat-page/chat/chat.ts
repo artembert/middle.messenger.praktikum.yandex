@@ -150,6 +150,8 @@ export class Chat extends Block<IChatProps> {
     e.preventDefault();
     this._validateMessage();
     this._socket?.sendMessage(this._message);
+    this._childrenComponents.appInputChatMessage.setProps({ value: '' });
+    this._message = '';
   }
 
   private _handleHeaderActionEvent(e: InputEvent): void {
