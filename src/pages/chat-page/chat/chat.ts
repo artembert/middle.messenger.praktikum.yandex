@@ -7,7 +7,6 @@ import { chatTemplate } from './chat.tmpl';
 import { Input } from '../../../components/input/input';
 import { notEmpty } from '../../../presentation-logic/forms/validate-input';
 import { Button } from '../../../components/button/button';
-import { getFormData } from '../../../presentation-logic/forms/get-form-data';
 import { Avatar } from '../../../components/avatar/avatar';
 import { getChatName } from '../../../presentation-logic/chat-name';
 import { Modal } from '../../../components/modal/modal';
@@ -16,6 +15,11 @@ import { clearUsersInStore } from '../../../business-logic/user/clear-users-in-s
 import { IUser } from '../../../lib/interfaces/user.interface';
 import { addUsersToChat } from '../../../business-logic/chats/add-users-to-chat';
 import { IChat } from '../../../lib/interfaces/chat';
+import {
+  ChatWebSocket,
+  IMessageResponse,
+  MessageType,
+} from '../../../api/chats/chat-web-socket';
 
 interface IChildren {
   appInputChatMessage: Input;
@@ -28,6 +32,8 @@ export interface IChatProps extends IComponentProps {
   children?: IChildren;
   isDefaultHeaderActionSelected?: boolean;
   currentChat?: IChat;
+  chatToken?: string;
+  userId?: number;
 }
 
 const newMessageFormId = `i${v4()}`;
@@ -38,6 +44,8 @@ const template = Handlebars.compile(chatTemplate);
 
 export class Chat extends Block<IChatProps> {
   private _message: string = '';
+
+  private _socket: ChatWebSocket | null = null;
 
   private _childrenComponents: IChildren = {
     appAvatar: new Avatar({}),
@@ -96,6 +104,27 @@ export class Chat extends Block<IChatProps> {
     });
   }
 
+  protected override componentDidUpdate(
+    oldProps: IChatProps,
+    newProps: IChatProps,
+  ): boolean {
+    if (this.props.currentChat && this.props.chatToken && this.props.userId) {
+      this._openSocket(
+        this.props.userId,
+        this.props.currentChat.id,
+        this.props.chatToken,
+      );
+    }
+    return super.componentDidUpdate(oldProps, newProps);
+  }
+
+  private _openSocket(userId: number, chatId: number, token: string): void {
+    this._socket = new ChatWebSocket();
+    this._socket.init({ userId, chatId, token }, (message) =>
+      this._socketMessageHandler(message),
+    );
+  }
+
   private _handleMessageChange(): void {
     this._message = this._childrenComponents.appInputChatMessage.getValue();
   }
@@ -113,8 +142,7 @@ export class Chat extends Block<IChatProps> {
   private _handleFormSubmit(e: SubmitEvent): void {
     e.preventDefault();
     this._validateMessage();
-    const formData = getFormData(e.target as HTMLFormElement);
-    console.log('New message form', formData);
+    this._socket?.sendMessage(this._message);
   }
 
   private _handleHeaderActionEvent(e: InputEvent): void {
@@ -141,6 +169,14 @@ export class Chat extends Block<IChatProps> {
   private _showMemberList(): void {
     console.log('remove members');
     this._childrenComponents.appModal?._openDialog();
+  }
+
+  private _socketMessageHandler(response: IMessageResponse) {
+    if (response.type === MessageType.CHAT_MESSAGE) {
+      console.log(response);
+      // addMessages(response.content);
+      // this._socket?.increaseOffsetBy(response.content.length);
+    }
   }
 }
 
