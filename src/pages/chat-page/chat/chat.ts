@@ -57,6 +57,7 @@ export class Chat extends Block<IChatProps> {
       name: 'message',
       narrow: true,
       validationFns: [notEmpty()],
+      disableAutocomplete: true,
       internalEvents: {
         input: {
           blur: () => this._handleMessageChange(),

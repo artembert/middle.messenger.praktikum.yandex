@@ -19,6 +19,7 @@ export interface IInputProps extends IComponentProps {
   value?: string;
   validationFns?: InputValidationFn[];
   narrow?: boolean;
+  disableAutocomplete?: boolean;
 }
 
 const invalidClassName = 'input_mode_error';

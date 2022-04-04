@@ -10,6 +10,9 @@ export const inputTemplate = `
   name="{{name}}"
   id="{{name}}"
   value="{{value}}"
+  {{#if disableAutocomplete}}
+    autocomplete="off"
+  {{/if}}
 />
 <span class="validation-message input__validation-message error-message">
   {{#each error}}
