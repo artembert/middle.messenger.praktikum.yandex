@@ -13,6 +13,7 @@ interface IChildren {
 export interface IMessageListProps extends IComponentProps {
   children?: IChildren;
   chatMessages?: IChatMessage[];
+  currentUserId?: number;
 }
 
 const template = Handlebars.compile(messageListTemplate);
@@ -22,7 +23,10 @@ export class MessageList extends Block<IMessageListProps> {
     super('ul', {
       ...props,
       classNames: ['message-list'],
-      children: getChatMessageList(props.chatMessages ?? []),
+      children: getChatMessageList(
+        props.chatMessages ?? [],
+        props.currentUserId,
+      ),
     });
   }
 
@@ -40,7 +44,10 @@ export class MessageList extends Block<IMessageListProps> {
       oldProps.chatMessages !== newProps.chatMessages
     ) {
       this.setProps({
-        children: getChatMessageList(this.props.chatMessages ?? []),
+        children: getChatMessageList(
+          this.props.chatMessages ?? [],
+          this.props.currentUserId,
+        ),
       });
       return super.componentDidUpdate(oldProps, newProps);
     }
@@ -48,9 +55,13 @@ export class MessageList extends Block<IMessageListProps> {
   }
 }
 
-function getChatMessageList(chatMessages: IChatMessage[]): {
+function getChatMessageList(
+  chatMessages: IChatMessage[],
+  currentUserId: number | undefined,
+): {
   [key: string]: ChatMessageItem;
 } {
+  console.log(currentUserId);
   return chatMessages
     .sort(
       (message1, message2) => message1.time.getTime() - message2.time.getTime(),
@@ -58,6 +69,7 @@ function getChatMessageList(chatMessages: IChatMessage[]): {
     .reduce((acc: { [key: string]: ChatMessageItem }, chatMessage, index) => {
       acc[`${ChatMessageItem.name}-${index}`] = new ChatMessageItem({
         chatMessage,
+        isCurrentUser: chatMessage.userId === currentUserId,
       });
 
       return acc;

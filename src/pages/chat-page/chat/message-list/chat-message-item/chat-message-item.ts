@@ -10,6 +10,7 @@ interface IChildren {}
 interface IRosterItemProps extends IComponentProps {
   children?: IChildren;
   chatMessage: IChatMessage;
+  isCurrentUser: boolean;
 }
 
 const template = Handlebars.compile(chatMessageItemTemplate);
@@ -18,7 +19,9 @@ export class ChatMessageItem extends Block<IRosterItemProps> {
   constructor(props: IRosterItemProps) {
     super('li', {
       ...props,
-      classNames: ['chat-message-item'],
+      classNames: props.isCurrentUser
+        ? ['chat-message-item', 'chat-message-item_current-user']
+        : ['chat-message-item'],
     });
     this.setProps({
       chatMessage: props.chatMessage,
@@ -29,7 +32,10 @@ export class ChatMessageItem extends Block<IRosterItemProps> {
     const { chatMessage } = this.props;
     return template({
       content: chatMessage.content,
-      time: chatMessage.time.toLocaleTimeString(),
+      time: chatMessage.time.toLocaleTimeString(undefined, {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
     });
   }
 }

@@ -51,10 +51,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .chat__main {
   overflow: scroll;
+  flex-grow: 1;
+}
+
+.chat__messages-container {
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
 }
 
 .chat__footer {

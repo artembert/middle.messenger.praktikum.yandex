@@ -3,5 +3,6 @@
   margin: 0 auto;
   display: grid;
   gap: 8px;
+  width: 100%;
   max-width: calc(512px + 16px + 16px);
 }
