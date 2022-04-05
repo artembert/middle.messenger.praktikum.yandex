@@ -31,7 +31,6 @@ export class MessageList extends Block<IMessageListProps> {
   }
 
   override render(): string {
-    console.log('render', Object.keys(this.props.children ?? []).length);
     return template({ chatMessages: Object.keys(this.props.children ?? []) });
   }
 
@@ -39,6 +38,13 @@ export class MessageList extends Block<IMessageListProps> {
     oldProps: IMessageListProps,
     newProps: IMessageListProps,
   ): boolean {
+    if (
+      newProps.chatMessages &&
+      oldProps.chatMessages?.length === 0 &&
+      newProps.chatMessages.length === 0
+    ) {
+      return false;
+    }
     if (
       newProps.chatMessages &&
       oldProps.chatMessages !== newProps.chatMessages
