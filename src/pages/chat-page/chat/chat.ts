@@ -74,7 +74,8 @@ export class Chat extends Block<IChatProps> {
       children: {
         appContent: new AddressBook(
           {
-            action: (user: IUser) => handleAddUserToChat(user, 2348),
+            action: (user: IUser) =>
+              handleAddUserToChat(user, this.props?.currentChat?.id!),
             actionName: '+',
           },
           '',
@@ -171,7 +172,6 @@ export class Chat extends Block<IChatProps> {
   }
 
   private _showUsersList(): void {
-    console.log('add new member');
     this._childrenComponents.appModal?._openDialog();
   }
 
