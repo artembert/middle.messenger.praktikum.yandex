@@ -1,5 +1,5 @@
 export const chatsListTemplate = `
-{{#each chats}}
+{{#each rosterItems}}
   <{{this}}></{{this}}>
 {{/each}}
 `;

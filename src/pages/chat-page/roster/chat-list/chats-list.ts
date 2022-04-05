@@ -9,10 +9,11 @@ interface IChildren {
   [key: string]: RosterItem;
 }
 
-interface IChatsListProps extends IComponentProps {
+export interface IChatsListProps extends IComponentProps {
   children?: IChildren;
   chats?: IChat[];
   currentChat?: IChat;
+  rosterItems?: RosterItem[];
 }
 
 const template = Handlebars.compile(chatsListTemplate);
@@ -21,12 +22,32 @@ export class ChatsList extends Block<IChatsListProps> {
   constructor(props: IChatsListProps) {
     super('ul', {
       ...props,
+      classNames: ['roster__items-list'],
       children: getChatsListFromChats(props.chats ?? [], props.currentChat),
     });
   }
 
   override render(): string {
-    return template({ chats: Object.keys(this.props.children ?? []) });
+    return template({ rosterItems: Object.keys(this.props.children ?? []) });
+  }
+
+  protected override componentDidUpdate(
+    oldProps: IChatsListProps,
+    newProps: IChatsListProps,
+  ): boolean {
+    const didChatsChanged = newProps.chats && newProps.chats !== oldProps.chats;
+    const didCurrentChatChanged =
+      newProps.currentChat && newProps.currentChat !== oldProps.currentChat;
+    if (didChatsChanged || didCurrentChatChanged) {
+      this.setProps({
+        children: getChatsListFromChats(
+          this.props.chats ?? [],
+          newProps.currentChat,
+        ),
+      });
+      return true;
+    }
+    return false;
   }
 }
 

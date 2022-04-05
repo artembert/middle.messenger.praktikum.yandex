@@ -61,7 +61,6 @@ function getChatMessageList(
 ): {
   [key: string]: ChatMessageItem;
 } {
-  console.log(currentUserId);
   return chatMessages
     .sort(
       (message1, message2) => message1.time.getTime() - message2.time.getTime(),

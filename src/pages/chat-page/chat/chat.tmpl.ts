@@ -6,7 +6,7 @@ export const chatTemplate = `
     <select class="chat__header-actions" id="{{headerActionsId}}">
         <option value="none" selected="{{isDefaultHeaderActionSelected}}">...</option>
         <option value="add">Add member</option>
-        <option value="remove">Remove member</option>
+<!--        <option value="remove">Remove member</option>-->
     </select>
   {{/if}}
 </div>
