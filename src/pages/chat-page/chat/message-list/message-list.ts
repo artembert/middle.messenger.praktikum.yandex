@@ -1,3 +1,4 @@
+import './message-list.css';
 import Handlebars from 'handlebars';
 import { IComponentProps } from '../../../../lib/interfaces/component-props.interface';
 import { Block } from '../../../../lib/block/block';
@@ -18,9 +19,9 @@ const template = Handlebars.compile(messageListTemplate);
 
 export class MessageList extends Block<IMessageListProps> {
   constructor(props: IMessageListProps) {
-    console.log('props', props);
     super('ul', {
       ...props,
+      classNames: ['message-list'],
       children: getChatMessageList(props.chatMessages ?? []),
     });
   }

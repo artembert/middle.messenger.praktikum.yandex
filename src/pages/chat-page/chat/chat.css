@@ -53,9 +53,13 @@
   justify-content: center;
 }
 
+.chat__main {
+  overflow: scroll;
+}
+
 .chat__footer {
   border-top: 1px solid var(--gray-2);
-  min-height: 66.5px;
+  min-height: 67px;
 }
 
 .chat-footer {

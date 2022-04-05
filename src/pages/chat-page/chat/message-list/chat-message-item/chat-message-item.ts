@@ -16,7 +16,10 @@ const template = Handlebars.compile(chatMessageItemTemplate);
 
 export class ChatMessageItem extends Block<IRosterItemProps> {
   constructor(props: IRosterItemProps) {
-    super('li', props);
+    super('li', {
+      ...props,
+      classNames: ['chat-message-item'],
+    });
     this.setProps({
       chatMessage: props.chatMessage,
     });

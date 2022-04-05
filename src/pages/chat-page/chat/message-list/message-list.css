@@ -1,0 +1,7 @@
+.message-list {
+  padding: 16px;
+  margin: 0 auto;
+  display: grid;
+  gap: 8px;
+  max-width: calc(512px + 16px + 16px);
+}
