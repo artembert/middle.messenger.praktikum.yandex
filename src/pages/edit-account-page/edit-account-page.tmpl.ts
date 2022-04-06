@@ -1,16 +1,23 @@
 export const editAccountPageTemplate = `
-<main class="edit-account-page">
-  <div class="edit-account-page__main">
-    {{> app-account-header title="Редактировать аккаунт"}}
-    <form action="" method="post" class="edit-account-page__fields">
-      {{#each fields}}
-        {{> app-input name=name label=label mode=mode error=error mode=mode }}
-      {{/each}}
-    </form>
-    <div class="edit-account-page__actions form-action-buttons">
-      {{> app-link href=accountPageLink text="Отменить" mode="secondary" }}
-      {{> app-link href=accountPageLink text="Сохранить изменения" mode="primary" }}
+<main class="edit-account-page window">
+  <form action="" method="post" class="edit-account-page__main window__wrapper" id="{{formId}}">
+    <appAccountHeader></appAccountHeader>
+    <div
+      class="edit-account-page__fields window__content">
+      <appInputEmail></appInputEmail>
+      <appInputLogin></appInputLogin>
+      <appInputFirstName></appInputFirstName>
+      <appInputSecondName></appInputSecondName>
+      <appInputDisplayName></appInputDisplayName>
+      <appInputPhone></appInputPhone>
+      {{#if validationMessage}}
+        <div class="validation-message error-message">{{validationMessage}}</div>
+      {{/if}}
     </div>
-  </div>
+    <div class="edit-account-page__actions form-action-buttons window__footer">
+      <appLinkToAccountPage></appLinkToAccountPage>
+      <appButtonSave></appButtonSave>
+    </div>
+  </form>
 </main>
 `;

@@ -16,24 +16,22 @@
   border: 2px solid var(--color-accent);
 }
 
-.input__validation-message {
-  display: block;
-  min-height: 24px;
-  padding: 2px 0 8px;
-}
-
 .input_mode_default .input__field {
-  background-color: var(--gray-1);
-  border: 2px solid var(--gray-1);
+  background-color: var(--color-input-background);
+  border: 2px solid var(--gray-3);
 }
 
 .input_mode_readonly .input__field {
-  background-color: #ffffff;
+  background-color: var(--gray-1);
   border: 2px solid var(--gray-1);
   cursor: default;
 }
 
 .input_mode_error .input__field {
-  background-color: var(--gray-1);
+  background-color: var(--color-input-background);
   border: 2px solid var(--color-error);
+}
+
+.input_size_narrow .input__field {
+  height: 26px;
 }

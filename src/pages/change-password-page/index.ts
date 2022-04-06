@@ -1,37 +1,9 @@
-import "./change-password-page.css";
-import Handlebars from "handlebars";
-import { changePasswordPageTemplate } from "./change-password-page.tmpl";
-import { InputProps } from "../../components/input";
-import { Routes } from "../../constants/routes";
+import {
+  ChangePasswordPage,
+  IChangePasswordPageProps,
+} from './change-password-page';
+import { connect, MapStateToProps } from '../../lib/store/connect';
 
-const fields: InputProps[] = [
-  {
-    name: "oldPassword",
-    label: "Старый пароль",
-    isPassword: true,
-  },
-  {
-    name: "newPassword",
-    label: "Новый пароль",
-    isPassword: true,
-  },
-  {
-    name: "password-repeat",
-    label: "Повтор пароля",
-    isPassword: true,
-    error: "Пароли должны совпадать",
-    mode: "error",
-  },
-];
+const mapStateToProps: MapStateToProps<IChangePasswordPageProps> = () => ({});
 
-const accountPageLink = `/${Routes.ACCOUNT}`;
-
-export function changePasswordPage() {
-  const template = Handlebars.compile(changePasswordPageTemplate);
-  return Promise.resolve(
-    template({
-      fields,
-      accountPageLink,
-    })
-  );
-}
+export default connect(mapStateToProps)(ChangePasswordPage);

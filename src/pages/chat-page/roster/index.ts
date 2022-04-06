@@ -1,14 +1,8 @@
-import "./roster.css";
-import Handlebars from "handlebars";
-import { rosterTemplate } from "./roster.tmpl";
-import { registerRosterItemComponent } from "./roster-item";
+import { IRosterProps, Roster } from './roster';
+import { connect, MapStateToProps } from '../../../lib/store/connect';
 
-export interface RosterProps {
-  chats: undefined[];
-  accountPageLink: string;
-}
+const mapStateToProps: MapStateToProps<IRosterProps> = (globalState) => ({
+  currentChat: globalState.currentChat ?? undefined,
+});
 
-export function registerRosterComponent() {
-  registerRosterItemComponent();
-  Handlebars.registerPartial("app-roster", rosterTemplate);
-}
+export default connect(mapStateToProps)(Roster);

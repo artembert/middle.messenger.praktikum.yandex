@@ -2,6 +2,7 @@
   padding: 4px;
   scroll-snap-align: start;
 }
+
 .roster-item:not(:last-child) {
   border-bottom: 1px solid var(--gray-1);
 }
@@ -9,5 +10,62 @@
 .roster-item__container {
   height: 48px;
   border-radius: 4px;
+  background-color: var(--gray-1);
+  display: grid;
+  grid-template:
+    'avatar firstLine'
+    'avatar message';
+  grid-template-columns: min-content 1fr;
+  padding: 0;
+  border: 0;
+  width: 100%;
+}
+
+.roster-item_current .roster-item__container {
   background-color: var(--blue-2);
+}
+
+.roster-item:not(.roster-item_current) .roster-item__container:hover {
+  background-color: var(--blue-1);
+}
+
+.roster-item__avatar {
+  grid-area: avatar;
+  margin: 8px 12px;
+}
+
+.roster-item__first-line {
+  grid-area: firstLine;
+  display: flex;
+  overflow: hidden;
+}
+
+.roster-item__title {
+  flex-grow: 1;
+  color: var(--color-text-base);
+  font-weight: var(--font-weight-medium);
+  font-size: 14px;
+  line-height: 1;
+  padding-top: 8px;
+  text-align: start;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.roster-item__time {
+  color: var(--color-text-base);
+  font-weight: var(--font-weight-regular);
+  font-size: 12px;
+  line-height: 1;
+  padding: 8px 12px 0;
+}
+
+.roster-item__message {
+  grid-area: message;
+  color: var(--color-text-base);
+  font-weight: var(--font-weight-regular);
+  font-size: 12px;
+  line-height: 1;
+  padding-right: 12px;
 }

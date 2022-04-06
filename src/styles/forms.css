@@ -1,0 +1,6 @@
+.form-action-buttons {
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}

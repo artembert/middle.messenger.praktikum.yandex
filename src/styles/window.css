@@ -1,0 +1,36 @@
+:root {
+  --window-border-radius: 8px;
+}
+
+.window {
+  min-height: 100vh;
+  padding: var(--page-indents);
+  background-color: var(--gray-1);
+}
+
+.window_modal {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.window__wrapper {
+  background-color: #ffffff;
+  width: 380px;
+  box-shadow: var(--elevation-0);
+  border-radius: var(--window-border-radius);
+  border: none;
+  padding: 0;
+}
+
+.window__title {
+  padding: 32px 32px 36px;
+}
+
+.window__content {
+  padding: 0 32px;
+}
+
+.window__footer {
+  padding: 36px 32px 32px;
+}

@@ -10,10 +10,3 @@
   max-height: 100%;
   overflow: hidden;
 }
-
-.chat-page__main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gray-4);
-}

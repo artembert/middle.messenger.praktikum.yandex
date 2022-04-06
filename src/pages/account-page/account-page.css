@@ -1,20 +1,22 @@
 .account-page {
-  min-height: 100vh;
   display: grid;
   justify-content: center;
-  padding: var(--page-indents);
-  grid-template-columns: 1fr 316px 1fr;
+  grid-template-columns: 1fr auto 1fr;
   grid-column-gap: 40px;
 }
 
+.account-page__main {
+  grid-column: 2;
+}
+
 .account-page__navigation {
+  grid-column: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
 .account-page__actions {
-  padding-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

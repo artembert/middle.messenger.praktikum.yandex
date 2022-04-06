@@ -1,18 +1,20 @@
 export const signInPageTemplate = `
-<main class="window">
-  <div class="window__wrapper">
+<main class="window window_modal">
+  <form action="" method="post" class="window__wrapper" id="{{formId}}">
     <h1 class="window__title title">
       Вход
     </h1>
-    <form action="" method="post" class="window__content">
-      {{#each fields}}
-        {{> app-input name=name label=label mode=mode error=error }}
-      {{/each}}
-    </form>
-    <div class="window__footer form-action-buttons">
-      {{> app-link href=registerLink text="Зарегистрироваться" mode="secondary" }}
-      {{> app-button submit=true text="Войти" mode="primary" }}
+    <div class="window__content">
+      <appLoginInput></appLoginInput>
+      <appPasswordInput></appPasswordInput>
+      {{#if validationMessage}}
+        <div class="validation-message error-message">{{validationMessage}}</div>
+      {{/if}}
     </div>
-  </div>
+    <div class="window__footer form-action-buttons">
+      <appLinkToRegister></appLinkToRegister>
+      <appSignInButton></appSignInButton>
+    </div>
+  </form>
 </main>
 `;

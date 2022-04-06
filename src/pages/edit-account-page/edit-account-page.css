@@ -1,14 +1,4 @@
 .edit-account-page {
-  min-height: 100vh;
   display: grid;
   justify-content: center;
-  padding: var(--page-indents);
-}
-
-.edit-account-page__main {
-  width: 316px;
-}
-
-.edit-account-page__actions {
-  padding-top: 24px;
 }
