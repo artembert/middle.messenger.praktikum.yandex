@@ -37,6 +37,8 @@
     "@babel/preset-env": "7.16.11",
     "@babel/preset-typescript": "7.16.7",
     "@parcel/config-default": "2.4.1",
+    "@parcel/transformer-js": "2.4.1",
+    "@parcel/transformer-react-refresh-wrap": "2.4.1",
     "@parcel/validator-typescript": "2.4.1",
     "@types/jest": "27.4.1",
     "@types/uuid": "8.3.4",
