@@ -6,7 +6,7 @@ import { IComponentProps } from '../../../lib/interfaces/component-props.interfa
 import { rosterTemplate } from './roster.tmpl';
 import { Link } from '../../../components/link/link';
 import { IChat } from '../../../lib/interfaces/chat';
-import { CreateChat } from './сreate-chat/create-chat';
+import { CreateChat } from './create-chat/create-chat';
 import { inAppNavigation } from '../../../lib/router/in-app-navigation';
 import { Routes } from '../../../constants/routes';
 import ChatsList from './chat-list';
