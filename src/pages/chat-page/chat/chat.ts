@@ -14,7 +14,7 @@ import AddressBook from '../../../components/address-book';
 import { clearUsersInStore } from '../../../business-logic/user/clear-users-in-store';
 import { IUser } from '../../../lib/interfaces/user.interface';
 import { addUsersToChat } from '../../../business-logic/chats/add-users-to-chat';
-import { IChat } from '../../../lib/interfaces/chat';
+import { ICurrentChat } from '../../../lib/interfaces/chat';
 import {
   ChatWebSocket,
   IMessageResponse,
@@ -35,8 +35,7 @@ interface IChildren {
 export interface IChatProps extends IComponentProps {
   children?: IChildren;
   isDefaultHeaderActionSelected?: boolean;
-  currentChat?: IChat;
-  chatToken?: string;
+  currentChat?: ICurrentChat;
   userId?: number;
 }
 
@@ -115,12 +114,13 @@ export class Chat extends Block<IChatProps> {
     oldProps: IChatProps,
     newProps: IChatProps,
   ): boolean {
-    if (this.props.currentChat && this.props.chatToken && this.props.userId) {
+    if (this.props.currentChat && this.props.userId) {
+      this._closeSocket();
       clearChatMessages();
       this._openSocket(
         this.props.userId,
         this.props.currentChat.id,
-        this.props.chatToken,
+        this.props.currentChat.token,
       );
     }
     return super.componentDidUpdate(oldProps, newProps);
@@ -131,6 +131,10 @@ export class Chat extends Block<IChatProps> {
     this._socket.init({ userId, chatId, token }, (message) =>
       this._socketMessageHandler(message),
     );
+  }
+
+  private _closeSocket(): void {
+    this._socket?.dispose();
   }
 
   private _handleMessageChange(): void {

@@ -6,7 +6,9 @@ export async function chooseChat(chat: IChat): Promise<void> {
   const store = new Store();
   const tokenRes = await getChatToken(chat.id);
   if (tokenRes.isSuccess) {
-    store.setState('currentChat', structuredClone(chat));
-    store.setState('chatToken', tokenRes.payload);
+    store.setState(
+      'currentChat',
+      structuredClone({ ...chat, token: tokenRes.payload }),
+    );
   }
 }

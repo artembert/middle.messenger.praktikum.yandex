@@ -3,7 +3,7 @@ import { set } from '../data-utils/set';
 import { INewUser } from '../interfaces/new-user.interface';
 import { getRandomString } from '../data-utils/get-random-string';
 import { IUser } from '../interfaces/user.interface';
-import { IChat } from '../interfaces/chat';
+import { IChat, ICurrentChat } from '../interfaces/chat';
 import { IChatMessage } from '../interfaces/chat-message.interface';
 
 export interface GlobalState {
@@ -12,8 +12,7 @@ export interface GlobalState {
   user: IUser | null;
   chats: IChat[];
   users: IUser[];
-  currentChat: IChat | null;
-  chatToken: string | null;
+  currentChat: ICurrentChat | null;
   chatMessages: IChatMessage[];
 }
 
@@ -66,7 +65,6 @@ function getInitialState(): GlobalState {
     chats: [],
     users: [],
     currentChat: null,
-    chatToken: null,
     chatMessages: [],
   };
 }

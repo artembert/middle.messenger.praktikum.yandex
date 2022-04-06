@@ -8,6 +8,10 @@ export interface IChat {
   lastMessage: ILastMessage | undefined;
 }
 
+export interface ICurrentChat extends IChat {
+  token: string;
+}
+
 export interface ILastMessage {
   user: IChatUser;
   time: Date;

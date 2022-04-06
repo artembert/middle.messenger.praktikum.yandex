@@ -1,19 +1,19 @@
 /* eslint-disable class-methods-use-this */
 import { Mapper } from '../../mapper';
 import { IChatMessage } from '../../../lib/interfaces/chat-message.interface';
-import { IChatMessageDto } from '../dto/chat-message.dto';
+import { IChatHistoryMessageDto } from '../dto/chat-history-message.dto';
 
-class ChatMessageMapper implements Mapper {
+class ChatHistoryMapper implements Mapper {
   public toDTO(): void {}
 
-  public toDomain(raw: IChatMessageDto): IChatMessage {
+  public toDomain(raw: IChatHistoryMessageDto): IChatMessage {
     return {
       time: new Date(raw.time),
       id: raw.id,
-      userId: raw.userId,
+      userId: raw.user_id,
       content: raw.content,
     };
   }
 }
 
-export const chatMessageMapper = new ChatMessageMapper();
+export const chatHistoryMapper = new ChatHistoryMapper();

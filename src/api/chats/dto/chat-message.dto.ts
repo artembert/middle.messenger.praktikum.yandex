@@ -1,6 +1,7 @@
 export interface IChatMessageDto {
   time: string;
-  type: string;
-  user_id: number;
+  userId: number;
   content: string;
+  id: number;
+  type: 'message';
 }

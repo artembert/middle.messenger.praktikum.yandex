@@ -3,7 +3,6 @@ import { connect, MapStateToProps } from '../../../lib/store/connect';
 
 const mapStateToProps: MapStateToProps<IChatProps> = (globalState) => ({
   currentChat: globalState.currentChat ?? undefined,
-  chatToken: globalState.chatToken ?? undefined,
   userId: globalState.user?.id,
 });
 

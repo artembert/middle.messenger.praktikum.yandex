@@ -15,7 +15,7 @@ export abstract class WebSocketService {
 
   private _pingInterval: number | null = null;
 
-  // private readonly _endpoint: string | null = null;
+  private _isOpened: boolean = false;
 
   connect(path: string): void {
     this._ws = new WebSocket(path);
@@ -26,11 +26,17 @@ export abstract class WebSocketService {
       clearInterval(this._pingInterval);
       this._pingInterval = null;
     }
-    this._ws?.close();
+    if (this._isOpened) {
+      this._ws?.close();
+    }
   }
 
   start(interval = defaultInterval) {
+    this.subscribe('open', () => {
+      this._isOpened = true;
+    });
     this._pingInterval = window.setInterval(() => this.ping(), interval);
+    this.subscribe('close', () => this.dispose());
   }
 
   ping(): void {
