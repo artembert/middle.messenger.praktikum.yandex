@@ -6,12 +6,8 @@ import { IComponentProps } from '../../../lib/interfaces/component-props.interfa
 import { Block } from '../../../lib/block/block';
 import { Button } from '../../button/button';
 
-interface IChildren {
-  [key: string]: UserItem;
-}
-
 export interface IUserListProps extends IComponentProps {
-  children?: IChildren;
+  children?: Record<string, UserItem>;
   users?: IUser[];
   action: (user: IUser) => void;
   actionName: string;
@@ -41,10 +37,8 @@ function getUserItemsFromUsers(
   users: IUser[],
   action: (user: IUser) => void,
   actionName: string,
-): {
-  [key: string]: UserItem;
-} {
-  return users.reduce((acc: { [key: string]: UserItem }, user, index) => {
+): Record<string, UserItem> {
+  return users.reduce((acc: Record<string, UserItem>, user, index) => {
     acc[`${UserItem.name}-${index}`] = new UserItem({
       user,
       classNames: ['user-item'],

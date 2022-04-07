@@ -5,12 +5,8 @@ import { chatsListTemplate } from './chats-list.tmpl';
 import { Block } from '../../../../lib/block/block';
 import { RosterItem } from '../roster-item/roster-item';
 
-interface IChildren {
-  [key: string]: RosterItem;
-}
-
 export interface IChatsListProps extends IComponentProps {
-  children?: IChildren;
+  children?: Record<string, RosterItem>;
   chats?: IChat[];
   currentChat?: IChat;
   rosterItems?: RosterItem[];
@@ -54,10 +50,8 @@ export class ChatsList extends Block<IChatsListProps> {
 function getChatsListFromChats(
   chats: IChat[],
   currentChat?: IChat,
-): {
-  [key: string]: RosterItem;
-} {
-  return chats.reduce((acc: { [key: string]: RosterItem }, chat, index) => {
+): Record<string, RosterItem> {
+  return chats.reduce((acc: Record<string, RosterItem>, chat, index) => {
     acc[`${RosterItem.name}-${index}`] = new RosterItem({
       chat,
       classNames:

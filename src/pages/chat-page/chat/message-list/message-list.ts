@@ -6,12 +6,8 @@ import { IChatMessage } from '../../../../lib/interfaces/chat-message.interface'
 import { ChatMessageItem } from './chat-message-item/chat-message-item';
 import { messageListTemplate } from './message-list.tmpl';
 
-interface IChildren {
-  [key: string]: ChatMessageItem;
-}
-
 export interface IMessageListProps extends IComponentProps {
-  children?: IChildren;
+  children?: Record<string, ChatMessageItem>;
   chatMessages?: IChatMessage[];
   currentUserId?: number;
 }
@@ -64,14 +60,12 @@ export class MessageList extends Block<IMessageListProps> {
 function getChatMessageList(
   chatMessages: IChatMessage[],
   currentUserId: number | undefined,
-): {
-  [key: string]: ChatMessageItem;
-} {
+): Record<string, ChatMessageItem> {
   return chatMessages
     .sort(
       (message1, message2) => message1.time.getTime() - message2.time.getTime(),
     )
-    .reduce((acc: { [key: string]: ChatMessageItem }, chatMessage, index) => {
+    .reduce((acc: Record<string, ChatMessageItem>, chatMessage, index) => {
       acc[`${ChatMessageItem.name}-${index}`] = new ChatMessageItem({
         chatMessage,
         isCurrentUser: chatMessage.userId === currentUserId,
