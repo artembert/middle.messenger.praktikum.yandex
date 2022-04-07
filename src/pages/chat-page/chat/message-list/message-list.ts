@@ -51,7 +51,7 @@ export class MessageList extends Block<IMessageListProps> {
           this.props.currentUserId,
         ),
       });
-      return super.componentDidUpdate(oldProps, newProps);
+      return true;
     }
     return false;
   }
