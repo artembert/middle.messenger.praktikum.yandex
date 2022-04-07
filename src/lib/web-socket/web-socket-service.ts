@@ -8,7 +8,7 @@ export interface ISocketIncomingMessage {
   data?: string;
 }
 
-const defaultInterval = 60 * 1000;
+const DEFAULT_INTERVAL = 60 * 1000;
 
 export abstract class WebSocketService {
   protected _ws: WebSocket | null = null;
@@ -31,7 +31,7 @@ export abstract class WebSocketService {
     }
   }
 
-  start(interval = defaultInterval) {
+  start(interval = DEFAULT_INTERVAL) {
     this.subscribe('open', () => {
       this._isOpened = true;
     });
