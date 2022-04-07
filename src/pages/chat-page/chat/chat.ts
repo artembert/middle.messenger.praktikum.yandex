@@ -176,12 +176,12 @@ export class Chat extends Block<IChatProps> {
   }
 
   private _showUsersList(): void {
-    this._childrenComponents.appModal?._openDialog();
+    this._childrenComponents.appModal?.openDialog();
   }
 
   private _showMemberList(): void {
     console.log('remove members');
-    this._childrenComponents.appModal?._openDialog();
+    this._childrenComponents.appModal?.openDialog();
   }
 
   private _socketMessageHandler(response: IMessageResponse) {

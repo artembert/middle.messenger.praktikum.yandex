@@ -61,7 +61,7 @@ export class Modal extends Block<IModalProps> {
     return template({ dialogId: this._dialogId, title, isOpen });
   }
 
-  _openDialog(): void {
+  openDialog(): void {
     this.setProps({ isOpen: true });
     const dialog = document.getElementById(this._dialogId) as HTMLDialogElement;
     (dialog as any).showModal();
