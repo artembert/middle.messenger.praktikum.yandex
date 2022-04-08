@@ -1,7 +1,6 @@
 import { AsyncServiceResponse } from '../types/async-service-response.type';
-import { signInApi } from '../../api/auth/sign-in.api';
+import { getUserApi, signInApi } from '../../api/auth';
 import { ICredentials } from '../../lib/interfaces/credentials.interface';
-import { getUserApi } from '../../api/auth/get-user.api';
 import { saveUserToStore } from './save-user-to-store';
 import { logout } from './logout';
 import { validationMessage } from '../../presentation-logic/forms/validate-input';

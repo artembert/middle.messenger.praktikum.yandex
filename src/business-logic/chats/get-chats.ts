@@ -1,6 +1,6 @@
 import { AsyncServiceResponse } from '../types/async-service-response.type';
 import { IChat } from '../../lib/interfaces/chat';
-import { getChatsApi } from '../../api/chats/get-chats.api';
+import { getChatsApi } from '../../api/chats';
 import { saveChatsToStore } from './save-chats-to-store';
 
 interface Success extends AsyncServiceResponse {

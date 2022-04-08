@@ -1,5 +1,5 @@
 import { AsyncServiceResponse } from '../types/async-service-response.type';
-import { searchForUsersApi } from '../../api/users/search-for-users.api';
+import { searchForUsersApi } from '../../api/users';
 import { IUser } from '../../lib/interfaces/user.interface';
 import { saveUsersToStore } from './save-users-to-store';
 

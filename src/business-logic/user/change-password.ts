@@ -1,5 +1,5 @@
 import { AsyncServiceResponse } from '../types/async-service-response.type';
-import { changePasswordApi } from '../../api/auth/change-password.api';
+import { changePasswordApi } from '../../api/auth';
 import { INewPassword } from '../../lib/interfaces/new-password.interface';
 
 interface ChangePasswordSuccess extends AsyncServiceResponse {

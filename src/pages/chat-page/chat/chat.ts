@@ -19,7 +19,7 @@ import {
   ChatWebSocket,
   IMessageResponse,
   MessageType,
-} from '../../../api/chats/chat-web-socket';
+} from '../../../api/chats';
 import { addMessages } from '../../../business-logic/chats/add-messages';
 import MessageList from './message-list';
 import { clearChatMessages } from '../../../business-logic/chats/clear-chat-messages';
