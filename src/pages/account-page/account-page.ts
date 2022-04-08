@@ -2,16 +2,13 @@ import './account-page.css';
 import Handlebars from 'handlebars';
 import { accountPageTemplate } from './account-page.tmpl';
 import { Routes } from '../../constants/routes';
-import { Input } from '../../components/input/input';
-import { Link } from '../../components/link/link';
+import { AccountHeader, AvatarEditable, Input, Link } from '../../components';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { Block } from '../../lib/block/block';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { IUser } from '../../lib/interfaces/user.interface';
-import { inAppNavigation } from '../../lib/router/in-app-navigation';
+import { inAppNavigation } from '../../lib/router';
 import { logout } from '../../business-logic/auth';
-import { AccountHeader } from '../../components/account-header/account-header';
-import { AvatarEditable } from '../../components/avatar-editable/avatar-editable';
 import { resolveAvatarSrc } from '../../presentation-logic/avatar-src';
 
 interface IChildren {

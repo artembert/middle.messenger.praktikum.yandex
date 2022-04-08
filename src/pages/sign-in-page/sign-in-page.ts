@@ -3,9 +3,7 @@ import { v4 } from 'uuid';
 import { signInPageTemplate } from './sign-in-page.tmpl';
 import { Routes } from '../../constants/routes';
 import { Block } from '../../lib/block/block';
-import { Button } from '../../components/button/button';
-import { Link } from '../../components/link/link';
-import { Input } from '../../components/input/input';
+import { Button, Input, Link } from '../../components';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import {
   login,
@@ -19,8 +17,7 @@ import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { signIn } from '../../business-logic/auth';
 import { ICredentials } from '../../lib/interfaces/credentials.interface';
-import { Router } from '../../lib/router/router';
-import { inAppNavigation } from '../../lib/router/in-app-navigation';
+import { inAppNavigation, Router } from '../../lib/router';
 
 interface IChildren {
   appLoginInput: Input;

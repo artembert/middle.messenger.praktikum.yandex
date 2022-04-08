@@ -4,13 +4,9 @@ import { v4 } from 'uuid';
 import { Block } from '../../../lib/block/block';
 import { IComponentProps } from '../../../lib/interfaces/component-props.interface';
 import { chatTemplate } from './chat.tmpl';
-import { Input } from '../../../components/input/input';
+import { AddressBook, Avatar, Button, Input, Modal } from '../../../components';
 import { notEmpty } from '../../../presentation-logic/forms/validate-input';
-import { Button } from '../../../components/button/button';
-import { Avatar } from '../../../components/avatar/avatar';
 import { getChatName } from '../../../presentation-logic/chat-name';
-import { Modal } from '../../../components/modal/modal';
-import AddressBook from '../../../components/address-book';
 import { clearUsersInStore } from '../../../business-logic/user';
 import { IUser } from '../../../lib/interfaces/user.interface';
 import {

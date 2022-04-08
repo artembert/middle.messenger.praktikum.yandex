@@ -5,9 +5,7 @@ import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { registerPageTemplate } from './register-page.tmpl';
-import { Input } from '../../components/input/input';
-import { Button } from '../../components/button/button';
-import { Link } from '../../components/link/link';
+import { Button, Input, Link } from '../../components';
 import {
   email,
   login,
@@ -22,8 +20,7 @@ import {
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { INewUser } from '../../lib/interfaces/new-user.interface';
 import { registerNewUser } from '../../business-logic/auth';
-import { Router } from '../../lib/router/router';
-import { inAppNavigation } from '../../lib/router/in-app-navigation';
+import { inAppNavigation, Router } from '../../lib/router';
 
 interface IChildren {
   appInputEmail: Input;
