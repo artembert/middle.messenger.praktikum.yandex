@@ -1,7 +1,7 @@
 import { Route } from './route';
 import { IPage } from '../models/page.interface';
 import { Routes } from '../../constants/routes';
-import { checkAuthorization } from '../../business-logic/auth/check-authorization';
+import { checkAuthorization } from '../../business-logic/auth';
 
 export class Router {
   static instance: Router;

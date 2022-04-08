@@ -19,7 +19,7 @@ import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';
 import { INewPassword } from '../../lib/interfaces/new-password.interface';
 import { Router } from '../../lib/router/router';
-import { changePassword } from '../../business-logic/user/change-password';
+import { changePassword } from '../../business-logic/user';
 
 interface IChildren {
   appInputOldPassword: Input;

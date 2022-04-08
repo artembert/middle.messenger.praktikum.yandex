@@ -17,7 +17,7 @@ import {
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
-import { signIn } from '../../business-logic/auth/sign-in';
+import { signIn } from '../../business-logic/auth';
 import { ICredentials } from '../../lib/interfaces/credentials.interface';
 import { Router } from '../../lib/router/router';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';

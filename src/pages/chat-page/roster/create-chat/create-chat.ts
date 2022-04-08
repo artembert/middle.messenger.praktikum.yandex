@@ -9,7 +9,7 @@ import {
   notEmpty,
   validationMessage,
 } from '../../../../presentation-logic/forms/validate-input';
-import { createChat } from '../../../../business-logic/chats/create-chat';
+import { createChat } from '../../../../business-logic/chats';
 
 interface IChildren {
   appOpenButton?: Button;

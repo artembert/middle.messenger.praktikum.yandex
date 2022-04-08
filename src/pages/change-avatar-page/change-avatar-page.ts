@@ -9,7 +9,7 @@ import { IComponentProps } from '../../lib/interfaces/component-props.interface'
 import { Block } from '../../lib/block/block';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';
-import { changeAvatar } from '../../business-logic/user/change-avatar';
+import { changeAvatar } from '../../business-logic/user';
 import { Router } from '../../lib/router/router';
 import { validationMessage } from '../../presentation-logic/forms/validate-input';
 

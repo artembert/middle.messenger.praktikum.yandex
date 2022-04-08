@@ -11,18 +11,20 @@ import { Avatar } from '../../../components/avatar/avatar';
 import { getChatName } from '../../../presentation-logic/chat-name';
 import { Modal } from '../../../components/modal/modal';
 import AddressBook from '../../../components/address-book';
-import { clearUsersInStore } from '../../../business-logic/user/clear-users-in-store';
+import { clearUsersInStore } from '../../../business-logic/user';
 import { IUser } from '../../../lib/interfaces/user.interface';
-import { addUsersToChat } from '../../../business-logic/chats/add-users-to-chat';
+import {
+  addMessages,
+  addUsersToChat,
+  clearChatMessages,
+} from '../../../business-logic/chats';
 import { ICurrentChat } from '../../../lib/interfaces/chat';
 import {
   ChatWebSocket,
   IMessageResponse,
   MessageType,
 } from '../../../api/chats';
-import { addMessages } from '../../../business-logic/chats/add-messages';
 import MessageList from './message-list';
-import { clearChatMessages } from '../../../business-logic/chats/clear-chat-messages';
 
 interface IChildren {
   appInputChatMessage: Input;

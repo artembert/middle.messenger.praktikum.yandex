@@ -5,7 +5,7 @@ import { addressBookTemplate } from './address-book.tmpl';
 import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { SearchBar } from '../search-bar/search-bar';
-import { searchForUsers } from '../../business-logic/user/search-for-users';
+import { searchForUsers } from '../../business-logic/user';
 import { IUser } from '../../lib/interfaces/user.interface';
 import { Button } from '../button/button';
 import { UserItemAction, UserList } from './user-list/user-list';

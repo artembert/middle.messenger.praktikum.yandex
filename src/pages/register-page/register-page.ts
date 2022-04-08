@@ -21,7 +21,7 @@ import {
 } from '../../presentation-logic/forms/validate-input';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 import { INewUser } from '../../lib/interfaces/new-user.interface';
-import { registerNewUser } from '../../business-logic/auth/register-new-user';
+import { registerNewUser } from '../../business-logic/auth';
 import { Router } from '../../lib/router/router';
 import { inAppNavigation } from '../../lib/router/in-app-navigation';
 
