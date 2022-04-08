@@ -6,10 +6,12 @@ import { IComponentProps } from '../../../lib/interfaces/component-props.interfa
 import { Block } from '../../../lib/block/block';
 import { Button } from '../../button/button';
 
+export type UserItemAction = (user: IUser) => void;
+
 export interface IUserListProps extends IComponentProps {
   children?: Record<string, UserItem>;
   users?: IUser[];
-  action: (user: IUser) => void;
+  action: UserItemAction;
   actionName: string;
 }
 
@@ -35,7 +37,7 @@ export class UserList extends Block<IUserListProps> {
 
 function getUserItemsFromUsers(
   users: IUser[],
-  action: (user: IUser) => void,
+  action: UserItemAction,
   actionName: string,
 ): Record<string, UserItem> {
   return users.reduce((acc: Record<string, UserItem>, user, index) => {
