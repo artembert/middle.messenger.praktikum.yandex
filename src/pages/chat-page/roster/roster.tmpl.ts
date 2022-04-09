@@ -5,9 +5,6 @@ export const rosterTemplate = `
       <appSearchBar></appSearchBar>
     </div>
   </div>
-  <ul class="roster__items-list">
-    {{#each chats}}
-      {{> app-roster-item }}
-    {{/each}}
-  </ul>
+  <appChatsList></appChatsList>
+  <appCreateChat></appCreateChat>
 `;

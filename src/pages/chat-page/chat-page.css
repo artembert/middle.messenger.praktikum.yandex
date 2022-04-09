@@ -10,25 +10,3 @@
   max-height: 100%;
   overflow: hidden;
 }
-
-.chat-page__main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gray-4);
-}
-
-.chat-page__footer {
-  align-self: end;
-  width: 100%;
-}
-
-.chat-footer {
-  display: grid;
-  grid-template-columns: 20px 400px min-content;
-  grid-auto-flow: column;
-  grid-column-gap: 8px;
-  align-items: baseline;
-  justify-content: center;
-  padding: 8px;
-}

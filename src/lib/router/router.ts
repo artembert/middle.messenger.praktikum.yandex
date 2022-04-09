@@ -1,7 +1,7 @@
 import { Route } from './route';
 import { IPage } from '../models/page.interface';
 import { Routes } from '../../constants/routes';
-import { checkAuthorization } from '../../business-logic/auth/check-authorization';
+import { checkAuthorization } from '../../business-logic/auth';
 
 export class Router {
   static instance: Router;
@@ -43,9 +43,9 @@ export class Router {
     return this;
   }
 
-  go(pathname: string): void {
+  go(pathname: string): Promise<void> {
     this._history.pushState({}, '', pathname);
-    this._onRoute(pathname);
+    return this._onRoute(pathname);
   }
 
   setLoader(loader: IPage): Router {

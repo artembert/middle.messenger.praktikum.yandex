@@ -1,4 +1,4 @@
-import { DEFAULT_TITLE } from '../lib/router/router.config';
+const DEFAULT_TITLE = 'Мессенджер';
 
 export function getDocumentTitle(title?: string): string {
   if (title) {

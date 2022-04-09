@@ -31,10 +31,7 @@ export class Route {
   render(): void {
     window.scrollTo(0, 0);
     if (this._pageClass) {
-      this._page = new this._pageClass({
-        rootId: this._props.rootId,
-        props: {},
-      });
+      this._page = new this._pageClass({}, this._props.rootId);
       this._page.show();
     }
   }

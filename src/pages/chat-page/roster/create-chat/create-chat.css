@@ -1,0 +1,19 @@
+.create-chat {
+  border-top: 1px solid var(--gray-2);
+  display: flex;
+  padding: 12px 12px 4px;
+  align-items: flex-start;
+}
+
+.create-chat__open {
+  margin-left: auto;
+  margin-bottom: 24px;
+}
+
+.create-chat__input {
+  flex-grow: 1;
+}
+
+.create-chat__submit {
+  margin-left: 12px;
+}

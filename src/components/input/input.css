@@ -31,3 +31,7 @@
   background-color: var(--color-input-background);
   border: 2px solid var(--color-error);
 }
+
+.input_size_narrow .input__field {
+  height: 26px;
+}

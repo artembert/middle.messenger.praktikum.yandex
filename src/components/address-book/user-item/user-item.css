@@ -1,0 +1,27 @@
+.user-item {
+  display: flex;
+  padding: 4px 8px;
+  margin: 0;
+  list-style: none;
+  gap: 8px;
+  align-items: center;
+}
+
+.user-item:not(:last-child) {
+  border-bottom: 1px solid var(--gray-1);
+}
+
+.user-item__title {
+  display: block;
+  font-size: 12px;
+  font-weight: var(--font-weight-medium);
+}
+
+.user-item__subtitle {
+  display: block;
+  font-size: 12px;
+}
+
+.user-item__action {
+  margin-left: auto;
+}

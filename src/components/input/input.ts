@@ -18,6 +18,8 @@ export interface IInputProps extends IComponentProps {
   mode?: Mode;
   value?: string;
   validationFns?: InputValidationFn[];
+  narrow?: boolean;
+  disableAutocomplete?: boolean;
 }
 
 const invalidClassName = 'input_mode_error';
@@ -32,7 +34,10 @@ export class Input extends Block<IInputProps> {
       value: props.value,
       type: props.type ?? 'text',
       name: props.name,
-      classNames: resolveClassNames(props.mode),
+      classNames: [
+        ...resolveClassNames(props.mode, props.narrow),
+        ...(props.classNames ?? []),
+      ],
       events: props.events ?? {},
       validationFns: props.validationFns ?? [],
       internalEvents: props.internalEvents ?? {},
@@ -83,15 +88,19 @@ export class Input extends Block<IInputProps> {
   }
 }
 
-function resolveClassNames(mode?: Mode): string[] {
+function resolveClassNames(mode?: Mode, narrow?: boolean): string[] {
+  const common = ['input'];
+  if (narrow) {
+    common.push('input_size_narrow');
+  }
   switch (mode) {
     case 'error':
-      return ['input', invalidClassName];
+      return [...common, invalidClassName];
     case 'readonly':
-      return ['input', 'input_mode_readonly'];
+      return [...common, 'input_mode_readonly'];
     case 'default':
-      return ['input', 'input_mode_default'];
+      return [...common, 'input_mode_default'];
     default:
-      return ['input', 'input_mode_default'];
+      return [...common, 'input_mode_default'];
   }
 }

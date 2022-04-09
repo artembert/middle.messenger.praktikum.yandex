@@ -2,10 +2,9 @@ import Handlebars from 'handlebars';
 import { Routes } from '../../../constants/routes';
 import { notFoundErrorPageTemplate } from './not-found-error-page.tmpl';
 import { Block } from '../../../lib/block/block';
-import { Link } from '../../../components/link/link';
+import { Link } from '../../../components';
 import { getDocumentTitle } from '../../../presentation-logic/document-title';
-import { IPageConstructorParams } from '../../../lib/models/page.interface';
-import { inAppNavigation } from '../../../lib/router/in-app-navigation';
+import { inAppNavigation } from '../../../lib/router';
 
 interface IChildren {
   appBackToChatLink: Link;
@@ -29,10 +28,7 @@ export class NotFoundErrorPage extends Block<INotFoundErrorPageProps> {
     }),
   };
 
-  constructor({
-    rootId,
-    props,
-  }: IPageConstructorParams<INotFoundErrorPageProps>) {
+  constructor(props: INotFoundErrorPageProps, rootId: string) {
     super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,

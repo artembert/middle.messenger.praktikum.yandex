@@ -1,5 +1,4 @@
 import { Indexed } from '../interfaces/indexed.type';
-import { merge } from './merge';
 
 export function set<T extends Indexed>(
   object: Indexed | unknown,
@@ -20,5 +19,5 @@ export function set<T extends Indexed>(
     }),
     value as any,
   );
-  return merge(object, result) as T;
+  return { ...object, ...result } as T;
 }

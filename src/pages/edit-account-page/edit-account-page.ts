@@ -3,9 +3,13 @@ import Handlebars from 'handlebars';
 import { v4 } from 'uuid';
 import { editAccountPageTemplate } from './edit-account-page.tmpl';
 import { Routes } from '../../constants/routes';
-import { Input } from '../../components/input/input';
-import { Link } from '../../components/link/link';
-import { Button } from '../../components/button/button';
+import {
+  AccountHeader,
+  AvatarEditable,
+  Button,
+  Input,
+  Link,
+} from '../../components';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { Block } from '../../lib/block/block';
 import {
@@ -20,13 +24,9 @@ import {
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
-import { IPageConstructorParams } from '../../lib/models/page.interface';
 import { IUser } from '../../lib/interfaces/user.interface';
-import { updateUser } from '../../business-logic/user/update-user';
-import { Router } from '../../lib/router/router';
-import { inAppNavigation } from '../../lib/router/in-app-navigation';
-import { AccountHeader } from '../../components/account-header/account-header';
-import { AvatarEditable } from '../../components/avatar-editable/avatar-editable';
+import { updateUser } from '../../business-logic/user';
+import { inAppNavigation, Router } from '../../lib/router';
 import { resolveAvatarSrc } from '../../presentation-logic/avatar-src';
 
 interface IChildren {
@@ -158,10 +158,7 @@ export class EditAccountPage extends Block<IEditAccountPageProps> {
     }),
   };
 
-  constructor({
-    rootId,
-    props,
-  }: IPageConstructorParams<IEditAccountPageProps>) {
+  constructor(props: IEditAccountPageProps, rootId: string) {
     super('div', props, rootId);
     this.setProps({
       children: this._childrenComponents,

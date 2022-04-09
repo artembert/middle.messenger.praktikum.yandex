@@ -1,5 +1,5 @@
 import { AsyncServiceResponse } from '../types/async-service-response.type';
-import { logoutApi } from '../../api/auth/logout.api';
+import { logoutApi } from '../../api/auth';
 import { validationMessage } from '../../presentation-logic/forms/validate-input';
 import { Store } from '../../lib/store/store';
 

@@ -3,18 +3,22 @@ import { set } from '../data-utils/set';
 import { INewUser } from '../interfaces/new-user.interface';
 import { getRandomString } from '../data-utils/get-random-string';
 import { IUser } from '../interfaces/user.interface';
+import { IChat, ICurrentChat } from '../interfaces/chat';
+import { IChatMessage } from '../interfaces/chat-message.interface';
 
 export interface GlobalState {
   storeValue: string;
   initialNewUser: INewUser;
   user: IUser | null;
+  chats: IChat[];
+  users: IUser[];
+  currentChat: ICurrentChat | null;
+  chatMessages: IChatMessage[];
 }
 
 export const enum STORE_EVENT {
   UPDATE = 'update',
 }
-
-const localStorageKey = 'messenger-app-store';
 
 export class Store {
   static instance: Store;
@@ -28,13 +32,7 @@ export class Store {
       // eslint-disable-next-line no-constructor-return
       return Store.instance;
     }
-    const savedState = localStorage.getItem(localStorageKey);
-    this._state = savedState
-      ? JSON.parse(savedState) ?? getInitialState()
-      : getInitialState();
-    this.on(STORE_EVENT.UPDATE, () => {
-      localStorage.setItem(localStorageKey, JSON.stringify(this._state));
-    });
+    this._state = getInitialState();
     Store.instance = this;
   }
 
@@ -64,6 +62,10 @@ function getInitialState(): GlobalState {
     storeValue: 'store-value',
     initialNewUser: getInitialNewUser(),
     user: null,
+    chats: [],
+    users: [],
+    currentChat: null,
+    chatMessages: [],
   };
 }
 
