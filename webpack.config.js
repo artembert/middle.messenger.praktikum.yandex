@@ -7,12 +7,20 @@ module.exports = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'project-name.bundle.js',
+    filename: 'bundle.js',
   },
   resolve: {
     extensions: ['.ts', '.js', '.json'],
     alias: {
       handlebars: 'handlebars/dist/cjs/handlebars',
+    },
+  },
+  devtool: 'inline-source-map',
+  devServer: {
+    static: './dist',
+    port: 1234,
+    historyApiFallback: {
+      index: 'index.html',
     },
   },
   module: {
