@@ -50,7 +50,7 @@
     "eslint": "8.7.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "16.1.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.25.4",
     "html-webpack-plugin": "5.5.0",
     "jsdom": "19.0.0",
@@ -73,8 +73,8 @@
   },
   "dependencies": {
     "@csstools/normalize.css": "12.0.0",
-    "express": "^4.17.2",
-    "handlebars": "^4.7.7",
-    "uuid": "^8.3.2"
+    "express": "4.17.3",
+    "handlebars": "4.7.7",
+    "uuid": "8.3.2"
   }
 }
