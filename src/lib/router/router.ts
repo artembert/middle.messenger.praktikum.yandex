@@ -43,9 +43,9 @@ export class Router {
     return this;
   }
 
-  go(pathname: string): void {
+  go(pathname: string): Promise<void> {
     this._history.pushState({}, '', pathname);
-    this._onRoute(pathname);
+    return this._onRoute(pathname);
   }
 
   setLoader(loader: IPage): Router {
