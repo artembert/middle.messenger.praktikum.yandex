@@ -9,7 +9,9 @@
     "stylelint": "npx stylelint \"./src/**/*.css\"",
     "eslint": "npx eslint . --ext .ts,.tsx",
     "test": "mocha",
-    "lint": "npm run stylelint && npm run eslint"
+    "lint": "npm run stylelint && npm run eslint",
+    "------------------------- Docker -------------------------": "",
+    "docker:build": "docker build -t messenger ."
   },
   "repository": {
     "type": "git",
