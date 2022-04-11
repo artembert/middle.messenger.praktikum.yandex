@@ -1,13 +1,12 @@
 import './roster.css';
 import Handlebars from 'handlebars';
 import { Block } from '../../../lib/block/block';
-import { SearchBar } from '../../../components/search-bar/search-bar';
+import { Link, SearchBar } from '../../../components';
 import { IComponentProps } from '../../../lib/interfaces/component-props.interface';
 import { rosterTemplate } from './roster.tmpl';
-import { Link } from '../../../components/link/link';
 import { IChat } from '../../../lib/interfaces/chat';
 import { CreateChat } from './create-chat/create-chat';
-import { inAppNavigation } from '../../../lib/router/in-app-navigation';
+import { inAppNavigation } from '../../../lib/router';
 import { Routes } from '../../../constants/routes';
 import ChatsList from './chat-list';
 

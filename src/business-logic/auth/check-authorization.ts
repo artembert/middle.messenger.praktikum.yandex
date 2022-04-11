@@ -1,5 +1,5 @@
 import { AsyncServiceResponse } from '../types/async-service-response.type';
-import { getUserApi } from '../../api/auth/get-user.api';
+import { getUserApi } from '../../api/auth';
 import { saveUserToStore } from './save-user-to-store';
 
 interface AuthorizationSuccess extends AsyncServiceResponse {

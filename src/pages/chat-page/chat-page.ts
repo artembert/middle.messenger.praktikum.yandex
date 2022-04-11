@@ -5,7 +5,7 @@ import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import Roster from './roster';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
-import { getChats } from '../../business-logic/chats/get-chats';
+import { getChats } from '../../business-logic/chats';
 import Chat from './chat';
 
 interface IChildren {

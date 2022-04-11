@@ -1,17 +1,19 @@
 import './styles/index';
-import { Router } from './lib/router/router';
+import { Router } from './lib/router';
 import { Routes } from './constants/routes';
-import SignInPage from './pages/sign-in-page';
-import NotFoundErrorPage from './pages/error-pages/not-found-error-page';
-import { NavigationPage } from './pages/navigation-page/navigation-page';
-import InternalErrorPage from './pages/error-pages/internal-error-page';
-import RegisterPage from './pages/register-page';
-import ChatPage from './pages/chat-page';
-import AccountPage from './pages/account-page';
-import EditAccountPage from './pages/edit-account-page';
-import ChangePasswordPage from './pages/change-password-page';
-import LoadingPage from './pages/loading-page';
-import ChangeAvatarPage from './pages/change-avatar-page';
+import {
+  AccountPage,
+  ChangeAvatarPage,
+  ChangePasswordPage,
+  ChatPage,
+  EditAccountPage,
+  LoadingPage,
+  NavigationPage,
+  NotFoundErrorPage,
+  RegisterPage,
+  SignInPage,
+  InternalErrorPage,
+} from './pages';
 
 const ROOT_ELEMENT_ID = 'root';
 

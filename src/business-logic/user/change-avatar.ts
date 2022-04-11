@@ -1,5 +1,5 @@
 import { AsyncServiceResponse } from '../types/async-service-response.type';
-import { changeAvatarApi } from '../../api/auth/change-avatar.api';
+import { changeAvatarApi } from '../../api/auth';
 import { IUser } from '../../lib/interfaces/user.interface';
 import { saveUserToStore } from '../auth/save-user-to-store';
 

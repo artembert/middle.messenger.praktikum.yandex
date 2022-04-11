@@ -1,6 +1,6 @@
 import { AsyncServiceResponse } from '../types/async-service-response.type';
 import { INewUser } from '../../lib/interfaces/new-user.interface';
-import { registerNewUserApi } from '../../api/auth/register-new-user.api';
+import { registerNewUserApi } from '../../api/auth';
 import { signIn } from './sign-in';
 
 interface RegisterNewUserSuccess extends AsyncServiceResponse {

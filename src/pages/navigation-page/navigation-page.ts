@@ -5,8 +5,8 @@ import { navigationPageTemplate } from './navigation-page.tmpl';
 import { Block } from '../../lib/block/block';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
 
-interface INavigationPageProps {
-  routes: string[];
+export interface INavigationPageProps {
+  routes?: string[];
 }
 
 const template = Handlebars.compile(navigationPageTemplate);

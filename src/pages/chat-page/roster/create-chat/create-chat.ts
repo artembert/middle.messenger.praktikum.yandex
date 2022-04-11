@@ -3,13 +3,12 @@ import Handlebars from 'handlebars';
 import { IComponentProps } from '../../../../lib/interfaces/component-props.interface';
 import { createChatTemplate } from './create-chat.tmpl';
 import { Block } from '../../../../lib/block/block';
-import { Button } from '../../../../components/button/button';
-import { Input } from '../../../../components/input/input';
+import { Button, Input } from '../../../../components';
 import {
   notEmpty,
   validationMessage,
 } from '../../../../presentation-logic/forms/validate-input';
-import { createChat } from '../../../../business-logic/chats/create-chat';
+import { createChat } from '../../../../business-logic/chats';
 
 interface IChildren {
   appOpenButton?: Button;

@@ -4,10 +4,10 @@ import { IComponentProps } from '../../../../lib/interfaces/component-props.inte
 import { rosterItemTemplate } from './roster-item.tmpl';
 import { Block } from '../../../../lib/block/block';
 import { IChat } from '../../../../lib/interfaces/chat';
-import { Avatar } from '../../../../components/avatar/avatar';
+import { Avatar } from '../../../../components';
 import { getChatName } from '../../../../presentation-logic/chat-name';
 import { formatTime } from '../../../../presentation-logic/format-date';
-import { chooseChat } from '../../../../business-logic/chats/choose-chat';
+import { chooseChat } from '../../../../business-logic/chats';
 
 interface IChildren {
   appAvatar: Avatar;

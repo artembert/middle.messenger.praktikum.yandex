@@ -3,9 +3,7 @@ import Handlebars from 'handlebars';
 import { v4 } from 'uuid';
 import { changePasswordPageTemplate } from './change-password-page.tmpl';
 import { Routes } from '../../constants/routes';
-import { Input } from '../../components/input/input';
-import { Button } from '../../components/button/button';
-import { Link } from '../../components/link/link';
+import { Button, Input, Link } from '../../components';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { Block } from '../../lib/block/block';
 import {
@@ -16,10 +14,9 @@ import {
 } from '../../presentation-logic/forms/validate-input';
 import { getFormData } from '../../presentation-logic/forms/get-form-data';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
-import { inAppNavigation } from '../../lib/router/in-app-navigation';
+import { inAppNavigation, Router } from '../../lib/router';
 import { INewPassword } from '../../lib/interfaces/new-password.interface';
-import { Router } from '../../lib/router/router';
-import { changePassword } from '../../business-logic/user/change-password';
+import { changePassword } from '../../business-logic/user';
 
 interface IChildren {
   appInputOldPassword: Input;

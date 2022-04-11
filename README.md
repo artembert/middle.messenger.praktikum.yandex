@@ -4,7 +4,7 @@ Educational personal project for the course "Middle frontend developer" from Yan
 
 ## References
 
-- Strint 2 PR: https://github.com/artembert/middle.messenger.praktikum.yandex/pull/3
+- Strint 3 PR: https://github.com/artembert/middle.messenger.praktikum.yandex/pull/4
 - Figma sketches: https://www.figma.com/file/OdjwqHQZM6uYhIOuT7odv8/Chat?node-id=0%3A1
 - Netlify demo: https://dazzling-thompson-6eb213.netlify.app/
 

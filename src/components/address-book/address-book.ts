@@ -5,10 +5,10 @@ import { addressBookTemplate } from './address-book.tmpl';
 import { Block } from '../../lib/block/block';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { SearchBar } from '../search-bar/search-bar';
-import { searchForUsers } from '../../business-logic/user/search-for-users';
+import { searchForUsers } from '../../business-logic/user';
 import { IUser } from '../../lib/interfaces/user.interface';
 import { Button } from '../button/button';
-import { UserList } from './user-list/user-list';
+import { UserItemAction, UserList } from './user-list/user-list';
 
 interface IChildren {
   appSearchBar: SearchBar;
@@ -22,7 +22,7 @@ export interface IAddressBookProps extends IComponentProps {
   users?: IUser[];
   onConfirm?: () => void;
   onCancel?: () => void;
-  action?: (user: IUser) => void;
+  action?: UserItemAction;
   actionName?: string;
 }
 

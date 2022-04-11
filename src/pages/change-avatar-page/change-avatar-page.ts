@@ -3,14 +3,12 @@ import Handlebars from 'handlebars';
 import { v4 } from 'uuid';
 import { changeAvatarPageTemplate } from './change-avatar-page.tmpl';
 import { Routes } from '../../constants/routes';
-import { Button } from '../../components/button/button';
-import { Link } from '../../components/link/link';
+import { Button, Link } from '../../components';
 import { IComponentProps } from '../../lib/interfaces/component-props.interface';
 import { Block } from '../../lib/block/block';
 import { getDocumentTitle } from '../../presentation-logic/document-title';
-import { inAppNavigation } from '../../lib/router/in-app-navigation';
-import { changeAvatar } from '../../business-logic/user/change-avatar';
-import { Router } from '../../lib/router/router';
+import { inAppNavigation, Router } from '../../lib/router';
+import { changeAvatar } from '../../business-logic/user';
 import { validationMessage } from '../../presentation-logic/forms/validate-input';
 
 interface IChildren {
