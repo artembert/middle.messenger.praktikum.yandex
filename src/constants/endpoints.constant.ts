@@ -1,7 +1,7 @@
 const AUTH_ENDPOINT = 'https://ya-praktikum.tech/api/v2/auth';
 const USERS_ENDPOINT = 'https://ya-praktikum.tech/api/v2/user';
 const CHATS_ENDPOINT = 'https://ya-praktikum.tech/api/v2/chats';
-export const RESOURCES_ENDPOINT = 'https://ya-praktikum.tech/';
+export const RESOURCES_ENDPOINT = 'https://ya-praktikum.tech/api/v2/resources';
 const CHATS_SOCKET_ENDPOINT = 'wss://ya-praktikum.tech/ws/chats';
 
 export const AuthEndpoint = {
